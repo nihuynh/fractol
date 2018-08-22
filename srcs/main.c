@@ -1,0 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
+/*   Updated: 2018/08/23 01:56:48 by nihuynh          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fractol.h"
+#include "libft.h"
+#include "mlx.h"
+#include <stdlib.h>
+
+int main (int ac, char **av)
+{
+    t_env	*env;
+    if (ac != 2)
+		ft_putendl(MSG_USAGE);
+	else
+	{
+        ft_putendl(av[1]);
+		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
+		    ft_error(__func__, __LINE__);
+		ft_new_window(env, WIN_HEIGHT, WIN_WIDTH, WIN_TITLE);
+		mlx_loop(env->mlx);
+		quit_program(env, EXIT_SUCCESS);
+	}
+	return (0);
+}
