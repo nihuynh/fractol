@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/23 14:55:44 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/08/29 18:49:23 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "mlx.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
 ** Handle the image business.
@@ -27,9 +28,28 @@ void	ft_putpixel(t_env *env, int x, int y, int color)
 
 void	process_pixel(t_env *env, int x, int y)
 {
-	ft_print_value("\nx : ", x);
-	ft_print_value("\ty : ", y);
+	int iter;
+	double c_r;
+	double c_i;
+	double z_r;
+	double z_i;
+	double tmp;
+
+	iter = -1;
+	z_r = 0;
+	z_i = 0;
+	c_r = env->x1  + x * env->step_x;
+	c_i = env->y1  + y * env->step_y;
+	while (++iter < ITER_MAX && (z_r * z_r + z_i * z_i) < 4.0)
+	{
+		tmp = z_r;
+		z_r = z_r * z_r - z_i * z_i + c_r;
+		z_i = 2.0 * tmp * z_i + c_i;
+	}
+	if (iter != ITER_MAX)
+		ft_putpixel(env, x, y, iter * 255 / ITER_MAX << 16);
 }
+
 
 void	render(t_env *env)
 {
@@ -42,7 +62,7 @@ void	render(t_env *env)
 	ft_bzero(env->imgstr, (limit * sizeof(int)));
 	while (++i < limit)
 	{
-		process_pixel(env, i % env->win_w, i / env->win_w)
+		process_pixel(env, i % env->win_w, i / env->win_w);
 	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }
@@ -104,4 +124,5 @@ void    ft_new_window(t_env *env, int w, int h, char *title)
 	if (MOUSE_ENABLE)
 		mlx_mouse_hook(env->win, deal_mouse, (void*)env);
 	env->zoom = 100;
+	render(env);
 }

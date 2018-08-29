@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/23 02:38:15 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/08/29 18:47:53 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define MOUSE_ENABLE 0
 # define KEY_SYS_OUT 53
 
+# define ITER_MAX 100
 
 
 typedef struct	s_env
@@ -38,6 +39,8 @@ typedef struct	s_env
 	double		x2;
 	double		y1;
     double		y2;
+	double		step_x;
+    double		step_y;
 	int			win_w;
 	int			win_h;
 	void		*mlx;
