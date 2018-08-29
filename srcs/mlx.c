@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/23 01:57:03 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/08/23 14:55:44 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,30 @@
 
 void	ft_putpixel(t_env *env, int x, int y, int color)
 {
-	if (ft_btw(x, 0, WIN_WIDTH) && ft_btw(y, 0 , WIN_HEIGHT))
-		env->imgstr[x + WIN_WIDTH * y] = color;
+	if (ft_btw(x, 0, env->win_w - 1) && ft_btw(y, 0 , env->win_h - 1))
+		env->imgstr[x + env->win_w * y] = color;
+}
+
+void	process_pixel(t_env *env, int x, int y)
+{
+	ft_print_value("\nx : ", x);
+	ft_print_value("\ty : ", y);
+}
+
+void	render(t_env *env)
+{
+	int i;
+	int limit;
+
+	i = -1;
+	limit = env->win_w * env->win_h;
+	mlx_clear_window(env->mlx, env->win);
+	ft_bzero(env->imgstr, (limit * sizeof(int)));
+	while (++i < limit)
+	{
+		process_pixel(env, i % env->win_w, i / env->win_w)
+	}
+	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }
 
 void    quit_program(t_env *env, int exit_code)
@@ -69,7 +91,7 @@ int     deal_keyboard(int key_code, t_env *env)
 ** Mlx handler.
 */
 
-void    ft_new_window(t_env *env, int h, int w, char *title)
+void    ft_new_window(t_env *env, int w, int h, char *title)
 {
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, w, h, title);

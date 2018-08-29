@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/23 01:56:32 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/08/23 02:38:15 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # define MSG_USAGE "usage: ./fractol <mandelbrot>"
 # define MSG_BYE "Quitting Fractol. Bye bye !"
 # define MSG_ERR "Error cause fractol to exit"
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
 # define KEY_ENABLE 1
 # define MOUSE_ENABLE 0
 # define KEY_SYS_OUT 53
@@ -36,6 +34,12 @@
 
 typedef struct	s_env
 {
+	double		x1;
+	double		x2;
+	double		y1;
+    double		y2;
+	int			win_w;
+	int			win_h;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -43,15 +47,13 @@ typedef struct	s_env
 	int			b;
 	int			s;
 	int			e;
-	double		x1;
-	double		x2;
-	double		y1;
-    double		y2;
 	int			zoom;
 }				t_env;
 
 void	ft_putpixel(t_env *env, int x, int y, int color);
 void	quit_program(t_env *env, int exit_code);
-void    ft_new_window(t_env *env, int h, int w, char *title);
+void    ft_new_window(t_env *env, int w, int h, char *title);
+
+void    set_mandelbrot(t_env *env);
 
 #endif
