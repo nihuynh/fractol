@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/29 18:47:53 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/08/29 19:15:09 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@
 # define MSG_BYE "Quitting Fractol. Bye bye !"
 # define MSG_ERR "Error cause fractol to exit"
 # define KEY_ENABLE 1
-# define MOUSE_ENABLE 0
+# define MOUSE_ENABLE 1
 # define KEY_SYS_OUT 53
 
 # define ITER_MAX 100
+# define ZOOM_VP 400
 
 
 typedef struct	s_env
@@ -52,6 +53,8 @@ typedef struct	s_env
 	int			e;
 	int			zoom;
 }				t_env;
+
+int     deal_keyboard(int key_code, t_env *env);
 
 void	ft_putpixel(t_env *env, int x, int y, int color);
 void	quit_program(t_env *env, int exit_code);

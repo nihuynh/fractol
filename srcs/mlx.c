@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/29 18:49:23 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/08/29 19:15:53 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "mlx.h"
 #include "libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /*
 ** Handle the image business.
@@ -61,9 +60,7 @@ void	render(t_env *env)
 	mlx_clear_window(env->mlx, env->win);
 	ft_bzero(env->imgstr, (limit * sizeof(int)));
 	while (++i < limit)
-	{
 		process_pixel(env, i % env->win_w, i / env->win_w);
-	}
 	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 }
 
@@ -91,19 +88,6 @@ int     deal_mouse(int mouse_code, t_env *env)
 			ft_print_value("\nMouse event : ", mouse_code);
 	}
 	(void)env;
-	return (0);
-}
-
-/*
-** Handle keyboard events.
-*/
-
-int     deal_keyboard(int key_code, t_env *env)
-{
-	if (key_code == KEY_SYS_OUT)
-		quit_program(env, EXIT_SUCCESS);
-	if (DEBUG)
-		ft_print_value("\nYou press the key : ", key_code);
 	return (0);
 }
 
