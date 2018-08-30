@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/29 19:15:53 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/08/30 23:13:00 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "mlx.h"
 #include "libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /*
 ** Handle the image business.
@@ -32,36 +33,62 @@ void	process_pixel(t_env *env, int x, int y)
 	double c_i;
 	double z_r;
 	double z_i;
-	double tmp;
+	double square_r;
+	double square_i;
 
 	iter = -1;
 	z_r = 0;
 	z_i = 0;
-	c_r = env->x1  + x * env->step_x;
-	c_i = env->y1  + y * env->step_y;
-	while (++iter < ITER_MAX && (z_r * z_r + z_i * z_i) < 4.0)
+	c_r = env->x1  + (double)x * env->step_x;
+	c_i = env->y1  + (double)y * env->step_y;
+	square_r = z_r * z_r;
+	square_i = z_i * z_i;
+	while (++iter < env->iter_max && (square_r + square_i) <= 4.0)
 	{
-		tmp = z_r;
-		z_r = z_r * z_r - z_i * z_i + c_r;
-		z_i = 2.0 * tmp * z_i + c_i;
+		z_i = z_r * z_i;
+		z_i += z_i + c_i;
+		z_r = square_r - square_i + c_r;
+		square_r = z_r * z_r;
+		square_i = z_i * z_i;
 	}
-	if (iter != ITER_MAX)
-		ft_putpixel(env, x, y, iter * 255 / ITER_MAX << 16);
+	if (iter != env->iter_max)
+		ft_putpixel(env, x, y, iter * 255 / env->iter_max << 8);
 }
 
+int		is_env_changed(t_env *env)
+{
+	if (env->x1 != env->old_x1 || env->x2 != env->old_x2 || env->y1 != env->old_y1 ||
+		env->y2 != env->old_y2 || env->iter_max != env->old_iter_max)
+	{
+		env->old_x1 =env->x1;
+        env->old_x2 =env->x2;
+        env->old_y1 =env->y1;
+        env->old_y2 =env->y2;
+		env->old_iter_max =env->iter_max;
+		return (1);
+	}
+	return (0);
+}
 
-void	render(t_env *env)
+int		render(t_env *env)
 {
 	int i;
 	int limit;
 
 	i = -1;
-	limit = env->win_w * env->win_h;
-	mlx_clear_window(env->mlx, env->win);
-	ft_bzero(env->imgstr, (limit * sizeof(int)));
-	while (++i < limit)
-		process_pixel(env, i % env->win_w, i / env->win_w);
-	mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+	if (is_env_changed(env))
+	{
+		limit = env->win_w * env->win_h;
+		mlx_clear_window(env->mlx, env->win);
+		ft_bzero(env->imgstr, (limit * sizeof(int)));
+		while (++i < limit)
+			process_pixel(env, i % env->win_w, i / env->win_w);
+		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
+		//printf("\nx1 = %Lg\tx2 = %Lg\tstep_x = %Lg\ty1 = %Lg\ty2 = %Lg\tstep_y = %Lg\t", env->x1, env->x2, env->step_x, env->step_y, env->y1, env->y2);
+		printf("\nx1 = %g\tx2 = %g\tstep_x = %g\ty1 = %g\ty2 = %g\tstep_y = %g\t", env->x1, env->x2, env->step_x, env->step_y, env->y1, env->y2);
+		printf("\niter_max = %d", env->iter_max);
+	}
+	return (0);
 }
 
 void    quit_program(t_env *env, int exit_code)
@@ -70,25 +97,6 @@ void    quit_program(t_env *env, int exit_code)
 	mlx_destroy_window(env->mlx, env->win);
     (exit_code == EXIT_SUCCESS) ? ft_putendl(MSG_BYE) : ft_putendl(MSG_ERR);
 	(exit_code == EXIT_SUCCESS) ? exit(0) : ft_error(__func__, __LINE__);
-}
-
-/*
-** Handle mouse events.
-*/
-
-int     deal_mouse(int mouse_code, t_env *env)
-{
-	if (DEBUG)
-	{
-		if (mouse_code == 2)
-			ft_putstr("\nRight click");
-		else if (mouse_code == 1)
-			ft_putstr("\nLeft click");
-		else
-			ft_print_value("\nMouse event : ", mouse_code);
-	}
-	(void)env;
-	return (0);
 }
 
 /*
@@ -107,6 +115,5 @@ void    ft_new_window(t_env *env, int w, int h, char *title)
 		mlx_key_hook(env->win, deal_keyboard, (void*)env);
 	if (MOUSE_ENABLE)
 		mlx_mouse_hook(env->win, deal_mouse, (void*)env);
-	env->zoom = 100;
 	render(env);
 }

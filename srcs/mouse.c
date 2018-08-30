@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/30 13:07:02 by nihuynh          ###   ########.fr       */
+/*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
+/*   Updated: 2018/08/30 23:10:43 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
-#include "mlx.h"
 #include <stdlib.h>
 
-int main (int ac, char **av)
+
+/*
+** Handle mouse events.
+*/
+
+int		deal_mouse(int mouse_code, t_env *env)
 {
-    t_env	*env;
-    if (ac != 2)
-		ft_putendl(MSG_USAGE);
-	else
+	if (DEBUG)
 	{
-        ft_putendl(av[1]);
-		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
-		    ft_error(__func__, __LINE__);
-		set_mandelbrot(env);
-		ft_new_window(env, env->win_w, env->win_h, WIN_TITLE);
-		mlx_loop_hook(env->mlx, &render, env);
-		mlx_loop(env->mlx);
-		quit_program(env, EXIT_SUCCESS);
+		if (mouse_code == 2)
+			ft_putstr("\nRight click");
+		else if (mouse_code == 1)
+			ft_putstr("\nLeft click");
+		else
+			ft_print_value("\nMouse event : ", mouse_code);
 	}
+	(void)env;
 	return (0);
 }

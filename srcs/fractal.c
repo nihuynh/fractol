@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fractal.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/30 13:07:02 by nihuynh          ###   ########.fr       */
+/*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
+/*   Updated: 2018/08/30 23:11:09 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
-#include "mlx.h"
-#include <stdlib.h>
 
-int main (int ac, char **av)
+void    set_mandelbrot(t_env *env)
 {
-    t_env	*env;
-    if (ac != 2)
-		ft_putendl(MSG_USAGE);
-	else
-	{
-        ft_putendl(av[1]);
-		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
-		    ft_error(__func__, __LINE__);
-		set_mandelbrot(env);
-		ft_new_window(env, env->win_w, env->win_h, WIN_TITLE);
-		mlx_loop_hook(env->mlx, &render, env);
-		mlx_loop(env->mlx);
-		quit_program(env, EXIT_SUCCESS);
-	}
-	return (0);
+        env->x1 = -2.15;
+        env->x2 = 0.65;
+        env->y1 = -1.25;
+        env->y2 = 1.25;
+        env->win_w = 1050;
+        env->win_h = 960;
+        env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
+        env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
+        env->iter_max = ITER_MAX;
 }
