@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/30 23:10:54 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/01 17:06:48 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	zoom(t_env *env, double value)
 
 	dx = (env->x2 - env->x1) / value;
 	dy = (env->y2 - env->y1) / value;
-    env->x1 += dx;
+	env->x1 += dx;
 	env->x2 -= dx;
 	env->y1 += dy;
 	env->y2 -= dy;
 	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-    env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
+	env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
 }
 
 void	translate(t_env *env, double value, int is_x)
@@ -47,7 +47,7 @@ void	translate(t_env *env, double value, int is_x)
 		env->y2 += dy;
 	}
 	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-    env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
+	env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
 }
 
 void	set_iter(t_env *env, int value)
@@ -59,7 +59,7 @@ void	set_iter(t_env *env, int value)
 ** Handle keyboard events.
 */
 
-int     deal_keyboard(int key_code, t_env *env)
+int		deal_keyboard(int key_code, t_env *env)
 {
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);

@@ -6,14 +6,13 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/08/30 23:10:43 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/01 17:12:14 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 #include <stdlib.h>
-
 
 /*
 ** Handle mouse events.
