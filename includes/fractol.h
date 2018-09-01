@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/01 17:04:04 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/01 18:01:29 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ typedef struct	s_env
 int				deal_keyboard(int key_code, t_env *env);
 int				deal_mouse(int mouse_code, t_env *env);
 
-void			ft_putpixel(t_env *env, int x, int y, int color);
 int				render(t_env *env);
 void			quit_program(t_env *env, int exit_code);
-void			ft_new_window(t_env *env, int w, int h, char *title);
 
 void			set_mandelbrot(t_env *env);
 

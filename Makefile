@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/08/30 12:15:39 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/01 17:52:24 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ LMLX_INC	:=
 # **************************************************************************** #
 # make specs :
 MYCC		:=	clang
-MYCC		+=	-Werror -Wall -Wextra
+MYCC		+=	-Werror -Wall -Wextra -O2
 DEBUGCC		:=	-ggdb -fsanitize=address
 RM			:=	/bin/rm -f
 # **************************************************************************** #
@@ -61,7 +61,7 @@ $(LINKF_LMLX):
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 	@mkdir $(OBJDIR) 2> /dev/null || true
-	@$(MYCC) $(CFLAG) $(INC) -o $@ -c $<
+	@$(MYCC) $(INC) -o $@ -c $<
 	@printf "\033[1;34m$(NAME)\033[25G\033[33mCompile $< $(OKLOGO)"
 clean:
 	@$(RM) $(OBJ)
