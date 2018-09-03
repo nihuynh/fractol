@@ -1,4 +1,15 @@
 # fractol
+TODO ;
+Mouse zoom
+Mouse change c\_r & c\_i
+More fractal :
+Newton
+Tricorn
+Apollonius circle
+flame
+
+Multi-thread
+
 
 Coloring :
 https://www.carnetdumaker.net/articles/dessiner-la-fractale-de-mandelbrot-en-python-et-en-cc/
