@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/01 18:01:43 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 18:45:35 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	env->win = mlx_new_window(env->mlx, w, h, title);
 	env->img = mlx_new_image(env->mlx, w, h);
 	env->imgstr = (int*)mlx_get_data_addr(env->img, &env->b, &env->s, &env->e);
+	mlx_do_key_autorepeaton(env->mlx);
 	if (env->win == NULL)
 		quit_program(env, EXIT_FAILURE);
 	if (KEY_ENABLE)
-		mlx_key_hook(env->win, deal_keyboard, (void*)env);
+		mlx_hook(env->win, 2, 0, deal_keyboard, env);
 	if (MOUSE_ENABLE)
 		mlx_mouse_hook(env->win, deal_mouse, (void*)env);
 	render(env);
@@ -54,7 +55,10 @@ int					main(int ac, char **av)
 		ft_putendl(av[1]);
 		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
 			ft_error(__func__, __LINE__);
-		set_mandelbrot(env);
+		if (ft_strcasecmp(av[1], "mandelbrot") == 0)
+			set_mandelbrot(env);
+		if (ft_strcasecmp(av[1], "julia") == 0)
+			set_julia(env);
 		ft_new_window(env, env->win_w, env->win_h, WIN_TITLE);
 		mlx_loop_hook(env->mlx, &render, env);
 		mlx_loop(env->mlx);

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/01 18:07:46 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 16:31:13 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ int		deal_keyboard(int key_code, t_env *env)
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);
 	else if (key_code == 14)
-		zoom(env, 4);
+		zoom(env, 25);
 	else if (key_code == 12)
-		zoom(env, -4);
+		zoom(env, -25);
 	else if (key_code == 123)
-		translate(env, -3, 1);
+		translate(env, -20, 1);
 	else if (key_code == 124)
-		translate(env, 3, 1);
+		translate(env, 20, 1);
 	else if (key_code == 125)
-		translate(env, 3, 0);
+		translate(env, 20, 0);
 	else if (key_code == 126)
-		translate(env, -3, 0);
+		translate(env, -20, 0);
 	else if (key_code == 15)
 		set_iter(env, 10);
 	else if (key_code == 3)

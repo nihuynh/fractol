@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/02 22:41:35 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 18:42:28 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static inline void	process_pixel(t_env *env, int x, int y)
 	double	square_i;
 
 	iter = -1;
-	z_r = 0;
-	z_i = 0;
-	c_r = env->x1 + (double)x * env->step_x;
-	c_i = env->y1 + (double)y * env->step_y;
+	z_r = env->x1 + (double)x * env->step_x;
+	z_i = env->y1 + (double)y * env->step_y;
+	c_r = (env->type == MANDEL) ? z_r : env->c_r;
+	c_i = (env->type == MANDEL) ? z_i : env->c_i;
 	square_r = z_r * z_r;
 	square_i = z_i * z_i;
 	while (++iter < env->iter_max && (square_r + square_i) <= 4.0)

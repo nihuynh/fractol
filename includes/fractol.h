@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/01 18:01:29 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 18:40:26 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@
 # define KEY_SYS_OUT 53
 
 # define ITER_MAX 100
-# define ZOOM_VP 400
+# define MANDEL 0
+# define JULIA 1
 
 typedef struct	s_env
 {
+	int			type;
 	double		x1;
 	double		x2;
 	double		y1;
@@ -42,6 +44,8 @@ typedef struct	s_env
 	double		step_x;
 	double		step_y;
 	int			iter_max;
+	double		c_r;
+	double		c_i;
 	double		old_x1;
 	double		old_x2;
 	double		old_y1;
@@ -65,5 +69,6 @@ int				render(t_env *env);
 void			quit_program(t_env *env, int exit_code);
 
 void			set_mandelbrot(t_env *env);
+void			set_julia(t_env *env);
 
 #endif
