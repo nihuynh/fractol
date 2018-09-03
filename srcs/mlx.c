@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/01 18:05:52 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/02 22:41:35 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int					render(t_env *env)
 	if (is_env_changed(env))
 	{
 		limit = env->win_w * env->win_h;
-		mlx_clear_window(env->mlx, env->win);
 		ft_bzero(env->imgstr, (limit * sizeof(int)));
 		while (++i < limit)
 			process_pixel(env, i % env->win_w, i / env->win_w);
