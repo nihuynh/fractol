@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 18:42:28 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 23:00:29 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ static inline int	is_env_changed(t_env *env)
 {
 	if (env->x1 != env->old_x1 || env->x2 != env->old_x2
 		|| env->y1 != env->old_y1 || env->y2 != env->old_y2
-		|| env->iter_max != env->old_iter_max)
+		|| env->iter_max != env->old_iter_max || env->rgb != env->old_rgb
+		|| env->palette != env->old_palette)
 	{
 		env->old_x1 = env->x1;
 		env->old_x2 = env->x2;
 		env->old_y1 = env->y1;
 		env->old_y2 = env->y2;
 		env->old_iter_max = env->iter_max;
+		env->old_rgb = env->rgb;
+		env->old_palette = env->palette;
 		return (1);
 	}
 	return (0);
@@ -68,7 +71,7 @@ static inline void	process_pixel(t_env *env, int x, int y)
 		square_i = z_i * z_i;
 	}
 	if (iter != env->iter_max)
-		ft_putpixel(env, x, y, iter * 255 / env->iter_max << 8);
+		ft_putpixel(env, x, y, palette(env, iter));
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 16:31:13 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 22:00:18 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ int		deal_keyboard(int key_code, t_env *env)
 		set_iter(env, 10);
 	else if (key_code == 3)
 		set_iter(env, -10);
+	else if (key_code == 0)
+		env->rgb += (env->rgb == 16) ? -16 : 8;
+	else if (key_code == 1)
+		env->palette += (env->palette == 1) ? -1 : 1;
 	else if (DEBUG)
 		ft_print_value("\nYou press the key : ", key_code);
 	return (0);

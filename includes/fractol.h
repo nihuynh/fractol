@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 18:40:26 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 21:56:49 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,25 @@ typedef struct	s_env
 {
 	int			type;
 	double		x1;
+	double		old_x1;
 	double		x2;
+	double		old_x2;
 	double		y1;
+	double		old_y1;
 	double		y2;
+	double		old_y2;
+	int			iter_max;
+	int			old_iter_max;
 	double		step_x;
 	double		step_y;
-	int			iter_max;
+	int			rgb;
+	int			old_rgb;
+	int			palette;
+	int			old_palette;
 	double		c_r;
+	double		old_c_r;
 	double		c_i;
-	double		old_x1;
-	double		old_x2;
-	double		old_y1;
-	double		old_y2;
-	int			old_iter_max;
+	double		old_c_i;
 	int			win_w;
 	int			win_h;
 	void		*mlx;
@@ -70,5 +76,7 @@ void			quit_program(t_env *env, int exit_code);
 
 void			set_mandelbrot(t_env *env);
 void			set_julia(t_env *env);
+
+int				palette(t_env *env, int iter);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 18:45:35 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/03 22:09:52 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 		mlx_mouse_hook(env->win, deal_mouse, (void*)env);
 	render(env);
 }
-
 
 int					main(int ac, char **av)
 {
