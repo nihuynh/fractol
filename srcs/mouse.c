@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 21:17:25 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/04 20:58:31 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,26 @@ int		deal_mouse(int mouse_code, t_env *env)
 	return (0);
 }
 
-int		mouse_motion(int mouse_code, int x, int y, t_env *env)
+int		mouse_motion(int x, int y, t_env *e)
 {
-	ft_print_value("\nMouse event : ", mouse_code);
-	ft_print_value("\tMouse X : ", x);
-	ft_print_value("\tMouse Y : ", y);
-	(void)env;
+	if (e->motion_on == 0)
+		return (0);
+	if (e->type == JULIA && ft_btw(x, 0, e->win_w) && ft_btw(y, 0, e->win_h))
+	{
+		x -= e->win_w / 2;
+		y -= e->win_h / 2;
+		if (x != e->old_x_mouse)
+		{
+			ft_print_value("\nMouse x : ", x);
+			e->old_x_mouse = x;
+			e->c_r = x * e->step_x;
+		}
+		if (y != e->old_y_mouse)
+		{
+			ft_print_value("\nMouse y : ", y);
+			e->old_y_mouse = y;
+			e->c_i = y * e->step_y;
+		}
+	}
 	return (0);
 }

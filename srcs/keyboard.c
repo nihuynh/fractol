@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 22:00:18 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/04 21:01:44 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,25 @@ void	translate(t_env *env, double value, int is_x)
 	env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
 }
 
-void	set_iter(t_env *env, int value)
+void	key_translate(t_env *env, int key_code)
 {
-	env->iter_max += value;
+	if (key_code == 123)
+		translate(env, -20, 1);
+	else if (key_code == 124)
+		translate(env, 20, 1);
+	else if (key_code == 125)
+		translate(env, 20, 0);
+	else if (key_code == 126)
+		translate(env, -20, 0);
+}
+
+void	set_fractal(t_env *env)
+{
+	env->type += (env->type == 1) ? -1 : 1;
+	if (env->type == JULIA)
+		set_julia(env);
+	if (env->type == MANDEL)
+		set_mandelbrot(env);
 }
 
 /*
@@ -64,25 +80,23 @@ int		deal_keyboard(int key_code, t_env *env)
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);
 	else if (key_code == 14)
-		zoom(env, 25);
+		zoom(env, 20);
 	else if (key_code == 12)
-		zoom(env, -25);
-	else if (key_code == 123)
-		translate(env, -20, 1);
-	else if (key_code == 124)
-		translate(env, 20, 1);
-	else if (key_code == 125)
-		translate(env, 20, 0);
-	else if (key_code == 126)
-		translate(env, -20, 0);
+		zoom(env, -20);
+	else if (key_code == ft_btw(key_code, 123, 126))
+		key_translate(env, key_code);
 	else if (key_code == 15)
-		set_iter(env, 10);
+		env->iter_max += 10;
 	else if (key_code == 3)
-		set_iter(env, -10);
+		env->iter_max += -10;
 	else if (key_code == 0)
-		env->rgb += (env->rgb == 16) ? -16 : 8;
+		env->rgb += (env->rgb == 22) ? -22 : 2;
 	else if (key_code == 1)
 		env->palette += (env->palette == 1) ? -1 : 1;
+	else if (key_code == 49)
+		env->motion_on += (env->motion_on == 1) ? -1 : 1;
+	else if (key_code == 48)
+		set_fractal(env);
 	else if (DEBUG)
 		ft_print_value("\nYou press the key : ", key_code);
 	return (0);

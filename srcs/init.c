@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 18:41:04 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/04 20:38:51 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	set_mandelbrot(t_env *env)
 void	set_julia(t_env *env)
 {
 	env->type = JULIA;
-	env->x1 = -1.35;
-	env->x2 = 1.35;
-	env->y1 = -1.2;
-	env->y2 = 1.2;
+	env->x1 = -1.80;
+	env->x2 = 1.80;
+	env->y1 = -1.5;
+	env->y2 = 1.5;
 	env->c_r = 0.285;
 	env->c_i = 0.01;
 	env->win_w = 1350;

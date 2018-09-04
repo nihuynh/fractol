@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 23:00:29 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/04 20:25:16 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,32 @@ static inline void	ft_putpixel(t_env *env, int x, int y, int color)
 		env->imgstr[x + env->win_w * y] = color;
 }
 
-static inline int	is_env_changed(t_env *env)
+static inline int	is_env_changed(t_env *e)
 {
-	if (env->x1 != env->old_x1 || env->x2 != env->old_x2
-		|| env->y1 != env->old_y1 || env->y2 != env->old_y2
-		|| env->iter_max != env->old_iter_max || env->rgb != env->old_rgb
-		|| env->palette != env->old_palette)
+	int res;
+
+	res = 0;
+	if (e->type == JULIA && (e->c_r != e->old_c_r || e->c_i != e->old_c_i))
 	{
-		env->old_x1 = env->x1;
-		env->old_x2 = env->x2;
-		env->old_y1 = env->y1;
-		env->old_y2 = env->y2;
-		env->old_iter_max = env->iter_max;
-		env->old_rgb = env->rgb;
-		env->old_palette = env->palette;
-		return (1);
+		e->old_c_r = e->c_r;
+		e->old_c_i = e->c_i;
+		res = 1;
 	}
-	return (0);
+	if (e->x1 != e->old_x1 || e->x2 != e->old_x2
+		|| e->y1 != e->old_y1 || e->y2 != e->old_y2
+		|| e->iter_max != e->old_iter_max || e->rgb != e->old_rgb
+		|| e->palette != e->old_palette)
+	{
+		e->old_x1 = e->x1;
+		e->old_x2 = e->x2;
+		e->old_y1 = e->y1;
+		e->old_y2 = e->y2;
+		e->old_iter_max = e->iter_max;
+		e->old_rgb = e->rgb;
+		e->old_palette = e->palette;
+		res = 1;
+	}
+	return (res);
 }
 
 static inline void	process_pixel(t_env *env, int x, int y)

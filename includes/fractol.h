@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/03 21:56:49 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/04 20:48:44 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 typedef struct	s_env
 {
 	int			type;
+	int			motion_on;
 	double		x1;
 	double		old_x1;
 	double		x2;
@@ -49,6 +50,10 @@ typedef struct	s_env
 	int			old_iter_max;
 	double		step_x;
 	double		step_y;
+	int			x_mouse;
+	int			old_x_mouse;
+	int			y_mouse;
+	int			old_y_mouse;
 	int			rgb;
 	int			old_rgb;
 	int			palette;
@@ -70,6 +75,7 @@ typedef struct	s_env
 
 int				deal_keyboard(int key_code, t_env *env);
 int				deal_mouse(int mouse_code, t_env *env);
+int				mouse_motion(int x, int y, t_env *env);
 
 int				render(t_env *env);
 void			quit_program(t_env *env, int exit_code);
@@ -78,5 +84,6 @@ void			set_mandelbrot(t_env *env);
 void			set_julia(t_env *env);
 
 int				palette(t_env *env, int iter);
+void			show_help(void);
 
 #endif
