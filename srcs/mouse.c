@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 11:51:29 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/05 22:24:37 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,37 @@
 #include "libft.h"
 #include <stdlib.h>
 
+/*
+** toby[0] <==> c_r;
+** toby[1] <==> c_i;
+** toby[2] <==> dx;
+** toby[3] <==> dy;
+*/
+
 void	zoom_on(t_env *env, int value, int x, int y)
 {
+	double toby[4];
+
 	if (ft_btw(x, 0, env->win_w) && ft_btw(y, 0, env->win_h))
 	{
 		x -= env->win_w / 2;
 		y -= env->win_h / 2;
-		env->x1 += (x * env->step_x + (env->x2 - env->x1) / value);
-		env->x2 += (x * env->step_x - (env->x2 - env->x1) / value);
-		env->y1 += (y * env->step_y + (env->y2 - env->y1) / value);
-		env->y2 += (y * env->step_y - (env->y2 - env->y1) / value);
+		toby[0] = -x * env->step_x;
+		toby[1] = -y * env->step_y;
+		toby[2] = (env->x2 - env->x1) / value;
+		toby[3] = (env->y2 - env->y1) / value;
+		env->x1 += toby[2];
+		env->x2 -= toby[2];
+		env->y1 += toby[3];
+		env->y2 -= toby[3];
 		env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
 		env->step_y = env->step_x;
+		toby[0] += x * env->step_x;
+		toby[1] += y * env->step_y;
+		env->x1 -= toby[0];
+		env->x2 -= toby[0];
+		env->y1 -= toby[1];
+		env->y2 -= toby[1];
 	}
 }
 

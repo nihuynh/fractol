@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 21:30:15 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/04 13:45:06 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/05 18:59:24 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 
-int	ft_fibonacci(int index)
+static inline int	ft_fibonacci(int index)
 {
 	if (index < 0 || index >= 47)
 		return (-1);
@@ -29,7 +29,7 @@ int	ft_fibonacci(int index)
 	return (ft_fibonacci(index - 2) + ft_fibonacci(index - 1));
 }
 
- void* compute(void *i)
+static inline void* compute(void *i)
 {
 	printf("\nThe fibonacci of : %i\tas a result of : %i", (int)i, ft_fibonacci((int)i));
 	return NULL;
