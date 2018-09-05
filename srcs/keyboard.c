@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/04 21:01:44 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/05 02:48:41 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	zoom(t_env *env, double value)
 	env->y1 += dy;
 	env->y2 -= dy;
 	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-	env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
+	env->step_y = env->step_x;
 }
 
-void	translate(t_env *env, double value, int is_x)
+void	translate(t_env *env, double value, int is_x, int is_y)
 {
 	double dx;
 	double dy;
@@ -41,25 +41,25 @@ void	translate(t_env *env, double value, int is_x)
 		env->x1 += dx;
 		env->x2 += dx;
 	}
-	else
+	if (is_y)
 	{
 		env->y1 += dy;
 		env->y2 += dy;
 	}
 	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-	env->step_y = (env->y2 - env->y1) / (env->win_h - 1);
+	env->step_y = env->step_x;
 }
 
 void	key_translate(t_env *env, int key_code)
 {
 	if (key_code == 123)
-		translate(env, -20, 1);
+		translate(env, 20, 1, 0);
 	else if (key_code == 124)
-		translate(env, 20, 1);
+		translate(env, -20, 1, 0);
 	else if (key_code == 125)
-		translate(env, 20, 0);
+		translate(env, -20, 0, 1);
 	else if (key_code == 126)
-		translate(env, -20, 0);
+		translate(env, 20, 0, 1);
 }
 
 void	set_fractal(t_env *env)
@@ -79,11 +79,13 @@ int		deal_keyboard(int key_code, t_env *env)
 {
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);
+	else if (key_code == 4)
+		show_help();
 	else if (key_code == 14)
 		zoom(env, 20);
 	else if (key_code == 12)
 		zoom(env, -20);
-	else if (key_code == ft_btw(key_code, 123, 126))
+	else if (ft_btw(key_code, 123, 126))
 		key_translate(env, key_code);
 	else if (key_code == 15)
 		env->iter_max += 10;

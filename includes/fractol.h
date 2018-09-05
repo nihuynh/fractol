@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/04 20:48:44 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/05 17:24:52 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,24 @@
 */
 
 # define DEBUG 1
+# define MB 1
 
-# define WIN_TITLE "Fractol"
+#if (MB == 1)
+# define WIN_TITLE "Fractol on macbook"
+# define VP_WIDTH 1680
+# define VP_HEIGHT 1000
+# define M_XMIN -2.8
+# define M_XMAX 1.3
+# define J_X 1.8
+#else
+# define WIN_TITLE "Fractol @42"
+# define VP_WIDTH 600
+# define VP_HEIGHT 600
+# define M_XMIN -2.1
+# define M_XMAX 0.6
+# define J_X 1.2
+#endif
+
 # define CURRENT_TITLE "Fractol 0% 23/08 J-7"
 
 # define MSG_USAGE "\nusage: ./fractol <mandelbrot>"
@@ -74,7 +90,9 @@ typedef struct	s_env
 }				t_env;
 
 int				deal_keyboard(int key_code, t_env *env);
-int				deal_mouse(int mouse_code, t_env *env);
+void			zoom(t_env *env, double value);
+
+int				deal_mouse(int mouse_code, int x, int y, t_env *env);
 int				mouse_motion(int x, int y, t_env *env);
 
 int				render(t_env *env);

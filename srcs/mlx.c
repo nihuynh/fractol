@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/04 20:25:16 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/05 11:38:27 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static inline void	process_pixel(t_env *env, int x, int y)
 	c_i = (env->type == MANDEL) ? z_i : env->c_i;
 	square_r = z_r * z_r;
 	square_i = z_i * z_i;
-	while (++iter < env->iter_max && (square_r + square_i) <= 4.0)
+	while (++iter < env->iter_max && (square_r + square_i) <= 4)
 	{
 		z_i = z_r * z_i;
 		z_i += z_i + c_i;

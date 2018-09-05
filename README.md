@@ -8,8 +8,9 @@ Tricorn
 Apollonius circle
 flame
 
-Multi-thread
 
+Divers:
+http://www.icosaedro.it/c-modules.html
 
 Coloring :
 https://www.carnetdumaker.net/articles/dessiner-la-fractale-de-mandelbrot-en-python-et-en-cc/
@@ -20,6 +21,13 @@ https://stackoverflow.com/questions/41796832/smooth-zoom-with-mouse-in-mandelbro
 Multi-thread:
 http://greenteapress.com/wp/semaphores/
 https://blogs.msdn.microsoft.com/oldnewthing/20170814-00/?p=96806
+
+Man pages :
+man pthread
+man sem_open
+man sem_close
+man sem_unlink
+
 
 Glitch at :
 x1 = -1.5375	x2 = -1.5375	y1 = -2.66454e-14	y2 = 2.66454e-14

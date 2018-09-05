@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/04 21:02:15 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/05 11:25:17 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 		mlx_hook(env->win, 2, 0, deal_keyboard, env);
 	if (MOUSE_ENABLE)
 	{
-		mlx_mouse_hook(env->win, deal_mouse, (void*)env);
+		mlx_hook(env->win, 4, 0, deal_mouse, env);
 		mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
 	}
 	render(env);
