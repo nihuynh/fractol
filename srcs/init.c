@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 02:16:53 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/06 17:53:09 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ void	set_mandelbrot(t_env *env)
 	env->x2 = M_XMAX;
 	env->win_w = VP_WIDTH;
 	env->win_h = VP_HEIGHT;
-	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-	env->step_y = env->step_x;
-	env->y1 = -env->step_x * (env->win_h - 1) / 2;
-	env->y2 = env->step_x * (env->win_h - 1) / 2;
+	env->step = (env->x2 - env->x1) / (env->win_w - 1);
+	env->y1 = -env->step * (env->win_h - 1) / 2;
+	env->y2 = env->step * (env->win_h - 1) / 2;
 	env->iter_max = ITER_MAX;
 }
 
@@ -36,9 +35,8 @@ void	set_julia(t_env *env)
 	env->c_i = 0.01;
 	env->win_w = VP_WIDTH;
 	env->win_h = VP_HEIGHT;
-	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-	env->step_y = env->step_x;
-	env->y1 = -env->step_x * (env->win_h - 1) / 2;
-	env->y2 = env->step_x * (env->win_h - 1) / 2;
+	env->step = (env->x2 - env->x1) / (env->win_w - 1);
+	env->y1 = -env->step * (env->win_h - 1) / 2;
+	env->y2 = env->step * (env->win_h - 1) / 2;
 	env->iter_max = ITER_MAX;
 }

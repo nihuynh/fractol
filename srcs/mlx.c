@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 11:38:27 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/06 17:55:20 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static inline void	process_pixel(t_env *env, int x, int y)
 	double	square_i;
 
 	iter = -1;
-	z_r = env->x1 + (double)x * env->step_x;
-	z_i = env->y1 + (double)y * env->step_y;
+	z_r = env->x1 + (double)x * env->step;
+	z_i = env->y1 + (double)y * env->step;
 	c_r = (env->type == MANDEL) ? z_r : env->c_r;
 	c_i = (env->type == MANDEL) ? z_i : env->c_i;
 	square_r = z_r * z_r;
@@ -100,7 +100,7 @@ int					render(t_env *env)
 		while (++i < limit)
 			process_pixel(env, i % env->win_w, i / env->win_w);
 		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-		printf("\nx1 = %g\tx2 = %g\tstep_x = %g\ty1 = %g\ty2 = %g\tstep_y = %g\t\niter_max = %d", env->x1, env->x2, env->step_x, env->y1, env->y2, env->step_y, env->iter_max);
+		printf("\nx1 = %g\tx2 = %g\tstep = %g\ty1 = %g\ty2 = %g\t\niter_max = %d", env->x1, env->x2, env->step, env->y1, env->y2, env->iter_max);
 	}
 	return (0);
 }

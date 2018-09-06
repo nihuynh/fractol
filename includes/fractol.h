@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/06 16:20:00 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/06 22:29:03 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@
 */
 
 # define DEBUG 1
-# define MAC MACBOOK
+# define MAC IMAC
 
+# define MACB 1
+# define IMAC 2
 
-# define MACBOOK 0
-# define IMAC 1
-
-#if (MAC == MACBOOK)
+#if (MAC == MACB)
 # define WIN_TITLE "Fractol on macbook"
 # define VP_WIDTH 1680
 # define VP_HEIGHT 1000
@@ -57,7 +56,7 @@
 # define MOUSE_ENABLE 1
 # define KEY_SYS_OUT 53
 
-# define ITER_MAX 100
+# define ITER_MAX 50
 # define MANDEL 0
 # define JULIA 1
 
@@ -75,8 +74,7 @@ typedef struct	s_env
 	double		old_y2;
 	int			iter_max;
 	int			old_iter_max;
-	double		step_x;
-	double		step_y;
+	double		step;
 	int			x_mouse;
 	int			old_x_mouse;
 	int			y_mouse;

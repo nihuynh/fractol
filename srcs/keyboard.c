@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 21:16:26 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/06 17:51:36 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	zoom(t_env *env, double value)
 	env->x2 -= dx;
 	env->y1 += dy;
 	env->y2 -= dy;
-	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-	env->step_y = env->step_x;
+	env->step = (env->x2 - env->x1) / (env->win_w - 1);
 }
 
 void	translate(t_env *env, double value, int is_x, int is_y)
@@ -46,8 +45,7 @@ void	translate(t_env *env, double value, int is_x, int is_y)
 		env->y1 += dy;
 		env->y2 += dy;
 	}
-	env->step_x = (env->x2 - env->x1) / (env->win_w - 1);
-	env->step_y = env->step_x;
+	env->step = (env->x2 - env->x1) / (env->win_w - 1);
 }
 
 void	key_translate(t_env *env, int key_code)
