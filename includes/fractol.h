@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 22:28:12 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/06 16:20:00 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,20 @@
 */
 
 # define DEBUG 1
-# define MACB 0
+# define MAC MACBOOK
+
+
+# define MACBOOK 0
 # define IMAC 1
 
-#if (MACB == 1)
+#if (MAC == MACBOOK)
 # define WIN_TITLE "Fractol on macbook"
 # define VP_WIDTH 1680
 # define VP_HEIGHT 1000
 # define M_XMIN -2.8
 # define M_XMAX 1.3
 # define J_X 1.8
-#elif (IMAC == 1)
+#elif (MAC == IMAC)
 # define WIN_TITLE "Fractol @42"
 # define VP_WIDTH 2560
 # define VP_HEIGHT 1400

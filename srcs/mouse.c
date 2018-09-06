@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 22:24:37 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/06 06:05:54 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int		deal_mouse(int mouse_code, int x, int y, t_env *env)
 	else if (DEBUG)
 	{
 		ft_print_value("\nMouse event : ", mouse_code);
-		ft_print_value("\nMouse X : ", x);
-		ft_print_value("\nMouse Y : ", y);
+		ft_print_value("\tMouse X : ", x);
+		ft_print_value("\tMouse Y : ", y);
 	}
 	return (0);
 }
