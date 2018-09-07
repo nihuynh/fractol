@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/06 17:51:36 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/07 04:33:12 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,40 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	zoom(t_env *env, double value)
+void	zoom(t_env *env, TYPE_Z value)
 {
-	double dx;
-	double dy;
+	TYPE_Z dx;
+	TYPE_Z dy;
 
-	dx = (env->x2 - env->x1) / value;
-	dy = (env->y2 - env->y1) / value;
-	env->x1 += dx;
-	env->x2 -= dx;
-	env->y1 += dy;
-	env->y2 -= dy;
-	env->step = (env->x2 - env->x1) / (env->win_w - 1);
+	dx = (env->d.x2 - env->d.x1) / value;
+	dy = (env->d.y2 - env->d.y1) / value;
+	env->d.x1 += dx;
+	env->d.x2 -= dx;
+	env->d.y1 += dy;
+	env->d.y2 -= dy;
+	env->d.step = (env->d.x2 - env->d.x1) / (VP_WIDTH - 1);
+	env->d.changed = 1;
 }
 
-void	translate(t_env *env, double value, int is_x, int is_y)
+void	translate(t_env *env, TYPE_Z value, int is_x, int is_y)
 {
-	double dx;
-	double dy;
+	TYPE_Z dx;
+	TYPE_Z dy;
 
-	dx = (env->x2 - env->x1) / value;
-	dy = (env->y2 - env->y1) / value;
+	dx = (env->d.x2 - env->d.x1) / value;
+	dy = (env->d.y2 - env->d.y1) / value;
 	if (is_x)
 	{
-		env->x1 += dx;
-		env->x2 += dx;
+		env->d.x1 += dx;
+		env->d.x2 += dx;
 	}
 	if (is_y)
 	{
-		env->y1 += dy;
-		env->y2 += dy;
+		env->d.y1 += dy;
+		env->d.y2 += dy;
 	}
-	env->step = (env->x2 - env->x1) / (env->win_w - 1);
+	env->d.step = (env->d.x2 - env->d.x1) / (VP_WIDTH - 1);
+	env->d.changed = 1;
 }
 
 void	key_translate(t_env *env, int key_code)
@@ -60,13 +62,13 @@ void	key_translate(t_env *env, int key_code)
 		translate(env, 20, 0, 1);
 }
 
-void	set_fractal(t_env *env)
+void	set_fractal(t_fractal *data)
 {
-	env->type += (env->type == 1) ? -1 : 1;
-	if (env->type == JULIA)
-		set_julia(env);
-	if (env->type == MANDEL)
-		set_mandelbrot(env);
+	data->type += (data->type == 1) ? -1 : 1;
+	if (data->type == JULIA)
+		set_julia(data);
+	if (data->type == MANDEL)
+		set_mandelbrot(data);
 }
 
 /*
@@ -85,18 +87,18 @@ int		deal_keyboard(int key_code, t_env *env)
 		zoom(env, -20);
 	else if (ft_btw(key_code, 123, 126))
 		key_translate(env, key_code);
-	else if (key_code == 15)
-		env->iter_max += 10;
-	else if (key_code == 3)
-		env->iter_max += -10;
-	else if (key_code == 0)
-		env->rgb += (env->rgb == 22) ? -22 : 2;
-	else if (key_code == 1)
-		env->palette += (env->palette == 1) ? -1 : 1;
-	else if (key_code == 49)
+	else if (key_code == 15 && (env->d.changed = 1))
+		env->d.iter_max += 10;
+	else if (key_code == 3 && (env->d.changed = 1))
+		env->d.iter_max += -10;
+	else if (key_code == 0 && (env->d.changed = 1))
+		env->d.rgb += (env->d.rgb == 22) ? -22 : 2;
+	else if (key_code == 1 && (env->d.changed = 1))
+		env->d.palette += (env->d.palette == 1) ? -1 : 1;
+	else if (key_code == 49 && (env->d.changed = 1))
 		env->motion_on += (env->motion_on == 1) ? -1 : 1;
 	else if (key_code == 48)
-		set_fractal(env);
+		set_fractal(&env->d);
 	else if (DEBUG)
 		ft_print_value("\nYou press the key : ", key_code);
 	return (0);

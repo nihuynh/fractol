@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/06 22:29:03 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/07 04:29:17 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,35 @@
 
 /*
 ** Definition for the fractol project :
-** Usage and window configuration
+** Config :
+** TYPE_Z is the type of float use in the complex plane
 */
 
 # define DEBUG 1
-# define MAC IMAC
+# define MAC MACB
+# define TYPE_Z float
+# define ITER_MAX 50
+# define KEY_ENABLE 1
+# define MOUSE_ENABLE 1
+
+/*
+** Keybinding :
+*/
+
+# define KEY_SYS_OUT 53
+
+/*
+** Static def :
+*/
 
 # define MACB 1
 # define IMAC 2
+# define MANDEL 0
+# define JULIA 1
+
+/*
+** Automatic parameters :
+*/
 
 #if (MAC == MACB)
 # define WIN_TITLE "Fractol on macbook"
@@ -47,48 +68,42 @@
 # define J_X 1.2
 #endif
 
-# define CURRENT_TITLE "Fractol 0% 23/08 J-7"
+/*
+** Messages for fractol :
+*/
 
-# define MSG_USAGE "\nusage: ./fractol <mandelbrot>"
+# define MSG_USAGE "\nusage: ./fractol <mandelbrot> <julia>"
 # define MSG_BYE "\nQuitting Fractol. Bye bye !"
 # define MSG_ERR "\nError cause fractol to exit"
-# define KEY_ENABLE 1
-# define MOUSE_ENABLE 1
-# define KEY_SYS_OUT 53
 
-# define ITER_MAX 50
-# define MANDEL 0
-# define JULIA 1
+/*
+** Structures :
+*/
+
+typedef struct	s_fractal
+{
+	int			type;
+	int			changed;
+	TYPE_Z		x1;
+	TYPE_Z		x2;
+	TYPE_Z		y1;
+	TYPE_Z		y2;
+	int			iter_max;
+	TYPE_Z		step;
+	int			rgb;
+	int			palette;
+	TYPE_Z		c_r;
+	TYPE_Z		c_i;
+}				t_fractal;
 
 typedef struct	s_env
 {
-	int			type;
+	t_fractal	d;
 	int			motion_on;
-	double		x1;
-	double		old_x1;
-	double		x2;
-	double		old_x2;
-	double		y1;
-	double		old_y1;
-	double		y2;
-	double		old_y2;
-	int			iter_max;
-	int			old_iter_max;
-	double		step;
 	int			x_mouse;
 	int			old_x_mouse;
 	int			y_mouse;
 	int			old_y_mouse;
-	int			rgb;
-	int			old_rgb;
-	int			palette;
-	int			old_palette;
-	double		c_r;
-	double		old_c_r;
-	double		c_i;
-	double		old_c_i;
-	int			win_w;
-	int			win_h;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -98,8 +113,12 @@ typedef struct	s_env
 	int			e;
 }				t_env;
 
+/*
+** Prototypes :
+*/
+
 int				deal_keyboard(int key_code, t_env *env);
-void			zoom(t_env *env, double value);
+void			zoom(t_env *env, TYPE_Z value);
 
 int				deal_mouse(int mouse_code, int x, int y, t_env *env);
 int				mouse_motion(int x, int y, t_env *env);
@@ -107,10 +126,10 @@ int				mouse_motion(int x, int y, t_env *env);
 int				render(t_env *env);
 void			quit_program(t_env *env, int exit_code);
 
-void			set_mandelbrot(t_env *env);
-void			set_julia(t_env *env);
+void			set_mandelbrot(t_fractal *data);
+void			set_julia(t_fractal *data);
 
-int				palette(t_env *env, int iter);
+int				palette(t_fractal fractal, int iter);
 void			show_help(void);
 
 #endif

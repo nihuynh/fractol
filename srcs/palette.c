@@ -6,21 +6,21 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 21:56:21 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/07 02:24:31 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
 
-int		palette(t_env *env, int iter)
+int		palette(t_fractal fractal, int iter)
 {
-	double	t;
+	TYPE_Z	t;
 	int		rgb;
 
-	if (env->palette == 0)
-		return (iter * 255 / env->iter_max << env->rgb);
-	t = (double)iter / (double)env->iter_max;
+	if (fractal.palette == 0)
+		return (iter * 255 / fractal.iter_max << fractal.rgb);
+	t = (TYPE_Z)iter / (TYPE_Z)fractal.iter_max;
 	rgb = ((int)(9 * (1 - t) * t * t * t * 255) << 16);
 	rgb += ((int)(15 * (1 - t) * (1 - t) * t * t * 255) << 8);
 	rgb += (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
