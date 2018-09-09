@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/07 04:29:05 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/09 18:59:35 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	set_julia(t_fractal *data)
 	data->type = JULIA;
 	data->x1 = -J_X;
 	data->x2 = J_X;
-	data->c_r = 0.285;
-	data->c_i = 0.01;
 	data->step = (data->x2 - data->x1) / (VP_WIDTH - 1);
 	data->y1 = -data->step * (VP_HEIGHT - 1) / 2;
 	data->y2 = data->step * (VP_HEIGHT - 1) / 2;

@@ -6,12 +6,14 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/07 13:32:12 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/09 23:03:34 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
+#include "mlx.h"
+#include <stdlib.h>
 
 int		palette(t_fractal data, int iter)
 {
@@ -36,4 +38,24 @@ void	show_help(void)
 	ft_putendl("TAB to change the fractal");
 	ft_putendl("SPACE to lock the mouse_motion");
 	ft_putendl("Arrow to move & ESC to quit");
+}
+
+void	show_hud(t_env *env, int time_frame)
+{
+	char *str;
+	char *value;
+
+	str = ft_strjoin("Mouse : ", ((env->motion_on == 1) ? "1" : "0"));
+	mlx_string_put(env->mlx, env->win, 15, 10, 16777215, str);
+	free(str);
+	value = ft_itoa(env->d.iter_max);
+	str = ft_strjoin("Iteration : ", value);
+	mlx_string_put(env->mlx, env->win, 15, 30, 16777215, str);
+	free(value);
+	free(str);
+	value = ft_itoa(time_frame);
+	str = ft_strjoin("Time(ms) : ", value);
+	mlx_string_put(env->mlx, env->win, 15, 50, 16777215, str);
+	free(value);
+	free(str);
 }

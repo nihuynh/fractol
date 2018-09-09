@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/07 18:36:10 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/09 23:03:44 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 */
 
 # define DEBUG 1
-# define MAC MACB
+# define MAC IMAC
 # define TYPE_Z float
 # define ITER_MAX 50
 # define KEY_ENABLE 1
@@ -129,5 +129,6 @@ void			set_julia(t_fractal *data);
 
 int				palette(t_fractal fractal, int iter);
 void			show_help(void);
+void			show_hud(t_env *env, int time_frame);
 
 #endif
