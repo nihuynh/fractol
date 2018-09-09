@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/07 04:33:12 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/07 18:05:06 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,52 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	zoom(t_env *env, TYPE_Z value)
+void	zoom(t_fractal *data, TYPE_Z value)
 {
 	TYPE_Z dx;
 	TYPE_Z dy;
 
-	dx = (env->d.x2 - env->d.x1) / value;
-	dy = (env->d.y2 - env->d.y1) / value;
-	env->d.x1 += dx;
-	env->d.x2 -= dx;
-	env->d.y1 += dy;
-	env->d.y2 -= dy;
-	env->d.step = (env->d.x2 - env->d.x1) / (VP_WIDTH - 1);
-	env->d.changed = 1;
+	dx = (data->x2 - data->x1) / value;
+	dy = (data->y2 - data->y1) / value;
+	data->x1 += dx;
+	data->x2 -= dx;
+	data->y1 += dy;
+	data->y2 -= dy;
+	data->step = (data->x2 - data->x1) / (VP_WIDTH - 1);
+	data->changed = 1;
 }
 
-void	translate(t_env *env, TYPE_Z value, int is_x, int is_y)
+void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
 {
 	TYPE_Z dx;
 	TYPE_Z dy;
 
-	dx = (env->d.x2 - env->d.x1) / value;
-	dy = (env->d.y2 - env->d.y1) / value;
+	dx = (data->x2 - data->x1) / value;
+	dy = (data->y2 - data->y1) / value;
 	if (is_x)
 	{
-		env->d.x1 += dx;
-		env->d.x2 += dx;
+		data->x1 += dx;
+		data->x2 += dx;
 	}
 	if (is_y)
 	{
-		env->d.y1 += dy;
-		env->d.y2 += dy;
+		data->y1 += dy;
+		data->y2 += dy;
 	}
-	env->d.step = (env->d.x2 - env->d.x1) / (VP_WIDTH - 1);
-	env->d.changed = 1;
+	data->step = (data->x2 - data->x1) / (VP_WIDTH - 1);
+	data->changed = 1;
 }
 
-void	key_translate(t_env *env, int key_code)
+void	key_translate(t_fractal *data, int key_code)
 {
 	if (key_code == 123)
-		translate(env, 20, 1, 0);
+		translate(data, 20, 1, 0);
 	else if (key_code == 124)
-		translate(env, -20, 1, 0);
+		translate(data, -20, 1, 0);
 	else if (key_code == 125)
-		translate(env, -20, 0, 1);
+		translate(data, -20, 0, 1);
 	else if (key_code == 126)
-		translate(env, 20, 0, 1);
+		translate(data, 20, 0, 1);
 }
 
 void	set_fractal(t_fractal *data)
@@ -82,11 +82,11 @@ int		deal_keyboard(int key_code, t_env *env)
 	else if (key_code == 4)
 		show_help();
 	else if (key_code == 14)
-		zoom(env, 20);
+		zoom(&env->d, 20);
 	else if (key_code == 12)
-		zoom(env, -20);
+		zoom(&env->d, -20);
 	else if (ft_btw(key_code, 123, 126))
-		key_translate(env, key_code);
+		key_translate(&env->d, key_code);
 	else if (key_code == 15 && (env->d.changed = 1))
 		env->d.iter_max += 10;
 	else if (key_code == 3 && (env->d.changed = 1))

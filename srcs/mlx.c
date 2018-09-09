@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/07 04:26:19 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/07 19:10:51 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ int					render(t_env *env)
 		while (++i < limit)
 			process_pixel(env, i % VP_WIDTH, i / VP_WIDTH);
 		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
-		printf("\nx1 = %g\tx2 = %g\tstep = %g\ty1 = %g\ty2 = %g\t\niter_max = %d", env->d.x1, env->d.x2, env->d.step, env->d.y1, env->d.y2, env->d.iter_max);
+		printf("\n\nx1 = %g\tx2 = %g\tstep = %g\ty1 = %g\ty2 = %g\t",
+		env->d.x1, env->d.x2, env->d.step, env->d.y1, env->d.y2);
+		printf("\niter_max = %d\tc_r = %g\tc_i = %g", env->d.iter_max, env->d.c_r, env->d.c_i);
 	}
 	return (0);
 }
