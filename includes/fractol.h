@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/09 23:03:44 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/10 22:36:12 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 */
 
 # define DEBUG 1
-# define MAC IMAC
-# define TYPE_Z float
+# define MAC MACB
+# define TYPE_Z long double
 # define ITER_MAX 50
 # define KEY_ENABLE 1
 # define MOUSE_ENABLE 1
@@ -112,6 +112,19 @@ typedef struct	s_env
 	int			s;
 	int			e;
 }				t_env;
+
+typedef struct	s_pixel
+{
+	int		iter;
+	TYPE_Z	p;
+	TYPE_Z	d;
+	TYPE_Z	c_r;
+	TYPE_Z	c_i;
+	TYPE_Z	z_r;
+	TYPE_Z	z_i;
+	TYPE_Z	square_r;
+	TYPE_Z	square_i;
+}				t_pixel;
 
 /*
 ** Prototypes :

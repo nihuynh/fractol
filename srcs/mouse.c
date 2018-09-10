@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/09 17:29:54 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 00:45:39 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,17 @@ static inline void	zoom_on(t_fractal *data, int value, int x, int y)
 ** Handle mouse events.
 */
 
-int					deal_mouse(int mouse_code, int x, int y, t_env *env)
+inline int			deal_mouse(int mouse_code, int x, int y, t_env *env)
 {
 	if (mouse_code == 2)
 		ft_putstr("\nRight click");
-	else if (mouse_code == 1)
-		ft_putstr("\nLeft click");
+	else if (env->d.type == MANDEL && mouse_code == 1)
+	{
+		env->motion_on = 1;
+		mouse_motion(x, y, env);
+		env->motion_on = 0;
+		set_julia(&env->d);
+	}
 	else if (mouse_code == 5)
 		zoom_on(&env->d, 25, x, y);
 	else if (mouse_code == 4)
@@ -67,7 +72,7 @@ int					deal_mouse(int mouse_code, int x, int y, t_env *env)
 	return (0);
 }
 
-int					mouse_motion(int x, int y, t_env *env)
+inline int			mouse_motion(int x, int y, t_env *env)
 {
 	if (env->motion_on && ft_btw(x, 0, VP_WIDTH) && ft_btw(y, 0, VP_HEIGHT))
 	{

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/07 18:05:06 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 00:46:36 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	zoom(t_fractal *data, TYPE_Z value)
+static inline void	zoom(t_fractal *data, TYPE_Z value)
 {
 	TYPE_Z dx;
 	TYPE_Z dy;
@@ -29,7 +29,7 @@ void	zoom(t_fractal *data, TYPE_Z value)
 	data->changed = 1;
 }
 
-void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
+static inline void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
 {
 	TYPE_Z dx;
 	TYPE_Z dy;
@@ -50,7 +50,7 @@ void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
 	data->changed = 1;
 }
 
-void	key_translate(t_fractal *data, int key_code)
+static inline void	key_translate(t_fractal *data, int key_code)
 {
 	if (key_code == 123)
 		translate(data, 20, 1, 0);
@@ -62,7 +62,7 @@ void	key_translate(t_fractal *data, int key_code)
 		translate(data, 20, 0, 1);
 }
 
-void	set_fractal(t_fractal *data)
+static inline void	set_fractal(t_fractal *data)
 {
 	data->type += (data->type == 1) ? -1 : 1;
 	if (data->type == JULIA)
@@ -75,7 +75,7 @@ void	set_fractal(t_fractal *data)
 ** Handle keyboard events.
 */
 
-int		deal_keyboard(int key_code, t_env *env)
+int					deal_keyboard(int key_code, t_env *env)
 {
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);

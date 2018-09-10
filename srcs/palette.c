@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/09 23:03:34 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 00:49:47 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-int		palette(t_fractal data, int iter)
+inline int		palette(t_fractal data, int iter)
 {
-	TYPE_Z	t;
+	float	t;
 	int		rgb;
 
-	if (data.palette == 0)
+	if (data.palette == 1)
 		return (iter * 255 / data.iter_max << data.rgb);
-	t = (TYPE_Z)iter / (TYPE_Z)data.iter_max;
+	t = (float)iter / (float)data.iter_max;
 	rgb = ((int)(9 * (1 - t) * t * t * t * 255) << 16);
 	rgb += ((int)(15 * (1 - t) * (1 - t) * t * t * 255) << 8);
 	rgb += (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
 	return (rgb);
 }
 
-void	show_help(void)
+inline void	show_help(void)
 {
 	ft_putendl("\n\n\n\n\n\n\n\n\n");
 	ft_putendl("Q to zoom out & E to zoom in");
@@ -40,12 +40,12 @@ void	show_help(void)
 	ft_putendl("Arrow to move & ESC to quit");
 }
 
-void	show_hud(t_env *env, int time_frame)
+inline void	show_hud(t_env *env, int time_frame)
 {
 	char *str;
 	char *value;
 
-	str = ft_strjoin("Mouse : ", ((env->motion_on == 1) ? "1" : "0"));
+	str = ft_strjoin("Mouse : ", ((env->motion_on == 1) ? "on" : "off"));
 	mlx_string_put(env->mlx, env->win, 15, 10, 16777215, str);
 	free(str);
 	value = ft_itoa(env->d.iter_max);
