@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 00:46:36 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 01:03:33 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ int					deal_keyboard(int key_code, t_env *env)
 	else if (ft_btw(key_code, 123, 126))
 		key_translate(&env->d, key_code);
 	else if (key_code == 15 && (env->d.changed = 1))
-		env->d.iter_max += 10;
+		env->d.iter_max += 50;
 	else if (key_code == 3 && (env->d.changed = 1))
-		env->d.iter_max += -10;
+		env->d.iter_max -= 50;
 	else if (key_code == 0 && (env->d.changed = 1))
 		env->d.rgb += (env->d.rgb == 22) ? -22 : 2;
 	else if (key_code == 1 && (env->d.changed = 1))
