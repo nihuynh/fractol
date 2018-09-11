@@ -32,6 +32,10 @@ Hors sujet :
 http://www.icosaedro.it/c-modules.html
 Semaphores:
 http://hacksoflife.blogspot.com/2010/12/performance-of-semaphore-vs-condition.html
+reverse engineer :
+strings fractol
+nm fractol
+otools -tv fractol
 
 DONE :
 optimisation for mandelbrot remove point of the cardoide

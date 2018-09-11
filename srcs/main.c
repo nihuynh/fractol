@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/07 18:13:35 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 05:02:30 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 2, 0, deal_keyboard, env);
 	mlx_hook(env->win, 4, 0, deal_mouse, env);
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
-	render(env);
 }
 
 int					main(int ac, char **av)
@@ -63,7 +62,6 @@ int					main(int ac, char **av)
 		if (ft_strcasecmp(av[1], "julia") == 0)
 			set_julia(&env->d);
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);
-		show_help();
 		mlx_loop_hook(env->mlx, &render, env);
 		mlx_loop(env->mlx);
 		quit_program(env, EXIT_SUCCESS);

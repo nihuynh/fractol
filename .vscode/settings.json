@@ -2,6 +2,8 @@
     "files.associations": {
         "fractol.h": "c",
         "mlx.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "limits": "c",
+        "type_traits": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 01:03:33 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 05:05:20 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ static inline void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
 	data->changed = 1;
 }
 
+/*
+** Handle the image business.
+*/
+
 static inline void	key_translate(t_fractal *data, int key_code)
 {
 	if (key_code == 123)
@@ -79,9 +83,9 @@ int					deal_keyboard(int key_code, t_env *env)
 {
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);
-	else if (key_code == 4)
+	if (key_code == 4)
 		show_help();
-	else if (key_code == 14)
+	if (key_code == 14)
 		zoom(&env->d, 20);
 	else if (key_code == 12)
 		zoom(&env->d, -20);

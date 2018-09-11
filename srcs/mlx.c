@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 00:44:44 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 05:57:57 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ static inline void	ft_putpixel(t_env *env, int x, int y, int color)
 		env->imgstr[x + VP_WIDTH * y] = color;
 }
 
+/*
+** This color the pixel for Julia and Mandelbrot fractals.
+** Check if inside mandel to avoid compute black pixel.
+** Check for the cardioid and the first circle.
+*/
+
 static inline void	process_pixel(t_env *env, int x, int y)
 {
 	t_pixel p;
@@ -39,9 +45,9 @@ static inline void	process_pixel(t_env *env, int x, int y)
 	p.square_i = p.z_i * p.z_i;
 	if (env->d.type == MANDEL)
 	{
-		p.d = (x + 1) * (x + 1) + p.square_i;
-		p.p = sqrt((x - 1 / 4) * (x - 1 / 4) + p.square_i);
-		if (p.d < 16 || (x < (p.p - 2 * p.p * p.p + 1 / 4)))
+		p.d = (p.z_r + 1.0) * (p.z_r + 1.0) + p.square_i;
+		p.p = sqrt((p.z_r - 0.25) * (p.z_r - 0.25) + p.square_i);
+		if ((p.z_r - 0.25) < (p.p - (2 * p.p * p.p)) || p.d < 0.0625)
 			return ;
 	}
 	p.c_r = (env->d.type == MANDEL) ? p.z_r : env->d.c_r;
@@ -54,8 +60,7 @@ static inline void	process_pixel(t_env *env, int x, int y)
 		p.square_r = p.z_r * p.z_r;
 		p.square_i = p.z_i * p.z_i;
 	}
-	if (p.iter != env->d.iter_max)
-		ft_putpixel(env, x, y, palette(env->d, p.iter));
+	ft_putpixel(env, x, y, palette(env->d, p.iter));
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 00:45:39 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 04:20:10 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <stdlib.h>
 
 /*
+** The function save the position of the mouse on the complex plane.
+** It then zoom and translate the frame to match the position of the mouse.
 ** toby[0] <==> c_r;
 ** toby[1] <==> c_i;
 ** toby[2] <==> dx;
@@ -49,7 +51,7 @@ static inline void	zoom_on(t_fractal *data, int value, int x, int y)
 }
 
 /*
-** Handle mouse events.
+** Handle mouse clicks and scrolls.
 */
 
 inline int			deal_mouse(int mouse_code, int x, int y, t_env *env)
@@ -71,6 +73,10 @@ inline int			deal_mouse(int mouse_code, int x, int y, t_env *env)
 		ft_print_value("\nMouse event : ", mouse_code);
 	return (0);
 }
+
+/*
+** This changing the fractal c_r, c_i base on the mouse position.
+*/
 
 inline int			mouse_motion(int x, int y, t_env *env)
 {
