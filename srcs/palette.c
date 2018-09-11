@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 05:03:18 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 19:56:45 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,33 @@ inline void	show_hud(t_env *env, int time_frame)
 	char *str;
 	char *value;
 
-	str = ft_strjoin("Mouse : ", ((env->motion_on == 1) ? "on" : "off"));
+	if (!(str = ft_strjoin("Mouse : ", ((env->motion_on == 1) ? "on" : "off"))))
+		return ;
 	mlx_string_put(env->mlx, env->win, 15, 10, 16777215, str);
 	free(str);
-	value = ft_itoa(env->d.iter_max);
+	if (!(value = ft_itoa(env->d.iter_max)))
+		return ;
 	str = ft_strjoin("Iteration : ", value);
 	mlx_string_put(env->mlx, env->win, 15, 30, 16777215, str);
 	free(value);
 	free(str);
-	value = ft_itoa(time_frame);
+	if (!(value = ft_itoa(time_frame)))
+		return ;
 	str = ft_strjoin("Time(ms) : ", value);
 	mlx_string_put(env->mlx, env->win, 15, 50, 16777215, str);
 	free(value);
 	free(str);
-	value = ft_dtoa(env->d.c_r, 5);
-	str = ft_strjoin("c_r : ", value);
+	if (!(value = ft_dtoa(env->d.c_r, 5)))
+		return ;
+	if (!(str = ft_strjoin("c_r : ", value)))
+		return ;
 	mlx_string_put(env->mlx, env->win, 15, 70, 16777215, str);
 	free(value);
 	free(str);
-	value = ft_dtoa(env->d.c_i, 5);
-	str = ft_strjoin("c_i : ", value);
+	if (!(value = ft_dtoa(env->d.c_i, 5)))
+		return ;
+	if (!(str = ft_strjoin("c_i : ", value)))
+		return ;
 	mlx_string_put(env->mlx, env->win, 15, 90, 16777215, str);
 	free(value);
 	free(str);

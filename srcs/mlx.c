@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 05:57:57 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/11 18:21:24 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ inline int			render(t_env *env)
 		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 		time_frame = clock() - start;
 		show_hud(env, (int) time_frame/1000);
-		//printf("\nx1 = %g\ty1 = %g\tc_i = %g\tstep = %g\nx2 = %g\ty2 = %g\tc_r = %g\n",
-		//env->d.x1, env->d.y1, env->d.c_i, env->d.step, env->d.x2, env->d.y2, env->d.c_r);
+		printf("\nx1 = %f\ty1 = %f\tc_i = %f\tstep = %f\nx2 = %f\ty2 = %f\tc_r = %f\n",
+		env->d.x1, env->d.y1, env->d.c_i, env->d.step, env->d.x2, env->d.y2, env->d.c_r);
 	}
 	return (0);
 }
