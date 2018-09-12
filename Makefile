@@ -6,12 +6,12 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/03 21:30:49 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/12 17:59:26 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
-SRC			:=	main.c mlx.c init.c keyboard.c mouse.c palette.c
+SRC			:=	main.c mlx.c init.c keyboard.c mouse.c palette.c # thread.c
 HEADERS		:= fractol.h
 # directories :
 SRCDIR  	:=	srcs
@@ -28,7 +28,7 @@ LMLX_INC	:=
 # **************************************************************************** #
 # make specs :
 MYCC		:=	clang
-MYCC		+=	-Werror -Wall -Wextra -O2
+MYCC		+=	-Werror -Wall -Wextra # -O2
 DEBUGCC		:=	-ggdb -fsanitize=address
 RM			:=	/bin/rm -f
 # **************************************************************************** #

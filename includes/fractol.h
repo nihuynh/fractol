@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 17:32:25 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/12 17:33:40 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
 # define MAC IMAC
 # define TYPE_Z double
 # define ITER_MAX 100
-# define KEY_ENABLE 1
-# define MOUSE_ENABLE 1
+# define THREAD_COUNT 2
 
 /*
 ** Keybinding :
@@ -61,8 +60,8 @@
 # define J_X 2.35
 #else
 # define WIN_TITLE "Fractol"
-# define VP_WIDTH 600
-# define VP_HEIGHT 600
+# define VP_WIDTH 1000
+# define VP_HEIGHT 1000
 # define M_XMIN -2.1
 # define M_XMAX 0.6
 # define J_X 2
@@ -88,17 +87,39 @@ typedef struct	s_fractal
 	TYPE_Z		x2;
 	TYPE_Z		y1;
 	TYPE_Z		y2;
-	int			iter_max;
 	TYPE_Z		step;
+	int			iter_max;
 	int			rgb;
 	int			palette;
 	TYPE_Z		c_r;
 	TYPE_Z		c_i;
 }				t_fractal;
 
+typedef struct	s_pxl
+{
+	int			iter;
+	TYPE_Z		c_r;
+	TYPE_Z		c_i;
+	TYPE_Z		z_r;
+	TYPE_Z		z_i;
+	TYPE_Z		square_r;
+	TYPE_Z		square_i;
+	int			color;
+}				t_pxl;
+
+typedef struct	s_slice
+{
+	TYPE_Z		y1;
+	TYPE_Z		y2;
+	int			pixel_heigth;
+	int			size;
+	t_pxl		*data;
+}				t_slice;
+
 typedef struct	s_env
 {
 	t_fractal	d;
+	t_slice		s[THREAD_COUNT];
 	int			motion_on;
 	int			x_mouse;
 	int			old_x_mouse;
@@ -109,22 +130,24 @@ typedef struct	s_env
 	void		*img;
 	int			*imgstr;
 	int			b;
-	int			s;
+	int			w;
 	int			e;
 }				t_env;
 
 typedef struct	s_pixel
 {
-	int		iter;
-	TYPE_Z	p;
-	TYPE_Z	d;
-	TYPE_Z	c_r;
-	TYPE_Z	c_i;
-	TYPE_Z	z_r;
-	TYPE_Z	z_i;
-	TYPE_Z	square_r;
-	TYPE_Z	square_i;
+	int			iter;
+	TYPE_Z		p;
+	TYPE_Z		d;
+	TYPE_Z		c_r;
+	TYPE_Z		c_i;
+	TYPE_Z		z_r;
+	TYPE_Z		z_i;
+	TYPE_Z		square_r;
+	TYPE_Z		square_i;
+	int			color;
 }				t_pixel;
+
 
 /*
 ** Prototypes :
@@ -143,5 +166,7 @@ void			set_julia(t_fractal *data);
 int				palette(t_fractal fractal, int iter);
 void			show_help(void);
 void			show_hud(t_env *env, int time_frame);
+
+void			mt_init(t_env *env);
 
 #endif

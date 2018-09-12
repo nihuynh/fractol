@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/09 18:59:35 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/12 13:34:16 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** It also center the origin of the complex plane.
 */
 
-void	set_mandelbrot(t_fractal *data)
+inline void	set_mandelbrot(t_fractal *data)
 {
 	data->type = MANDEL;
 	data->x1 = M_XMIN;
@@ -30,7 +30,7 @@ void	set_mandelbrot(t_fractal *data)
 	data->changed = 1;
 }
 
-void	set_julia(t_fractal *data)
+inline void	set_julia(t_fractal *data)
 {
 	data->type = JULIA;
 	data->x1 = -J_X;
