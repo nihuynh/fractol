@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 03:27:48 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 18:14:25 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct	s_fractal
 {
 	int			type;
 	int			changed;
+	int			*colorp;
 	TYPE_Z		x1;
 	TYPE_Z		x2;
 	TYPE_Z		y1;
@@ -170,6 +171,7 @@ void			set_mandelbrot(t_fractal *data);
 void			set_julia(t_fractal *data);
 
 int				palette(t_fractal fractal, int iter);
+void			palalloc(t_env *env, t_fractal *f);
 void			show_help(void);
 void			show_hud(t_env *env, int time_frame);
 

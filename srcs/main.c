@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 03:35:41 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 18:18:26 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 2, 0, deal_keyboard, env);
 	mlx_hook(env->win, 4, 0, deal_mouse, env);
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
+	palalloc(env, &env->d);
 }
 
 int					main(int ac, char **av)

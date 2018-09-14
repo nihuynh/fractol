@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/12 16:46:03 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 18:18:02 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static inline void	process_pixel(t_env *env, int x, int y)
 		p.square_i = p.z_i * p.z_i;
 	}
 	if (p.iter != env->d.iter_max)
-		ft_putpixel(env, x, y, palette(env->d, p.iter));
+		ft_putpixel(env, x, y, env->d.colorp[p.iter]);
 }
 
 /*
