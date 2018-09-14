@@ -23,9 +23,15 @@ void		mt_init(t_env *env)
 
 static inline void* mj_fct(void *data)
 {
-	t_fractal *p;
+	int i;
+	t_slice *slice;
 
-	p = (t_fractal)data;
+	i = -1;
+	slice = (t_slice)data;
+	while (++i < SLICE_LEN)
+	{
+		
+	}
 
 	return (NULL);
 }

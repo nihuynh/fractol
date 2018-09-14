@@ -7,7 +7,7 @@
 ** Check for the cardioid and the first circle.
 */
 
-static inline void	iter_mj(t_slice *slice, t_pxl *pxl)
+static inline void	iter_mj(t_slice *env, t_pxl *pxl)
 {
 	t_pixel p;
 
