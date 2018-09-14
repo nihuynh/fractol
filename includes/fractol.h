@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 03:27:48 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 16:42:38 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@
 # define J_X 2
 #endif
 
+# define PXL_HEIGHT VP_HEIGHT / THREAD_COUNT
+# define SLICE_LEN PXL_HEIGHT * VP_WIDTH
+
 /*
 ** Messages for fractol :
 */
@@ -85,8 +88,35 @@
 ** Structures :
 */
 
+typedef struct	s_pxl
+{
+	int			iter;
+	TYPE_Z		z_r;
+	TYPE_Z		z_i;
+	int			color;
+}				t_pxl;
+
+typedef struct	s_pixel
+{
+	TYPE_Z		p;
+	TYPE_Z		d;
+	TYPE_Z		c_r;
+	TYPE_Z		c_i;
+	TYPE_Z		square_r;
+	TYPE_Z		square_i;
+}				t_pixel;
+
+typedef struct	s_slice
+{
+	TYPE_Z		y1;
+	TYPE_Z		y2;
+	t_pxl		*data;
+}				t_slice;
+
 typedef struct	s_fractal
 {
+	t_slice		s[THREAD_COUNT];
+	int			*colorp;
 	int			type;
 	int			changed;
 	TYPE_Z		x1;
@@ -101,31 +131,9 @@ typedef struct	s_fractal
 	TYPE_Z		c_i;
 }				t_fractal;
 
-typedef struct	s_pxl
-{
-	int			iter;
-	TYPE_Z		c_r;
-	TYPE_Z		c_i;
-	TYPE_Z		z_r;
-	TYPE_Z		z_i;
-	TYPE_Z		square_r;
-	TYPE_Z		square_i;
-	int			color;
-}				t_pxl;
-
-typedef struct	s_slice
-{
-	TYPE_Z		y1;
-	TYPE_Z		y2;
-	int			pixel_heigth;
-	int			size;
-	t_pxl		*data;
-}				t_slice;
-
 typedef struct	s_env
 {
 	t_fractal	d;
-	t_slice		s[THREAD_COUNT];
 	int			motion_on;
 	int			x_mouse;
 	int			old_x_mouse;
@@ -139,20 +147,6 @@ typedef struct	s_env
 	int			w;
 	int			e;
 }				t_env;
-
-typedef struct	s_pixel
-{
-	int			iter;
-	TYPE_Z		p;
-	TYPE_Z		d;
-	TYPE_Z		c_r;
-	TYPE_Z		c_i;
-	TYPE_Z		z_r;
-	TYPE_Z		z_i;
-	TYPE_Z		square_r;
-	TYPE_Z		square_i;
-	int			color;
-}				t_pixel;
 
 
 /*
@@ -169,6 +163,7 @@ void			quit_program(t_env *env, int exit_code);
 void			set_mandelbrot(t_fractal *data);
 void			set_julia(t_fractal *data);
 
+int				*palalloc(int iter_max);
 int				palette(t_fractal fractal, int iter);
 void			show_help(void);
 void			show_hud(t_env *env, int time_frame);

@@ -6,12 +6,12 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/12 17:59:26 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/14 16:51:28 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
-SRC			:=	main.c mlx.c init.c keyboard.c mouse.c palette.c # thread.c
+SRC			:=	main.c mlx.c init.c keyboard.c mouse.c toolbox.c thread.c
 HEADERS		:= fractol.h
 # directories :
 SRCDIR  	:=	srcs

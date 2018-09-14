@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   palette.c                                          :+:      :+:    :+:   */
+/*   toolbox.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 03:27:30 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 16:45:18 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ inline int		palette(t_fractal data, int iter)
 		return (rgb);
 	}
 	return (iter * 255 / data.iter_max << data.rgb);
+}
+
+inline int		*palalloc(int iter_max)
+{
+	float	t;
+	int		*res;
+	int		i;
+
+	i = -1;
+	if (!(ft_memalloc(iter_max * sizeof(int))))
+		quit_program(env, EXIT_FAILURE)
+	while (++i < iter_max)
+	{
+		t = (float)i / (float)iter_max;
+		res[i] = ((int)(9 * (1 - t) * t * t * t * 255) << 16);
+		res[i] += ((int)(15 * (1 - t) * (1 - t) * t * t * 255) << 8);
+		res[i] += (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+	}
+	return (res);
 }
 
 /*

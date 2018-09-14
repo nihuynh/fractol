@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 03:35:41 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 16:52:14 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@ void				quit_program(t_env *env, int exit_code)
 	i = -1;
 	mlx_destroy_image(env->mlx, env->img);
 	mlx_destroy_window(env->mlx, env->win);
-	//while(++i < THREAD_COUNT)
-	//	free(env->s[i].data);
+	while(++i < THREAD_COUNT)
+		free(env->d.s[i].data);
 	free(env);
 	(exit_code == EXIT_SUCCESS) ? ft_putendl(MSG_BYE) : ft_putendl(MSG_ERR);
-	while (DEBUG)
-		;
 	(exit_code == EXIT_SUCCESS) ? exit(0) : ft_error(__func__, __LINE__);
 }
+
 
 /*
 ** Mlx handler.
@@ -41,6 +40,8 @@ void				quit_program(t_env *env, int exit_code)
 
 static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 {
+	show_help();
+	mt_init(env);
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, w, h, title);
 	env->img = mlx_new_image(env->mlx, w, h);
@@ -51,6 +52,7 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 2, 0, deal_keyboard, env);
 	mlx_hook(env->win, 4, 0, deal_mouse, env);
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
+	mlx_loop_hook(env->mlx, &mt_render, env);
 }
 
 int					main(int ac, char **av)
@@ -63,9 +65,9 @@ int					main(int ac, char **av)
 	{
 		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
 			ft_error(__func__, __LINE__);
-		if (ft_strcasecmp(av[1], "mandelbrot") == 0)
+		if (!ft_strcasecmp(av[1], "mandelbrot"))
 			set_mandelbrot(&env->d);
-		else if (ft_strcasecmp(av[1], "julia") == 0)
+		else if (!ft_strcasecmp(av[1], "julia"))
 			set_julia(&env->d);
 		else
 		{
@@ -73,10 +75,7 @@ int					main(int ac, char **av)
 			free(env);
 			exit(1);
 		}
-		show_help();
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);
-		//mt_init(env);
-		mlx_loop_hook(env->mlx, &render, env);
 		mlx_loop(env->mlx);
 		quit_program(env, EXIT_SUCCESS);
 	}
