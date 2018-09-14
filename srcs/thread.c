@@ -15,6 +15,9 @@ void		mt_init(t_env *env)
     {
         if (!(env->s[i].data = ft_memalloc(sizeof(t_pxl) * SLICE_LEN)))
             quit_program(env, EXIT_FAILURE);
+		env->s[i].id = i;
+		env->s[i].env = &env;
+		env->s[i].fractal = &env->fractal;
     }
 }
 
@@ -45,9 +48,11 @@ inline void	mt_render(t_env *env)
 		status ^= status;
 		start = clock();
 		env->d.changed = 0;
+		if (!env->colorp)
+			free(env->colorp);
 		env->colorp = palalloc(env->d.iter_max);
 		while (++i <= THREAD_COUNT && !status)
-			status = pthread_create(&toby[i], NULL, mj_fct, (void *)&env);
+			status = pthread_create(&toby[i], NULL, mj_fct, (void *)&env->s[i].data);
 		i = -1;
 		while (++i <= THREAD_COUNT)
 			pthread_join(toby[i], NULL);

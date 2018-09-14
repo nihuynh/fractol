@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 16:55:10 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 17:44:18 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,6 @@ typedef struct	s_pixel
 	TYPE_Z		square_i;
 }				t_pixel;
 
-typedef struct	s_slice
-{
-	TYPE_Z		y1;
-	TYPE_Z		y2;
-	t_pxl		*data;
-	void		*fractal
-}				t_slice;
-
 typedef struct	s_fractal
 {
 	t_slice		s[THREAD_COUNT];
@@ -149,6 +141,15 @@ typedef struct	s_env
 	int			e;
 }				t_env;
 
+typedef struct	s_slice
+{
+	int			id;
+	TYPE_Z		y1;
+	TYPE_Z		y2;
+	t_pxl		*data;
+	t_fractal	*fractal;
+	t_env		*env;
+}				t_slice;
 
 /*
 ** Prototypes :
@@ -170,5 +171,6 @@ void			show_help(void);
 void			show_hud(t_env *env, int time_frame);
 
 void			mt_init(t_env *env);
+int				mt_render(t_env *env);
 
 #endif
