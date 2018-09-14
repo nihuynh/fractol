@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/12 17:33:40 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 03:27:48 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG 1
-# define MAC IMAC
+# define DEBUG 0
+# define MAC 0
 # define TYPE_Z double
 # define ITER_MAX 100
 # define THREAD_COUNT 2
@@ -74,6 +74,12 @@
 # define MSG_USAGE "\nusage: ./fractol <mandelbrot> <julia>"
 # define MSG_BYE "\nQuitting Fractol. Bye bye !"
 # define MSG_ERR "\nError cause fractol to exit"
+
+# define USG_ZOOM "Zoom                              ( - E | Q + )"
+# define USG_ITER "Iteration                         ( - F | R + )"
+# define USG_COLR "Color                         ( shift W | X type )"
+# define USG_TYPE "Change fractal                       ( TAB )"
+# define USG_ESCP "Toggle mouse / quit             ( SPACE | ESC )"
 
 /*
 ** Structures :

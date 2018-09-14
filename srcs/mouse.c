@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/11 04:20:10 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 13:28:22 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static inline void	zoom_on(t_fractal *data, int value, int x, int y)
 {
 	TYPE_Z toby[4];
 
-	if (ft_btw(x, 0, VP_WIDTH) && ft_btw(y, 0, VP_HEIGHT))
+	if (ft_btw(x, 0, VP_WIDTH) && ft_btw(y - 20, 0, VP_HEIGHT))
 	{
 		x -= VP_WIDTH / 2;
 		y -= VP_HEIGHT / 2;

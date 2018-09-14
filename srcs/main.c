@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/12 17:59:18 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 03:35:41 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,19 @@ int					main(int ac, char **av)
 		ft_putendl(MSG_USAGE);
 	else
 	{
-		ft_putendl(av[1]);
 		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
 			ft_error(__func__, __LINE__);
 		if (ft_strcasecmp(av[1], "mandelbrot") == 0)
 			set_mandelbrot(&env->d);
-		if (ft_strcasecmp(av[1], "julia") == 0)
+		else if (ft_strcasecmp(av[1], "julia") == 0)
 			set_julia(&env->d);
+		else
+		{
+			ft_putendl(MSG_USAGE);
+			free(env);
+			exit(1);
+		}
+		show_help();
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);
 		//mt_init(env);
 		mlx_loop_hook(env->mlx, &render, env);
