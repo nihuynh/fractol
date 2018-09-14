@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 16:42:38 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 16:55:10 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct	s_slice
 	TYPE_Z		y1;
 	TYPE_Z		y2;
 	t_pxl		*data;
+	void		*fractal
 }				t_slice;
 
 typedef struct	s_fractal
