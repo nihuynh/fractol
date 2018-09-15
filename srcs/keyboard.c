@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 20:05:42 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 15:28:57 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ int					deal_keyboard(int key_code, t_env *env)
 {
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);
-	if (key_code == 4)
-		show_help();
+	if (key_code == 4 && show_help() && (env->d.changed = 1))
+		env->hud_on += (env->hud_on == 1) ? -1 : 1;
 	if (key_code == 14)
 		zoom(&env->d, 20);
 	else if (key_code == 12)

@@ -6,17 +6,17 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 21:30:15 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/02 22:46:50 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 16:39:14 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdio.h>
+#include <stdio.h>
 
 /*
 ** Usage : gcc -Wextra -Wall -Werror fibo_mono.c && time ./a.out
 */
 
-int			ft_fibonacci(int index)
+int		ft_fibonacci(int index)
 {
 	if (index < 0 || index >= 47)
 		return (-1);
@@ -27,14 +27,14 @@ int			ft_fibonacci(int index)
 	return (ft_fibonacci(index - 2) + ft_fibonacci(index - 1));
 }
 
-void compute(int i)
+void	compute(int i)
 {
 	printf("\nThe fibonacci of : %i\tas a result of : %i", i, ft_fibonacci(i));
 }
 
-int 		main(void)
+int		main(void)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (index < 47)

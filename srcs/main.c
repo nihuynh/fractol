@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 06:00:37 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 16:25:55 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void				quit_program(t_env *env, int exit_code)
 	i = -1;
 	mlx_destroy_image(env->mlx, env->img);
 	mlx_destroy_window(env->mlx, env->win);
-	while(++i < THREAD_COUNT)
+	while (++i < CTHR)
 		free(env->s[i].data);
 	free(env->d.colorp);
 	free(env);
@@ -78,6 +78,7 @@ int					main(int ac, char **av)
 			exit(1);
 		}
 		show_help();
+		env->hud_on = 1;
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);
 		mlx_loop(env->mlx);
 		quit_program(env, EXIT_SUCCESS);

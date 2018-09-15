@@ -1,7 +1,6 @@
 # fractol
 TODO :
 Rule for the makefile (debug flags of optimisation)
-hud but     => without the malloc
 More color  => HSV
 Multi-core  => split mon image et chaque thread fait une bande
 chaque thread a son buffer l'iter count.

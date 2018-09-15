@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 13:28:22 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 14:26:35 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@ static inline void	zoom_on(t_fractal *data, int value, int x, int y)
 		toby[3] = (data->y2 - data->y1) / value;
 		data->x1 += toby[2];
 		data->x2 -= toby[2];
-		data->y1 += toby[3];
-		data->y2 -= toby[3];
 		data->step = (data->x2 - data->x1) / (VP_WIDTH - 1);
 		toby[0] += x * data->step;
 		toby[1] += y * data->step;
 		data->x1 -= toby[0];
 		data->x2 -= toby[0];
-		data->y1 -= toby[1];
-		data->y2 -= toby[1];
+		data->y1 += toby[3] - toby[1];
+		data->y2 -= toby[3] + toby[1];
 		data->changed = 1;
 	}
 }

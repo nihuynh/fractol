@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 21:30:15 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/05 18:59:24 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 16:42:01 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 ** Usage : gcc -Wextra -Wall -Werror -pthread fibo_thread.c && time ./a.out
 */
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
 
 static inline int	ft_fibonacci(int index)
 {
@@ -29,30 +29,31 @@ static inline int	ft_fibonacci(int index)
 	return (ft_fibonacci(index - 2) + ft_fibonacci(index - 1));
 }
 
-static inline void* compute(void *i)
+static inline void	*compute(void *i)
 {
-	printf("\nThe fibonacci of : %i\tas a result of : %i", (int)i, ft_fibonacci((int)i));
-	return NULL;
+	printf("\nThe fibonacci of : %i\tas a result of : %i", \
+			(int)i, ft_fibonacci((int)i));
+	return (NULL);
 }
 
-int 				main(void)
+int					main(void)
 {
-	intptr_t thread_count;
-	int status;
-	pthread_t toby[47];
+	intptr_t	cthr;
+	int			status;
+	pthread_t	toby[47];
 
-	thread_count = 0;
+	cthr = 0;
 	status = 0;
-	while (thread_count <= 46 && !status)
+	while (cthr <= 46 && !status)
 	{
-		status = pthread_create(&toby[thread_count], NULL, compute, (void *)thread_count);
-		thread_count++;
+		status = pthread_create(&toby[cthr], NULL, compute, (void *)cthr);
+		cthr++;
 	}
-	thread_count = 0;
-	while (thread_count <= 46)
+	cthr = 0;
+	while (cthr <= 46)
 	{
-		pthread_join(toby[thread_count], NULL);
-		thread_count++;
+		pthread_join(toby[cthr], NULL);
+		cthr++;
 	}
 	return (EXIT_SUCCESS);
 }

@@ -6,12 +6,13 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/14 21:13:21 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/15 16:52:53 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
-SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c
+SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c \
+				hud.c
 HEADERS		:= fractol.h
 # directories :
 SRCDIR  	:=	srcs
@@ -83,4 +84,7 @@ git: fclean
 	@git add -A
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mGit sync $(OKLOGO)"
 	@git status
-.PHONY: all, $(NAME), clean, fclean, re, run, debug, git
+norme:
+	@norminette -R CheckForbiddenSourceHeader srcs includes playground
+	@printf "\033[1;34m$(NAME)\033[25G\033[31mNorminette $(OKLOGO)"
+.PHONY: all, $(NAME), clean, fclean, re, run, debug, git, norme

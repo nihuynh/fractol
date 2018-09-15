@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 06:02:09 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 16:45:57 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG 1
-# define MAC 0
-# define TYPE_Z double
-# define ITER_MAX 100
-# define THREAD_COUNT 4
+# define DEBUG		0
+# define MAC		IMAC
+# define TYPE_Z		double
+# define ITER_MAX	100
+# define CTHR		4
+# define DTOA_DSCP	5
 
 /*
 ** Keybinding :
@@ -35,53 +36,53 @@
 ** Static def :
 */
 
-# define MACB 1
-# define IMAC 2
-# define MANDEL 0
-# define JULIA 1
+# define MACB	1
+# define IMAC	2
+# define MANDEL	0
+# define JULIA	1
 
 /*
 ** Automatic parameters :
 */
 
-#if (MAC == MACB)
-# define WIN_TITLE "Fractol on macbook"
-# define VP_WIDTH 1680
-# define VP_HEIGHT 1000
-# define M_XMIN -2.8
-# define M_XMAX 1.3
-# define J_X 2
-#elif (MAC == IMAC)
-# define WIN_TITLE "Fractol @42"
-# define VP_WIDTH 2560
-# define VP_HEIGHT 1400
-# define M_XMIN -2.8
-# define M_XMAX 1.3
-# define J_X 2.35
-#else
-# define WIN_TITLE "Fractol"
-# define VP_WIDTH 1000
-# define VP_HEIGHT 1000
-# define M_XMIN -2.1
-# define M_XMAX 0.6
-# define J_X 2
-#endif
+# if (MAC == MACB)
+#  define WIN_TITLE		"Fractol on macbook"
+#  define VP_WIDTH		1680
+#  define VP_HEIGHT		1000
+#  define M_XMIN		-2.8
+#  define M_XMAX		1.3
+#  define J_X			2
+# elif (MAC == IMAC)
+#  define WIN_TITLE		"Fractol @42"
+#  define VP_WIDTH		2560
+#  define VP_HEIGHT		1400
+#  define M_XMIN		-2.8
+#  define M_XMAX		1.3
+#  define J_X			2.35
+# else
+#  define WIN_TITLE		"Fractol"
+#  define VP_WIDTH		600
+#  define VP_HEIGHT		600
+#  define M_XMIN		-2.1
+#  define M_XMAX		0.6
+#  define J_X			2
+# endif
 
-# define PXL_HEIGHT (VP_HEIGHT / THREAD_COUNT)
-# define SLICE_LEN PXL_HEIGHT * VP_WIDTH
+# define PXL_HEIGHT	(VP_HEIGHT / CTHR)
+# define SLICE_LEN	PXL_HEIGHT * VP_WIDTH
 
 /*
 ** Messages for fractol :
 */
 
-# define MSG_USAGE "\nusage: ./fractol <mandelbrot> <julia>"
-# define MSG_BYE "\nQuitting Fractol. Bye bye !"
-# define MSG_ERR "\nError cause fractol to exit"
+# define MSG_USAGE	"\nusage: ./fractol <mandelbrot> <julia>"
+# define MSG_BYE	"\nQuitting Fractol. Bye bye !"
+# define MSG_ERR	"\nError cause fractol to exit"
 
-# define USG_ZOOM "Zoom                              ( - E | Q + )"
-# define USG_ITER "Iteration                         ( - F | R + )"
-# define USG_TYPE "Change fractal                       ( TAB )"
-# define USG_ESCP "Toggle mouse / quit             ( SPACE | ESC )"
+# define USG_ZOOM	"Zoom                              ( - E | Q + )"
+# define USG_ITER	"Iteration                         ( - F | R + )"
+# define USG_TYPE	"Change fractal                       ( TAB )"
+# define USG_ESCP	"Toggle mouse / quit             ( SPACE | ESC )"
 
 /*
 ** Structures :
@@ -91,7 +92,6 @@ typedef struct	s_fractal
 {
 	int			type;
 	int			changed;
-	//int			fiter;
 	int			*colorp;
 	TYPE_Z		x1;
 	TYPE_Z		x2;
@@ -131,8 +131,10 @@ typedef struct	s_slice
 typedef struct	s_env
 {
 	t_fractal	d;
-	t_slice		s[THREAD_COUNT];
+	t_slice		s[CTHR];
 	int			motion_on;
+	int			hud_on;
+	int			hud_plus_on;
 	int			x_mouse;
 	int			old_x_mouse;
 	int			y_mouse;
@@ -161,7 +163,7 @@ void			set_mandelbrot(t_fractal *data);
 void			set_julia(t_fractal *data);
 
 void			palalloc(t_env *env, t_fractal *f);
-void			show_help(void);
+int				show_help(void);
 void			show_hud(t_env *env, int time_frame);
 
 void			mt_init(t_env *env);
