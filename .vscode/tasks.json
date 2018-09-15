@@ -8,5 +8,10 @@
             "type": "shell",
             "command": "make run"
         }
+        {
+            "label": "kitty",
+            "type": "shell",
+            "command": "make norme"
+        }
     ]
 }

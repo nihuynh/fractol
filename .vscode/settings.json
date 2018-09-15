@@ -1,10 +1,13 @@
 {
     "files.associations": {
+        "libft.h": "c",
         "fractol.h": "c",
         "mlx.h": "c",
         "stdio.h": "c",
         "limits": "c",
         "type_traits": "c",
         "stdlib.h": "c"
-    }
+    },
+    "editor.insertSpaces": false,
+    "editor.rulers": [80]
 }

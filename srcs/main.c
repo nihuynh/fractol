@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 16:25:55 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 18:27:55 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
 	palalloc(env, &env->d);
 	mt_init(env);
+	mt_render(env);
 	mlx_loop_hook(env->mlx, &render, env);
 }
 

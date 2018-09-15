@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 17:11:22 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 18:24:46 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		1
+# define DEBUG		0
 # define MAC		IMAC
 # define TYPE_Z		double
 # define ITER_MAX	100
@@ -167,7 +167,7 @@ int				show_help(void);
 void			show_hud(t_env *env, int time_frame);
 
 void			mt_init(t_env *env);
-
+int				mt_render(t_env *env);
 void			iter_julbrot(t_env *env, t_pxl *pxl, int x, int y);
 void			reiter_julbrot(t_env *env, t_pxl *pxl);
 
