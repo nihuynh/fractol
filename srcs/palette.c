@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 18:16:59 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/14 20:06:56 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ inline void		palalloc(t_env *env, t_fractal *f)
 	int		i;
 
  	i = -1;
-	if (!f->colorp)
+	if (f->colorp != NULL)
 		free(f->colorp);
 	if (!(f->colorp = ft_memalloc(f->iter_max * sizeof(int))))
 		quit_program(env, EXIT_FAILURE);
@@ -38,24 +38,6 @@ inline void		palalloc(t_env *env, t_fractal *f)
 	}
 }
 
-
-inline int		palette(t_fractal data, int iter)
-{
-	float	t;
-	int		rgb;
-
-	if (data.palette == 0)
-	{
-		// t = sqrt((float)iter / (float)data.iter_max);
-		t = (float)iter / (float)data.iter_max;
-		rgb = ((int)(9 * (1 - t) * t * t * t * 255) << 16);
-		rgb += ((int)(15 * (1 - t) * (1 - t) * t * t * 255) << 8);
-		rgb += (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-		return (rgb);
-	}
-	return (iter * 255 / data.iter_max << data.rgb);
-}
-
 /*
 ** Print the command on the terminal when the key H is press.
 */
@@ -66,7 +48,6 @@ inline void	show_help(void)
 	ft_putendl(USG_TYPE);
 	ft_putendl(USG_ZOOM);
 	ft_putendl(USG_ITER);
-	ft_putendl(USG_COLR);
 	ft_putendl(USG_ESCP);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 18:14:25 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 06:02:09 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG 0
+# define DEBUG 1
 # define MAC 0
 # define TYPE_Z double
 # define ITER_MAX 100
-# define THREAD_COUNT 2
+# define THREAD_COUNT 4
 
 /*
 ** Keybinding :
@@ -67,6 +67,9 @@
 # define J_X 2
 #endif
 
+# define PXL_HEIGHT (VP_HEIGHT / THREAD_COUNT)
+# define SLICE_LEN PXL_HEIGHT * VP_WIDTH
+
 /*
 ** Messages for fractol :
 */
@@ -77,7 +80,6 @@
 
 # define USG_ZOOM "Zoom                              ( - E | Q + )"
 # define USG_ITER "Iteration                         ( - F | R + )"
-# define USG_COLR "Color                         ( shift W | X type )"
 # define USG_TYPE "Change fractal                       ( TAB )"
 # define USG_ESCP "Toggle mouse / quit             ( SPACE | ESC )"
 
@@ -89,6 +91,7 @@ typedef struct	s_fractal
 {
 	int			type;
 	int			changed;
+	//int			fiter;
 	int			*colorp;
 	TYPE_Z		x1;
 	TYPE_Z		x2;
@@ -96,8 +99,7 @@ typedef struct	s_fractal
 	TYPE_Z		y2;
 	TYPE_Z		step;
 	int			iter_max;
-	int			rgb;
-	int			palette;
+	int			old_iter_max;
 	TYPE_Z		c_r;
 	TYPE_Z		c_i;
 }				t_fractal;
@@ -105,21 +107,24 @@ typedef struct	s_fractal
 typedef struct	s_pxl
 {
 	int			iter;
-	TYPE_Z		c_r;
-	TYPE_Z		c_i;
 	TYPE_Z		z_r;
 	TYPE_Z		z_i;
+}				t_pxl;
+
+typedef struct	s_pixel
+{
+	TYPE_Z		p;
+	TYPE_Z		d;
+	TYPE_Z		c_r;
+	TYPE_Z		c_i;
 	TYPE_Z		square_r;
 	TYPE_Z		square_i;
-	int			color;
-}				t_pxl;
+}				t_pixel;
 
 typedef struct	s_slice
 {
 	TYPE_Z		y1;
 	TYPE_Z		y2;
-	int			pixel_heigth;
-	int			size;
 	t_pxl		*data;
 }				t_slice;
 
@@ -141,21 +146,6 @@ typedef struct	s_env
 	int			e;
 }				t_env;
 
-typedef struct	s_pixel
-{
-	int			iter;
-	TYPE_Z		p;
-	TYPE_Z		d;
-	TYPE_Z		c_r;
-	TYPE_Z		c_i;
-	TYPE_Z		z_r;
-	TYPE_Z		z_i;
-	TYPE_Z		square_r;
-	TYPE_Z		square_i;
-	int			color;
-}				t_pixel;
-
-
 /*
 ** Prototypes :
 */
@@ -170,11 +160,13 @@ void			quit_program(t_env *env, int exit_code);
 void			set_mandelbrot(t_fractal *data);
 void			set_julia(t_fractal *data);
 
-int				palette(t_fractal fractal, int iter);
 void			palalloc(t_env *env, t_fractal *f);
 void			show_help(void);
 void			show_hud(t_env *env, int time_frame);
 
 void			mt_init(t_env *env);
+
+void			iter_julbrot(t_env *env, t_pxl *pxl, int x, int y);
+void			reiter_julbrot(t_env *env, t_pxl *pxl);
 
 #endif

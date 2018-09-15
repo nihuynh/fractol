@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/14 18:18:26 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 06:00:37 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void				quit_program(t_env *env, int exit_code)
 	i = -1;
 	mlx_destroy_image(env->mlx, env->img);
 	mlx_destroy_window(env->mlx, env->win);
-	//while(++i < THREAD_COUNT)
-	//	free(env->s[i].data);
+	while(++i < THREAD_COUNT)
+		free(env->s[i].data);
+	free(env->d.colorp);
 	free(env);
 	(exit_code == EXIT_SUCCESS) ? ft_putendl(MSG_BYE) : ft_putendl(MSG_ERR);
 	while (DEBUG)
@@ -52,6 +53,8 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 4, 0, deal_mouse, env);
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
 	palalloc(env, &env->d);
+	mt_init(env);
+	mlx_loop_hook(env->mlx, &render, env);
 }
 
 int					main(int ac, char **av)
@@ -76,8 +79,6 @@ int					main(int ac, char **av)
 		}
 		show_help();
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);
-		//mt_init(env);
-		mlx_loop_hook(env->mlx, &render, env);
 		mlx_loop(env->mlx);
 		quit_program(env, EXIT_SUCCESS);
 	}
