@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/Users/nihuynh/42_2018/libft_project/master"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"fractol.h": "c",
+			"mlx.h": "c",
+			"stdio.h": "c",
+			"limits": "c",
+			"type_traits": "c",
+			"stdlib.h": "c"
+		}
+	}
+}
