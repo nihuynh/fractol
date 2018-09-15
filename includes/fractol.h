@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 16:45:57 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 17:11:22 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		0
+# define DEBUG		1
 # define MAC		IMAC
 # define TYPE_Z		double
 # define ITER_MAX	100

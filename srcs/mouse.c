@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 14:26:35 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/15 16:59:16 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static inline void	zoom_on(t_fractal *data, int value, int x, int y)
 inline int			deal_mouse(int mouse_code, int x, int y, t_env *env)
 {
 	if (mouse_code == 2)
-		ft_putstr("\nRight click");
+		set_mandelbrot(&env->d);
 	else if (env->d.type == MANDEL && mouse_code == 1)
 	{
 		env->motion_on = 1;
