@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 18:29:15 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/17 22:36:25 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void		mt_init(t_env *env)
+void				mt_init(t_env *env)
 {
 	int i;
 
