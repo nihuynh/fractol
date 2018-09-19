@@ -42,8 +42,9 @@ nm fractol
 otools -tv fractol
 
 DONE :
-optimisation for mandelbrot remove point of the cardoide
-Zoom
+optimisation for mandelbrot remove point of the cardoide & first bulbe
+Zoom on mouse
+arrow for moving
 
 JUNKYARD :
 int     static_palette(int iter)
