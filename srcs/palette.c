@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/19 12:58:51 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/19 15:30:34 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ inline int	show_help(void)
 	ft_putendl(USG_TYPE);
 	ft_putendl(USG_ZOOM);
 	ft_putendl(USG_ITER);
+	ft_putendl(USG_COLOR);
 	ft_putendl(USG_ESCP);
 	return (1);
 }
