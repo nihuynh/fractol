@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 15:28:57 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/19 12:37:59 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ int					deal_keyboard(int key_code, t_env *env)
 		env->d.iter_max -= 50;
 	else if (key_code == 49 && (env->d.changed = 1))
 		env->motion_on += (env->motion_on == 1) ? -1 : 1;
+	else if (key_code == 8 && (env->d.changed = 1))
+		env->cshift += (env->cshift == 5) ? -5 : 1;
+	else if (key_code == 35 && (env->d.changed = 1))
+		env->ctype += (env->ctype == 2) ? -2 : 1;
 	else if (key_code == 48)
 		set_fractal(&env->d);
 	else if (DEBUG)

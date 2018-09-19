@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 15:33:12 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/19 12:40:08 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ inline void		iter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 {
 	t_pixel p;
 
-	pxl->iter = 0;
+	pxl->iter = env->d.iter_max;
 	pxl->z_r = env->d.x1 + (TYPE_Z)x * env->d.step;
 	pxl->z_i = env->d.y1 + (TYPE_Z)y * env->d.step;
 	p.square_r = pxl->z_r * pxl->z_r;

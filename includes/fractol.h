@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/18 17:46:41 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/19 12:39:35 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		0
-# define MAC		IMAC
+# define DEBUG		1
+# define MAC		0
 # define TYPE_Z		double
 # define ITER_MAX	100
 # define CTHR		4
@@ -81,6 +81,7 @@
 
 # define USG_ZOOM	"Zoom                              ( - E | Q + )"
 # define USG_ITER	"Iteration                         ( - F | R + )"
+# define USG_COLOR	"Palette & color shift               ( P | C )"
 # define USG_TYPE	"Change fractal                       ( TAB )"
 # define USG_ESCP	"Toggle mouse / quit             ( SPACE | ESC )"
 
@@ -132,6 +133,8 @@ typedef struct	s_env
 {
 	t_fractal	d;
 	t_slice		s[CTHR];
+	int			ctype;
+	int			cshift;
 	int			motion_on;
 	int			hud_on;
 	int			hud_plus_on;
