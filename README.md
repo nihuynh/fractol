@@ -20,12 +20,19 @@ More fractal :
 Newton
 Tricorn
 Apollonius circle
+http://www.fil.univ-lille1.fr/~L2S3API/CoursTP/Projets/Apollonius/sujet_apollonius.html
 flame
 
 Coloring :
 https://stackoverflow.com/questions/3018313/algorithm-to-convert-rgb-to-hsv-and-hsv-to-rgb-in-range-0-255-for-both
 https://www.carnetdumaker.net/articles/dessiner-la-fractale-de-mandelbrot-en-python-et-en-cc/
 
+Boundary :
+https://bisqwit.iki.fi/jutut/kuvat/programming_examples/mandelbrotbtrace.pdf
+
+
+Profil:
+http://www.math.utah.edu/docs/info/gprof_toc.html
 Man pages :
 man pthread
 man sem_open
@@ -33,6 +40,8 @@ man sem_close
 man sem_unlink
 
 Hors sujet :
+Plein de flag sanitize
+ -fsanitize=undefined -fsanitize=bounds -fsanitize=null -fno-omit-frame-pointer
 http://www.icosaedro.it/c-modules.html
 Semaphores:
 http://hacksoflife.blogspot.com/2010/12/performance-of-semaphore-vs-condition.html

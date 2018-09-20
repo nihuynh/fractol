@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:29:23 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 16:44:31 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 21:47:56 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static inline void	hud_dvalue(t_env *env, double value, char *str, int pos)
 ** Handle the Head Up Display.
 */
 
-inline void			show_hud(t_env *env, int time_frame)
+void			show_hud(t_env *env, int time_frame)
 {
 	if (env->hud_on)
 	{

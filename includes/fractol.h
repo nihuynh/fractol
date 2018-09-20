@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 19:11:35 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/21 01:23:59 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MAC		MACB
 # define TYPE_Z		double
 # define ITER_MAX	100
-# define C_THR		64
+# define C_THR		16
 # define DTOA_DSCP	7
 
 /*

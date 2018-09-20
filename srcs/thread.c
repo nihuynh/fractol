@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 19:05:18 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 21:47:23 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static inline void	*compute(void *arg)
 	return (NULL);
 }
 
-inline int			mt_render(t_env *env)
+int					mt_render(t_env *env)
 {
 	int			cthr;
 	int			sats;

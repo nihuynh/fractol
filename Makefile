@@ -6,11 +6,15 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/19 03:39:47 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/21 01:24:54 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
+#RUNMODE		:=	debug
+RUNMODE		:=	dev
+PARAM		:=	julia
+#PARAM		:=	mandelbrot
 SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c \
 				hud.c
 HEADERS		:= fractol.h
@@ -29,8 +33,14 @@ LMLX_INC	:=
 # **************************************************************************** #
 # make specs :
 MYCC		:=	clang
-MYCC		+=	-Werror -Wall -Wextra -O2
-DEBUGCC		:=	-ggdb -fsanitize=address
+MYCC		+=	-Werror -Wall -Wextra
+ifeq ($(RUNMODE),debug)
+    MYCC	+=	-g -O0
+	#MYCC	+=	-Wpedantic -ggdb -fsanitize=address
+else
+	MYCC	+=	-O2
+endif
+
 RM			:=	/bin/rm -f
 # **************************************************************************** #
 # Automatic variable :
@@ -76,10 +86,8 @@ fclean: clean lclean
 	@$(RM) $(NAME)
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning $(NAME) $(OKLOGO)"
 re: fclean all
-debug : clean $(OBJ) $(LINKF_LIBFT) $(LINKF_LMLX)
-	@$(MYCC) $(DEBUGCC) -o $(NAME) $(OBJ) $(INC) $(LIB) $(FRAME_W)
-run: $(NAME)
-	@./$(NAME) mandelbrot
+run: clean $(NAME)
+	@./$(NAME) $(PARAM)
 git: fclean
 	@git add -A
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mGit sync $(OKLOGO)"
@@ -87,4 +95,4 @@ git: fclean
 norme:
 	@norminette -R CheckForbiddenSourceHeader srcs includes playground
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mNorminette $(OKLOGO)"
-.PHONY: all, $(NAME), clean, fclean, re, run, debug, git, norme
+.PHONY: all, $(NAME), clean, fclean, re, run, git, norme

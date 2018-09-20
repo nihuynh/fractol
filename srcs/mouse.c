@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/15 16:59:16 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 21:46:14 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** toby[3] <==> dy;
 */
 
-static inline void	zoom_on(t_fractal *data, int value, int x, int y)
+static inline void	zoom_on_cursor(t_fractal *data, int value, int x, int y)
 {
 	TYPE_Z toby[4];
 
@@ -52,7 +52,7 @@ static inline void	zoom_on(t_fractal *data, int value, int x, int y)
 ** Handle mouse clicks and scrolls.
 */
 
-inline int			deal_mouse(int mouse_code, int x, int y, t_env *env)
+int				deal_mouse(int mouse_code, int x, int y, t_env *env)
 {
 	if (mouse_code == 2)
 		set_mandelbrot(&env->d);
@@ -64,9 +64,9 @@ inline int			deal_mouse(int mouse_code, int x, int y, t_env *env)
 		set_julia(&env->d);
 	}
 	else if (mouse_code == 5)
-		zoom_on(&env->d, 25, x, y);
+		zoom_on_cursor(&env->d, 25, x, y);
 	else if (mouse_code == 4)
-		zoom_on(&env->d, -25, x, y);
+		zoom_on_cursor(&env->d, -25, x, y);
 	else if (DEBUG)
 		ft_print_value("\nMouse event : ", mouse_code);
 	return (0);
