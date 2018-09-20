@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/19 15:39:34 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 08:56:22 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 */
 
 # define DEBUG		1
-# define MAC		MACB
+# define MAC		0
 # define TYPE_Z		double
 # define ITER_MAX	100
-# define CTHR		4
-# define DTOA_DSCP	5
+# define C_THR		2
+# define DTOA_DSCP	7
 
 /*
 ** Keybinding :
@@ -61,14 +61,14 @@
 #  define J_X			2.35
 # else
 #  define WIN_TITLE		"Fractol"
-#  define VP_WIDTH		600
-#  define VP_HEIGHT		600
+#  define VP_WIDTH		300
+#  define VP_HEIGHT		300
 #  define M_XMIN		-2.1
 #  define M_XMAX		0.6
 #  define J_X			2
 # endif
 
-# define PXL_HEIGHT	(VP_HEIGHT / CTHR)
+# define PXL_HEIGHT	(VP_HEIGHT / C_THR)
 # define SLICE_LEN	PXL_HEIGHT * VP_WIDTH
 
 /*
@@ -126,13 +126,15 @@ typedef struct	s_slice
 {
 	TYPE_Z		y1;
 	TYPE_Z		y2;
+	int			id;
 	t_pxl		*data;
+	void		*env;
 }				t_slice;
 
 typedef struct	s_env
 {
 	t_fractal	d;
-	t_slice		s[CTHR];
+	t_slice		s[C_THR];
 	int			ctype;
 	int			cshift;
 	int			motion_on;

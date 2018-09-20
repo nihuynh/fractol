@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/19 03:16:10 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 09:06:15 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void				quit_program(t_env *env, int exit_code)
 	i = -1;
 	mlx_destroy_image(env->mlx, env->img);
 	mlx_destroy_window(env->mlx, env->win);
-	while (++i < CTHR)
+	while (++i < C_THR)
 		free(env->s[i].data);
 	free(env->d.colorp);
 	free(env);
@@ -54,7 +54,6 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
 	palalloc(env, &env->d);
 	mt_init(env);
-	mt_render(env);
 	mlx_loop_hook(env->mlx, &render, env);
 }
 

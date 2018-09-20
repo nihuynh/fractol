@@ -6,57 +6,92 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/17 22:36:25 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 09:04:41 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include "fractol.h"
 #include "libft.h"
+#include "mlx.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/*
+** Handle the image business.
+*/
+
+static inline void	ft_putpixel(t_env *env, int x, int y, int color)
+{
+	if (ft_btw(x, 0, VP_WIDTH - 1) && ft_btw(y, 0, VP_HEIGHT - 1))
+		env->imgstr[x + VP_WIDTH * y] = color;
+}
 
 void				mt_init(t_env *env)
 {
 	int i;
 
 	i = -1;
-	while (++i < CTHR)
+	while (++i < C_THR)
 	{
-		env->s[i].y1 = env->d.y1 + i * (env->d.y2 - env->d.y1) / CTHR;
-		env->s[i].y2 = env->d.y1 + (i + 1) * (env->d.y2 - env->d.y1) / CTHR	;
+		env->s[i].id = i;
+		env->s[i].env = &env;
 		if (!(env->s[i].data = ft_memalloc(sizeof(t_pxl) * SLICE_LEN)))
 			quit_program(env, EXIT_FAILURE);
 	}
 }
 
+static inline void	process_pixel(t_env *env, int ndx, int y)
+{
+	int x;
+	t_pxl pxl;
+
+	x = ndx % VP_WIDTH;
+	iter_julbrot(env, &pxl, x, y);
+	printf("iter %i max  %i\n", pxl.iter, env->d.iter_max);
+	if (pxl.iter != env->d.iter_max)
+	{
+		ft_putchar('+');
+		ft_putpixel(env, x, y, env->d.colorp[pxl.iter]);
+	}
+}
+
 static inline void	*compute(void *arg)
 {
-	t_env *env;
+	t_slice	*slice;
+	t_env	*env;
+	int		i;
+	int		ofs;
 
-	env = arg;
-	ft_print_value("\nSuper String : ", env->d.iter_max);
+	slice = arg;
+	env = slice->env;
+	ofs = slice->id * PXL_HEIGHT;
+	i = -1;
+	ft_bzero(slice->data, sizeof(t_pxl) * SLICE_LEN);
+	while (++i < SLICE_LEN)
+		process_pixel(env, i, ofs + i / VP_WIDTH);
+	printf("Thread id : %d y1 = %f y1 = %f\n", slice->id, slice->y1, slice->y2);
 	return (NULL);
 }
 
 inline int			mt_render(t_env *env)
 {
-	intptr_t	cthr;
-	int			status;
-	pthread_t	toby[CTHR];
+	int			cthr;
+	int			sats;
+	void		*ptr;
+	pthread_t	toby[C_THR];
 
-	cthr = 0;
-	status = 0;
-	while (cthr < CTHR && !status)
+	cthr = -1;
+	sats = 0;
+	while (++cthr < C_THR && !sats)
 	{
-		status = pthread_create(&toby[cthr], NULL, compute, (void *)env);
-		cthr++;
+		ptr = &(env->s[cthr]);
+		env->s[cthr].y1 = env->d.y1 + cthr * (env->d.y2 - env->d.y1) / C_THR;
+		env->s[cthr].y2 = env->d.y1 + (cthr + 1) * (env->d.y2 - env->d.y1) / C_THR;
+		sats = pthread_create(&toby[cthr], NULL, compute, ptr);
 	}
-	cthr = 0;
-	while (cthr < CTHR)
-	{
+	cthr = -1;
+	while (++cthr < C_THR)
 		pthread_join(toby[cthr], NULL);
-		cthr++;
-	}
 	return (EXIT_SUCCESS);
 }
