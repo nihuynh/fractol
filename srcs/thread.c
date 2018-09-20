@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 09:04:41 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 19:05:18 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void				mt_init(t_env *env)
 	while (++i < C_THR)
 	{
 		env->s[i].id = i;
-		env->s[i].env = &env;
+		env->s[i].env = env;
 		if (!(env->s[i].data = ft_memalloc(sizeof(t_pxl) * SLICE_LEN)))
 			quit_program(env, EXIT_FAILURE);
 	}
@@ -48,12 +48,8 @@ static inline void	process_pixel(t_env *env, int ndx, int y)
 
 	x = ndx % VP_WIDTH;
 	iter_julbrot(env, &pxl, x, y);
-	printf("iter %i max  %i\n", pxl.iter, env->d.iter_max);
 	if (pxl.iter != env->d.iter_max)
-	{
-		ft_putchar('+');
 		ft_putpixel(env, x, y, env->d.colorp[pxl.iter]);
-	}
 }
 
 static inline void	*compute(void *arg)
@@ -70,7 +66,8 @@ static inline void	*compute(void *arg)
 	ft_bzero(slice->data, sizeof(t_pxl) * SLICE_LEN);
 	while (++i < SLICE_LEN)
 		process_pixel(env, i, ofs + i / VP_WIDTH);
-	printf("Thread id : %d y1 = %f y1 = %f\n", slice->id, slice->y1, slice->y2);
+	//printf("Thread id : %d y1 = %f y1 = %f\n", slice->id, slice->y1, slice->y2);
+	//printf("Env hud : %d fmaxiter = %d\n", env->hud_on, env->d.iter_max);
 	return (NULL);
 }
 
@@ -86,8 +83,6 @@ inline int			mt_render(t_env *env)
 	while (++cthr < C_THR && !sats)
 	{
 		ptr = &(env->s[cthr]);
-		env->s[cthr].y1 = env->d.y1 + cthr * (env->d.y2 - env->d.y1) / C_THR;
-		env->s[cthr].y2 = env->d.y1 + (cthr + 1) * (env->d.y2 - env->d.y1) / C_THR;
 		sats = pthread_create(&toby[cthr], NULL, compute, ptr);
 	}
 	cthr = -1;

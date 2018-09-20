@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 08:56:22 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/20 19:11:35 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 */
 
 # define DEBUG		1
-# define MAC		0
+# define MAC		MACB
 # define TYPE_Z		double
 # define ITER_MAX	100
-# define C_THR		2
+# define C_THR		64
 # define DTOA_DSCP	7
 
 /*
@@ -124,8 +124,6 @@ typedef struct	s_pixel
 
 typedef struct	s_slice
 {
-	TYPE_Z		y1;
-	TYPE_Z		y2;
 	int			id;
 	t_pxl		*data;
 	void		*env;
