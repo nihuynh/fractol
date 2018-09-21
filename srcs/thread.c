@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 21:47:23 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/21 03:40:58 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ static inline void	process_pixel(t_env *env, int ndx, int y)
 
 	x = ndx % VP_WIDTH;
 	iter_julbrot(env, &pxl, x, y);
-	if (pxl.iter != env->d.iter_max)
+	if (pxl.iter == env->d.iter_max || pxl.iter < 0)
+		ft_putpixel(env, x, y, 0);
+	else
 		ft_putpixel(env, x, y, env->d.colorp[pxl.iter]);
 }
 
