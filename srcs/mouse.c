@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 21:46:14 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 15:38:20 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static inline void	zoom_on_cursor(t_fractal *data, int value, int x, int y)
 ** Handle mouse clicks and scrolls.
 */
 
-int				deal_mouse(int mouse_code, int x, int y, t_env *env)
+int					deal_mouse(int mouse_code, int x, int y, t_env *env)
 {
 	if (mouse_code == 2)
 		set_mandelbrot(&env->d);

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 08:58:07 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 15:37:53 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-
-
 
 /*
 ** Render one frame when the env has changed.

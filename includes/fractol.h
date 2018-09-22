@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/21 02:44:06 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 15:14:51 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 */
 
 # define DEBUG		1
-# define MAC		MACB
+# define MAC		IMAC
 # define TYPE_Z		double
 # define ITER_MAX	100
 # define C_THR		16
