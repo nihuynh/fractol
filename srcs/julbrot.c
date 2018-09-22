@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/21 02:26:08 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 18:31:00 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ inline void		set_mandelbrot(t_fractal *data)
 	data->y1 = -data->step * (VP_HEIGHT - 1) / 2;
 	data->y2 = data->step * (VP_HEIGHT - 1) / 2;
 	data->iter_max = ITER_MAX;
+	data->new_pal = 1;
 	data->changed = 1;
 }
 
@@ -40,6 +41,7 @@ inline void		set_julia(t_fractal *data)
 	data->y1 = -data->step * (VP_HEIGHT - 1) / 2;
 	data->y2 = data->step * (VP_HEIGHT - 1) / 2;
 	data->iter_max = ITER_MAX;
+	data->new_pal = 1;
 	data->changed = 1;
 }
 

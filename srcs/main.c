@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/20 09:06:15 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 16:15:17 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				quit_program(t_env *env, int exit_code)
 	free(env->d.colorp);
 	free(env);
 	(exit_code == EXIT_SUCCESS) ? ft_putendl(MSG_BYE) : ft_putendl(MSG_ERR);
-	while (0 && DEBUG)
+	while (DEBUG)
 		;
 	(exit_code == EXIT_SUCCESS) ? exit(0) : ft_error(__func__, __LINE__);
 }

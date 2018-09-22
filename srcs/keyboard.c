@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 15:45:45 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 18:30:46 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ int					deal_keyboard(int key_code, t_env *env)
 		zoom(&env->d, -20);
 	else if (ft_btw(key_code, 123, 126))
 		key_translate(&env->d, key_code);
-	else if (key_code == 15 && (env->d.changed = 1))
+	else if (key_code == 15 && (env->d.new_pal = 1))
 		env->d.iter_max += 50;
-	else if (key_code == 3 && (env->d.changed = 1))
+	else if (key_code == 3 && (env->d.new_pal = 1))
 		env->d.iter_max -= (env->d.iter_max == 50) ? 0 : 50;
 	else if (key_code == 49 && (env->d.changed = 1))
 		env->motion_on += (env->motion_on == 1) ? -1 : 1;
-	else if (key_code == 8 && (env->d.changed = 1))
+	else if (key_code == 8 && (env->d.new_pal = 1))
 		env->cshift += (env->cshift == 5) ? -5 : 1;
-	else if (key_code == 35 && (env->d.changed = 1))
+	else if (key_code == 35 && (env->d.new_pal = 1))
 		env->ctype += (env->ctype == 2) ? -2 : 1;
 	else if (key_code == 48)
 		set_fractal(&env->d);

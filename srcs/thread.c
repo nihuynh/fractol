@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/21 03:40:58 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 18:30:01 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
-** Handle the image business.
-*/
-
-static inline void	ft_putpixel(t_env *env, int x, int y, int color)
-{
-	if (ft_btw(x, 0, VP_WIDTH - 1) && ft_btw(y, 0, VP_HEIGHT - 1))
-		env->imgstr[x + VP_WIDTH * y] = color;
-}
-
 void				mt_init(t_env *env)
 {
 	int i;
 
 	i = -1;
+	env->vp_len = VP_WIDTH * VP_HEIGHT;
+	env->s_len = env->vp_len / C_THR;
 	while (++i < C_THR)
 	{
 		env->s[i].id = i;
@@ -41,20 +33,29 @@ void				mt_init(t_env *env)
 	}
 }
 
-static inline void	process_pixel(t_env *env, int ndx, int y)
+static inline void	apply_palette(t_env *env)
 {
-	int x;
-	t_pxl pxl;
+	int		ndx;
+	int		cslice;
+	int		xslice;
+	int		pxl_iter;
 
-	x = ndx % VP_WIDTH;
-	iter_julbrot(env, &pxl, x, y);
-	if (pxl.iter == env->d.iter_max || pxl.iter < 0)
-		ft_putpixel(env, x, y, 0);
-	else
-		ft_putpixel(env, x, y, env->d.colorp[pxl.iter]);
+	ndx = -1;
+	cslice = -1;
+	while (++ndx < env->vp_len)
+	{
+		xslice = ndx % env->s_len;
+		if (xslice == 0)
+			cslice++;
+		pxl_iter = env->s[cslice].data[xslice].iter;
+		if (pxl_iter == env->d.iter_max || pxl_iter < 0)
+			env->imgstr[ndx] = 0;
+		else
+			env->imgstr[ndx] = env->d.colorp[pxl_iter];
+	}
 }
 
-static inline void	*compute(void *arg)
+static inline void	*mt_iter(void *arg)
 {
 	t_slice	*slice;
 	t_env	*env;
@@ -65,11 +66,10 @@ static inline void	*compute(void *arg)
 	env = slice->env;
 	ofs = slice->id * PXL_HEIGHT;
 	i = -1;
-	ft_bzero(slice->data, sizeof(t_pxl) * SLICE_LEN);
-	while (++i < SLICE_LEN)
-		process_pixel(env, i, ofs + i / VP_WIDTH);
-	//printf("Thread id : %d y1 = %f y1 = %f\n", slice->id, slice->y1, slice->y2);
-	//printf("Env hud : %d fmaxiter = %d\n", env->hud_on, env->d.iter_max);
+	ft_bzero(slice->data, sizeof(t_pxl) * env->s_len);
+	while (++i < env->s_len)
+		iter_julbrot(env, &slice->data[i], i % VP_WIDTH, ofs + i / VP_WIDTH);
+	apply_palette(env);
 	return (NULL);
 }
 
@@ -85,7 +85,7 @@ int					mt_render(t_env *env)
 	while (++cthr < C_THR && !sats)
 	{
 		ptr = &(env->s[cthr]);
-		sats = pthread_create(&toby[cthr], NULL, compute, ptr);
+		sats = pthread_create(&toby[cthr], NULL, mt_iter, ptr);
 	}
 	cthr = -1;
 	while (++cthr < C_THR)

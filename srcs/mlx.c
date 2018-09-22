@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 15:37:53 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 16:07:46 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ inline int			render(t_env *env)
 	int		limit;
 
 	i = -1;
-	if (env->d.changed)
+	if (env->d.changed || env->d.new_pal)
 	{
 		start = clock();
 		env->d.changed = 0;
+		if (env->d.new_pal)
+			palalloc(env, &env->d);
 		limit = VP_WIDTH * VP_HEIGHT;
 		ft_bzero(env->imgstr, (limit * sizeof(int)));
-		palalloc(env, &env->d);
 		mt_render(env);
 		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 		time_frame = clock() - start;

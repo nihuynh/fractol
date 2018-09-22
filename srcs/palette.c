@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 15:45:29 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 16:24:48 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void				palalloc(t_env *env, t_fractal *f)
 	int		i;
 
 	i = -1;
+	env->d.new_pal = 0;
 	if (f->colorp != NULL)
 		free(f->colorp);
 	if (!(f->colorp = ft_memalloc(f->iter_max * sizeof(int))))
@@ -105,19 +106,6 @@ void				palalloc(t_env *env, t_fractal *f)
 		else if (env->ctype == 2)
 			f->colorp[i] = static_small(i);
 	}
-}
-
-/*
-** Print the command on the terminal when the key H is press.
-*/
-
-inline int			show_help(void)
-{
-	ft_putendl("\n\n\n\n\n\n\n\n\n");
-	ft_putendl(USG_TYPE);
-	ft_putendl(USG_ZOOM);
-	ft_putendl(USG_ITER);
-	ft_putendl(USG_COLOR);
-	ft_putendl(USG_ESCP);
-	return (1);
+	if (DEBUG)
+		ft_putendl("New palette generated");
 }

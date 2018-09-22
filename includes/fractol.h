@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 15:14:51 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/22 18:27:27 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		1
-# define MAC		IMAC
+# define DEBUG		0
+# define MAC		0
 # define TYPE_Z		double
 # define ITER_MAX	100
-# define C_THR		16
+# define C_THR		20
 # define DTOA_DSCP	7
 
 /*
@@ -61,8 +61,8 @@
 #  define J_X			2.35
 # else
 #  define WIN_TITLE		"Fractol"
-#  define VP_WIDTH		300
-#  define VP_HEIGHT		300
+#  define VP_WIDTH		1000
+#  define VP_HEIGHT		1000
 #  define M_XMIN		-2.1
 #  define M_XMAX		0.6
 #  define J_X			2
@@ -93,6 +93,7 @@ typedef struct	s_fractal
 {
 	int			type;
 	int			changed;
+	int			new_pal;
 	int			*colorp;
 	TYPE_Z		x1;
 	TYPE_Z		x2;
@@ -133,11 +134,12 @@ typedef struct	s_env
 {
 	t_fractal	d;
 	t_slice		s[C_THR];
+	int			vp_len;
+	int			s_len;
 	int			ctype;
 	int			cshift;
 	int			motion_on;
 	int			hud_on;
-	int			hud_plus_on;
 	int			x_mouse;
 	int			old_x_mouse;
 	int			y_mouse;

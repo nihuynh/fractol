@@ -6,13 +6,13 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/21 01:24:54 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/22 16:23:41 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
-#RUNMODE		:=	debug
-RUNMODE		:=	dev
+RUNMODE		:=	debug
+#RUNMODE		:=	dev
 PARAM		:=	julia
 #PARAM		:=	mandelbrot
 SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c \
