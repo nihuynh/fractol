@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 05:36:48 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 01:07:59 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@
 # define USG_COLOR	"Palette & color shift               ( P | Shift )"
 # define USG_ESCP	"Toggle mouse / quit             ( SPACE | ESC )"
 
-# define UHELP		"H for HUD"
+# define UHELP		"H for HUD / Help"
 
 /*
 ** Structures :

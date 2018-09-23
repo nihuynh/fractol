@@ -4,12 +4,14 @@
 <dict>
     <key>CFBundleExecutable</key>
     <string>binary</string>
+    <key>CFBundleIconFile</key>
+	<string>fe_icon</string>
     <key>CFBundleIdentifier</key>
-    <string>com.nihuynh.Fractol</string>
+    <string>com.nihuynh.Fractal_Explorer</string>
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>Fractol</string>
+    <string>Fractal_Explorer</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
 </dict>

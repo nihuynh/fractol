@@ -6,14 +6,14 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/23 05:46:59 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/24 01:32:13 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
 RUNMODE		:=	dev
 #RUNMODE		:=	release
-APP_NAME	:=	Fractol_Explorer
+APP_NAME	:=	Fractal_Explorer
 #PARAM		:=	julia
 PARAM		:=	mandelbrot
 SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c \
@@ -87,7 +87,8 @@ aclean:
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning $(APP_NAME).app $(OKLOGO)"
 built: all
 	@mkdir -p "./build/$(APP_NAME).app"/Contents/{MacOS,Resources} $(FMKDIR)
-	@cp Info.plist "./build/$(APP_NAME).app/Contents/"
+	@cp ./built_srcs/Info.plist "./build/$(APP_NAME).app/Contents/"
+	@cp ./built_srcs/fe_icon.icns "./build/$(APP_NAME).app/Contents/Resources"
 	@cp ./$(NAME) "./build/$(APP_NAME).app/Contents/MacOS/binary"
 	@printf "\033[1;34m$(NAME)\033[25G\033[32mBuilt $(APP_NAME).app $(OKLOGO)"
 fclean: clean lclean aclean

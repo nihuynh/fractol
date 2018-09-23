@@ -57,6 +57,8 @@ cpu load : http://mrob.com/pub/comp/logcpu/index.html
 Plein de flag sanitize
  -fsanitize=undefined -fsanitize=bounds -fsanitize=null -fno-omit-frame-pointer
 http://www.icosaedro.it/c-modules.html
+app with makefile :
+https://joseph-long.com/writing/app-bundles-with-a-makefile/
 
 reverse engineer :
 strings fractol
@@ -73,3 +75,7 @@ DATA :
 julia center on 1000*1000
 O3 : 200 ms
 O0 : 450 ms
+
+CREDIT :
+Thanks to skeeto for his advices on multi-threading.
+You can check is website nullprogram.com where there is ...
