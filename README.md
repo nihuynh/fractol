@@ -24,6 +24,7 @@ chaque thread a son buffer l'iter count.
 Take a screen shot :
 https://www.carnetdumaker.net/articles/dessiner-la-fractale-de-mandelbrot-en-python-et-en-cc/
 You read your image buffer and built the image.
+https://people.cs.clemson.edu/~dhouse/courses/405/notes/ppm-files.pdf
 image .xpm   => https://fr.wikipedia.org/wiki/X_PixMap
 image .ppm  => https://fr.wikipedia.org/wiki/Portable_pixmap
 image .tga  => https://fr.wikipedia.org/wiki/Truevision_Targa
@@ -68,3 +69,7 @@ Zoom on mouse
 arrow for moving
 Multi-threading
 
+DATA :
+julia center
+03 : 370 ms
+O0 : 720 ms

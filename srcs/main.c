@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 16:15:17 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:54:32 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				quit_program(t_env *env, int exit_code)
 	free(env->d.colorp);
 	free(env);
 	(exit_code == EXIT_SUCCESS) ? ft_putendl(MSG_BYE) : ft_putendl(MSG_ERR);
-	while (DEBUG)
+	while (DEBUG_LEAK)
 		;
 	(exit_code == EXIT_SUCCESS) ? exit(0) : ft_error(__func__, __LINE__);
 }
@@ -77,8 +77,6 @@ int					main(int ac, char **av)
 			free(env);
 			exit(1);
 		}
-		show_help();
-		env->hud_on = 1;
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);
 		mlx_loop(env->mlx);
 		quit_program(env, EXIT_SUCCESS);

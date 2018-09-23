@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 18:27:27 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:52:37 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		0
+# define DEBUG		1
+# define DEBUG_LEAK	0
 # define MAC		0
 # define TYPE_Z		double
 # define ITER_MAX	100
@@ -36,10 +37,15 @@
 ** Static def :
 */
 
-# define MACB	1
-# define IMAC	2
-# define MANDEL	0
-# define JULIA	1
+# define MACB			1
+# define IMAC			2
+# define MANDEL			0
+# define JULIA			1
+# define TYPE_C			unsigned int
+# define C_UI			16777215
+
+# define EXIT_FAILURE	1
+# define EXIT_SUCCESS	0
 
 /*
 ** Automatic parameters :
@@ -79,11 +85,14 @@
 # define MSG_BYE	"\nQuitting Fractol. Bye bye !"
 # define MSG_ERR	"\nError cause fractol to exit"
 
+# define USG_TYPE	"Select fractal                      ( 1 | 2 )"
 # define USG_ZOOM	"Zoom                              ( - E | Q + )"
 # define USG_ITER	"Iteration                         ( - F | R + )"
-# define USG_COLOR	"Palette & color shift               ( P | C )"
-# define USG_TYPE	"Change fractal                       ( TAB )"
+# define USG_HELP	"Help and toggle HUD                   ( H )"
+# define USG_COLOR	"Palette & color shift               ( P | Shift )"
 # define USG_ESCP	"Toggle mouse / quit             ( SPACE | ESC )"
+
+# define UHELP		"H for HUD"
 
 /*
 ** Structures :
@@ -94,7 +103,8 @@ typedef struct	s_fractal
 	int			type;
 	int			changed;
 	int			new_pal;
-	int			*colorp;
+	int			reiter;
+	TYPE_C		*colorp;
 	TYPE_Z		x1;
 	TYPE_Z		x2;
 	TYPE_Z		y1;
@@ -174,6 +184,6 @@ void			show_hud(t_env *env, int time_frame);
 void			mt_init(t_env *env);
 int				mt_render(t_env *env);
 void			iter_julbrot(t_env *env, t_pxl *pxl, int x, int y);
-void			reiter_julbrot(t_env *env, t_pxl *pxl);
+void			reiter_julbrot(t_env *env, t_pxl *pxl, int x, int y);
 
 #endif

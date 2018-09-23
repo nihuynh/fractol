@@ -6,13 +6,12 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 18:30:46 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:35:55 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
-#include <stdlib.h>
 
 static inline void	zoom(t_fractal *data, TYPE_Z value)
 {
@@ -66,15 +65,6 @@ static inline void	key_translate(t_fractal *data, int key_code)
 		translate(data, 20, 0, 1);
 }
 
-static inline void	set_fractal(t_fractal *data)
-{
-	data->type += (data->type == 1) ? -1 : 1;
-	if (data->type == JULIA)
-		set_julia(data);
-	if (data->type == MANDEL)
-		set_mandelbrot(data);
-}
-
 /*
 ** Handle keyboard events.
 */
@@ -97,12 +87,14 @@ int					deal_keyboard(int key_code, t_env *env)
 		env->d.iter_max -= (env->d.iter_max == 50) ? 0 : 50;
 	else if (key_code == 49 && (env->d.changed = 1))
 		env->motion_on += (env->motion_on == 1) ? -1 : 1;
-	else if (key_code == 8 && (env->d.new_pal = 1))
+	else if (key_code == 257 && (env->d.new_pal = 1))
 		env->cshift += (env->cshift == 5) ? -5 : 1;
 	else if (key_code == 35 && (env->d.new_pal = 1))
 		env->ctype += (env->ctype == 2) ? -2 : 1;
-	else if (key_code == 48)
-		set_fractal(&env->d);
+	else if (key_code == 18)
+		set_mandelbrot(&env->d);
+	else if (key_code == 19)
+		set_julia(&env->d);
 	else if (DEBUG)
 		ft_print_value("\nYou press the key : ", key_code);
 	return (0);

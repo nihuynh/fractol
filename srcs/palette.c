@@ -6,18 +6,17 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 16:24:48 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:23:21 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
-#include "mlx.h"
 #include <stdlib.h>
 
-static inline int	rgbtoi(float r, float g, float b)
+static inline TYPE_C	rgbtoi(float r, float g, float b)
 {
-	int	res;
+	TYPE_C	res;
 
 	res = (int)(r * 255) << 16;
 	res += (int)(g * 255) << 8;
@@ -25,7 +24,7 @@ static inline int	rgbtoi(float r, float g, float b)
 	return (res);
 }
 
-static inline int	bernstein(t_env *env, float t)
+static inline TYPE_C	bernstein(t_env *env, float t)
 {
 	float r;
 	float g;
@@ -47,7 +46,7 @@ static inline int	bernstein(t_env *env, float t)
 	return (rgbtoi(r, g, b));
 }
 
-static inline int	hsv(float h, float s, float v)
+static inline TYPE_C	hsv(float h, float s, float v)
 {
 	float	c;
 	float	x;
@@ -72,11 +71,11 @@ static inline int	hsv(float h, float s, float v)
 	return (rgbtoi(0, 0, 0));
 }
 
-static inline int	static_small(int iter)
+static inline TYPE_C	static_small(int iter)
 {
-	static int colors[16] = { 0x000000, 0x19071a, 0x09012f, 0x040449, 0x000764,
-		0x0c2c8a, 0x1852b1, 0x397dd1, 0x86b5e5, 0xd3ecf8, 0xf1e9bf, 0xf8c95f,
-		0xffaa00, 0xcc8000, 0x995700, 0x6a3403};
+	static TYPE_C colors[16] = { 0x000000, 0x19071a, 0x09012f, 0x040449,
+		0x000764, 0x0c2c8a, 0x1852b1, 0x397dd1, 0x86b5e5, 0xd3ecf8, 0xf1e9bf,
+		0xf8c95f, 0xffaa00, 0xcc8000, 0x995700, 0x6a3403};
 
 	return (colors[iter % 16]);
 }

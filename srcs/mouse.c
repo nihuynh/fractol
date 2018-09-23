@@ -6,13 +6,12 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 15:38:20 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:27:40 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
-#include <stdlib.h>
 
 /*
 ** The function save the position of the mouse on the complex plane.
@@ -54,9 +53,7 @@ static inline void	zoom_on_cursor(t_fractal *data, int value, int x, int y)
 
 int					deal_mouse(int mouse_code, int x, int y, t_env *env)
 {
-	if (mouse_code == 2)
-		set_mandelbrot(&env->d);
-	else if (env->d.type == MANDEL && mouse_code == 1)
+	if (env->d.type == MANDEL && mouse_code == 1)
 	{
 		env->motion_on = 1;
 		mouse_motion(x, y, env);

@@ -6,13 +6,13 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/22 16:23:41 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/23 01:16:10 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
-RUNMODE		:=	debug
-#RUNMODE		:=	dev
+RUNMODE		:=	dev
+#RUNMODE		:=	release
 PARAM		:=	julia
 #PARAM		:=	mandelbrot
 SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c \
@@ -34,11 +34,11 @@ LMLX_INC	:=
 # make specs :
 MYCC		:=	clang
 MYCC		+=	-Werror -Wall -Wextra
-ifeq ($(RUNMODE),debug)
+ifeq ($(RUNMODE),dev)
     MYCC	+=	-g -O0
 	#MYCC	+=	-Wpedantic -ggdb -fsanitize=address
 else
-	MYCC	+=	-O2
+	MYCC	+=	-O3
 endif
 
 RM			:=	/bin/rm -f
@@ -72,7 +72,7 @@ $(LINKF_LMLX):
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
 	@mkdir $(OBJDIR) 2> /dev/null || true
-	@$(MYCC) $(INC) -o $@ -c $<
+	@$(MYCC) $(INC) -pthread -o $@ -c $<
 	@printf "\033[1;34m$(NAME)\033[25G\033[33mCompile $< $(OKLOGO)"
 clean:
 	@$(RM) $(OBJ)

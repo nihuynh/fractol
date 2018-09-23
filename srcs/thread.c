@@ -6,16 +6,13 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 18:30:01 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:25:11 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include "fractol.h"
 #include "libft.h"
-#include "mlx.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 void				mt_init(t_env *env)
 {
@@ -33,28 +30,6 @@ void				mt_init(t_env *env)
 	}
 }
 
-static inline void	apply_palette(t_env *env)
-{
-	int		ndx;
-	int		cslice;
-	int		xslice;
-	int		pxl_iter;
-
-	ndx = -1;
-	cslice = -1;
-	while (++ndx < env->vp_len)
-	{
-		xslice = ndx % env->s_len;
-		if (xslice == 0)
-			cslice++;
-		pxl_iter = env->s[cslice].data[xslice].iter;
-		if (pxl_iter == env->d.iter_max || pxl_iter < 0)
-			env->imgstr[ndx] = 0;
-		else
-			env->imgstr[ndx] = env->d.colorp[pxl_iter];
-	}
-}
-
 static inline void	*mt_iter(void *arg)
 {
 	t_slice	*slice;
@@ -69,8 +44,7 @@ static inline void	*mt_iter(void *arg)
 	ft_bzero(slice->data, sizeof(t_pxl) * env->s_len);
 	while (++i < env->s_len)
 		iter_julbrot(env, &slice->data[i], i % VP_WIDTH, ofs + i / VP_WIDTH);
-	apply_palette(env);
-	return (NULL);
+	pthread_exit(NULL);
 }
 
 int					mt_render(t_env *env)

@@ -6,12 +6,11 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 18:31:00 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:35:02 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 #include <math.h>
 
 /*
@@ -27,8 +26,9 @@ inline void		set_mandelbrot(t_fractal *data)
 	data->step = (data->x2 - data->x1) / (VP_WIDTH - 1);
 	data->y1 = -data->step * (VP_HEIGHT - 1) / 2;
 	data->y2 = data->step * (VP_HEIGHT - 1) / 2;
+	if (data->iter_max != ITER_MAX)
+		data->new_pal = 1;
 	data->iter_max = ITER_MAX;
-	data->new_pal = 1;
 	data->changed = 1;
 }
 
@@ -40,8 +40,9 @@ inline void		set_julia(t_fractal *data)
 	data->step = (data->x2 - data->x1) / (VP_WIDTH - 1);
 	data->y1 = -data->step * (VP_HEIGHT - 1) / 2;
 	data->y2 = data->step * (VP_HEIGHT - 1) / 2;
+	if (data->iter_max != ITER_MAX)
+		data->new_pal = 1;
 	data->iter_max = ITER_MAX;
-	data->new_pal = 1;
 	data->changed = 1;
 }
 
@@ -49,7 +50,7 @@ inline void		iter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 {
 	t_pixel p;
 
-	pxl->iter = env->d.iter_max;
+	pxl->iter = -1;
 	pxl->z_r = env->d.x1 + (TYPE_Z)x * env->d.step;
 	pxl->z_i = env->d.y1 + (TYPE_Z)y * env->d.step;
 	p.square_r = pxl->z_r * pxl->z_r;
@@ -61,7 +62,6 @@ inline void		iter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 		if ((pxl->z_r - 0.25) < (p.p - (2 * p.p * p.p)) || p.d < 0.0625)
 			return ;
 	}
-	pxl->iter = -1;
 	p.c_r = (env->d.type == MANDEL) ? pxl->z_r : env->d.c_r;
 	p.c_i = (env->d.type == MANDEL) ? pxl->z_i : env->d.c_i;
 	while (++pxl->iter < env->d.iter_max && (p.square_r + p.square_i) <= 4)
@@ -74,14 +74,20 @@ inline void		iter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 	}
 }
 
-inline void		reiter_julbrot(t_env *env, t_pxl *pxl)
+inline void		reiter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 {
 	t_pixel	p;
+	TYPE_Z	vp_r;
+	TYPE_Z	vp_i;
 
+	if (pxl->iter != env->d.old_iter_max)
+		return ;
 	p.square_r = pxl->z_r * pxl->z_r;
 	p.square_i = pxl->z_i * pxl->z_i;
-	p.c_r = (env->d.type == MANDEL) ? pxl->z_r : env->d.c_r;
-	p.c_i = (env->d.type == MANDEL) ? pxl->z_i : env->d.c_i;
+	vp_r = env->d.x1 + (TYPE_Z)x * env->d.step;
+	vp_i = env->d.y1 + (TYPE_Z)y * env->d.step;
+	p.c_r = (env->d.type == MANDEL) ? vp_r : env->d.c_r;
+	p.c_i = (env->d.type == MANDEL) ? vp_i : env->d.c_i;
 	while (++pxl->iter < env->d.iter_max && (p.square_r + p.square_i) <= 4)
 	{
 		pxl->z_i = pxl->z_r * pxl->z_i;

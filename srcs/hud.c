@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:29:23 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/22 15:52:44 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 03:52:33 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ inline int			show_help(void)
 	ft_putendl(USG_ZOOM);
 	ft_putendl(USG_ITER);
 	ft_putendl(USG_COLOR);
+	ft_putendl(USG_HELP);
 	ft_putendl(USG_ESCP);
 	return (1);
 }
@@ -89,5 +90,7 @@ void				show_hud(t_env *env, int time_frame)
 		hud_dvalue(env, env->d.y1, "y1 : ", 8);
 		hud_dvalue(env, env->d.y2, "y2 : ", 9);
 		hud_dvalue(env, env->d.step, "step : ", 10);
+		return ;
 	}
+	mlx_string_put(env->mlx, env->win, 15, VP_HEIGHT - 30, C_UI, UHELP);
 }
