@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 03:52:37 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 05:36:48 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		1
+# define DEBUG		0
 # define DEBUG_LEAK	0
 # define MAC		0
 # define TYPE_Z		double
@@ -73,9 +73,6 @@
 #  define M_XMAX		0.6
 #  define J_X			2
 # endif
-
-# define PXL_HEIGHT	(VP_HEIGHT / C_THR)
-# define SLICE_LEN	PXL_HEIGHT * VP_WIDTH
 
 /*
 ** Messages for fractol :

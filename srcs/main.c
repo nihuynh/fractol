@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 03:54:32 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 05:44:24 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void				quit_program(t_env *env, int exit_code)
 	mlx_destroy_window(env->mlx, env->win);
 	while (++i < C_THR)
 		free(env->s[i].data);
-	free(env->d.colorp);
+	if (env->d.colorp != NULL)
+		free(env->d.colorp);
 	free(env);
 	(exit_code == EXIT_SUCCESS) ? ft_putendl(MSG_BYE) : ft_putendl(MSG_ERR);
 	while (DEBUG_LEAK)
@@ -42,6 +43,8 @@ void				quit_program(t_env *env, int exit_code)
 
 static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 {
+	mt_init(env);
+	palalloc(env, &env->d);
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, w, h, title);
 	env->img = mlx_new_image(env->mlx, w, h);
@@ -52,8 +55,6 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 2, 0, deal_keyboard, env);
 	mlx_hook(env->win, 4, 0, deal_mouse, env);
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
-	palalloc(env, &env->d);
-	mt_init(env);
 	mlx_loop_hook(env->mlx, &render, env);
 }
 
@@ -61,13 +62,13 @@ int					main(int ac, char **av)
 {
 	t_env	*env;
 
-	if (ac != 2)
+	if (ac > 2)
 		ft_putendl(MSG_USAGE);
 	else
 	{
 		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
 			ft_error(__func__, __LINE__);
-		if (ft_strcasecmp(av[1], "mandelbrot") == 0)
+		if (ac == 1 || ft_strcasecmp(av[1], "mandelbrot") == 0)
 			set_mandelbrot(&env->d);
 		else if (ft_strcasecmp(av[1], "julia") == 0)
 			set_julia(&env->d);

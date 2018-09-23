@@ -6,15 +6,16 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/23 01:16:10 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/23 05:46:59 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
 RUNMODE		:=	dev
 #RUNMODE		:=	release
-PARAM		:=	julia
-#PARAM		:=	mandelbrot
+APP_NAME	:=	Fractol_Explorer
+#PARAM		:=	julia
+PARAM		:=	mandelbrot
 SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c \
 				hud.c
 HEADERS		:= fractol.h
@@ -40,8 +41,8 @@ ifeq ($(RUNMODE),dev)
 else
 	MYCC	+=	-O3
 endif
-
 RM			:=	/bin/rm -f
+FMKDIR		:= 2> /dev/null || true
 # **************************************************************************** #
 # Automatic variable :
 OBJ			:=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -71,17 +72,25 @@ $(LINKF_LMLX):
 	@make -C $(LMLX_PATH)/
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
-	@mkdir $(OBJDIR) 2> /dev/null || true
+	@mkdir $(OBJDIR) $(FMKDIR)
 	@$(MYCC) $(INC) -pthread -o $@ -c $<
 	@printf "\033[1;34m$(NAME)\033[25G\033[33mCompile $< $(OKLOGO)"
 clean:
 	@$(RM) $(OBJ)
-	@rmdir $(OBJDIR) 2> /dev/null || true
+	@rmdir $(OBJDIR) $(FMKDIR)
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning objs $(OKLOGO)"
 lclean:
 	@make -C $(LIBFT_PATH)/ clean
 	@make -C $(LMLX_PATH)/ clean
-fclean: clean lclean
+aclean:
+	@rm -rf "./build/$(APP_NAME).app/"
+	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning $(APP_NAME).app $(OKLOGO)"
+built: all
+	@mkdir -p "./build/$(APP_NAME).app"/Contents/{MacOS,Resources} $(FMKDIR)
+	@cp Info.plist "./build/$(APP_NAME).app/Contents/"
+	@cp ./$(NAME) "./build/$(APP_NAME).app/Contents/MacOS/binary"
+	@printf "\033[1;34m$(NAME)\033[25G\033[32mBuilt $(APP_NAME).app $(OKLOGO)"
+fclean: clean lclean aclean
 	@make -C $(LIBFT_PATH)/ fclean
 	@$(RM) $(NAME)
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning $(NAME) $(OKLOGO)"
@@ -95,4 +104,4 @@ git: fclean
 norme:
 	@norminette -R CheckForbiddenSourceHeader srcs includes playground
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mNorminette $(OKLOGO)"
-.PHONY: all, $(NAME), clean, fclean, re, run, git, norme
+.PHONY: all, $(NAME), $(APP_NAME), clean, fclean, re, run, git, norme, aclean, built

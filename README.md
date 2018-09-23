@@ -1,7 +1,7 @@
 # fractol
 Links :
 http://mrob.com/pub/muency/speedimprovements.html
-
+https://joseph-long.com/writing/app-bundles-with-a-makefile/
 
 TODO :
 Format this file :
@@ -70,6 +70,6 @@ arrow for moving
 Multi-threading
 
 DATA :
-julia center
-03 : 370 ms
-O0 : 720 ms
+julia center on 1000*1000
+O3 : 200 ms
+O0 : 450 ms

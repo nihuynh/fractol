@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 03:25:11 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/23 05:40:04 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void				mt_init(t_env *env)
 	{
 		env->s[i].id = i;
 		env->s[i].env = env;
-		if (!(env->s[i].data = ft_memalloc(sizeof(t_pxl) * SLICE_LEN)))
+		if (!(env->s[i].data = ft_memalloc(sizeof(t_pxl) * env->s_len)))
 			quit_program(env, EXIT_FAILURE);
 	}
 }
@@ -39,7 +39,7 @@ static inline void	*mt_iter(void *arg)
 
 	slice = arg;
 	env = slice->env;
-	ofs = slice->id * PXL_HEIGHT;
+	ofs = slice->id * (VP_HEIGHT / C_THR);
 	i = -1;
 	ft_bzero(slice->data, sizeof(t_pxl) * env->s_len);
 	while (++i < env->s_len)
