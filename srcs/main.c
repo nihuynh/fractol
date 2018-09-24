@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 01:59:08 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 16:12:31 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void				quit_program(t_env *env, int exit_code)
 	(exit_code == EXIT_SUCCESS) ? exit(0) : ft_error(__func__, __LINE__);
 }
 
-int	close_prg(t_env *env)
+int					close_prg(t_env *env)
 {
 	quit_program(env, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);

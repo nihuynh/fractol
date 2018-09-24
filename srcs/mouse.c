@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 03:27:40 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 16:12:26 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ static inline void	zoom_on_cursor(t_fractal *data, int value, int x, int y)
 
 int					deal_mouse(int mouse_code, int x, int y, t_env *env)
 {
-	if (env->d.type == MANDEL && mouse_code == 1)
+	if (env->d.type % 2 == MANDEL && mouse_code == 1)
 	{
 		env->motion_on = 1;
 		mouse_motion(x, y, env);
 		env->motion_on = 0;
-		set_julia(&env->d);
+		if (env->d.type == MANDEL)
+			set_julia(&env->d);
+		if (env->d.type == BURNING)
+			set_burnlia(&env->d);
 	}
 	else if (mouse_code == 5)
 		zoom_on_cursor(&env->d, 25, x, y);

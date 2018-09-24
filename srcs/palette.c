@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 03:23:21 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 16:03:49 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static inline TYPE_C	static_small(int iter)
 ** Choose the color for the pixel depending on the iteration & max iteration.
 */
 
-void				palalloc(t_env *env, t_fractal *f)
+void					palalloc(t_env *env, t_fractal *f)
 {
 	float	t;
 	int		i;
