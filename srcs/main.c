@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 05:44:24 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 01:59:08 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void				quit_program(t_env *env, int exit_code)
 	(exit_code == EXIT_SUCCESS) ? exit(0) : ft_error(__func__, __LINE__);
 }
 
+int	close_prg(t_env *env)
+{
+	quit_program(env, EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
+}
 /*
 ** Mlx handler.
 */
@@ -55,6 +60,7 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_hook(env->win, 2, 0, deal_keyboard, env);
 	mlx_hook(env->win, 4, 0, deal_mouse, env);
 	mlx_hook(env->win, 6, (1L << 6), mouse_motion, env);
+	mlx_hook(env->win, 17, 1L << 17, close_prg, env);
 	mlx_loop_hook(env->mlx, &render, env);
 }
 

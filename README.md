@@ -70,6 +70,9 @@ optimisation for mandelbrot remove point of the cardoide & first bulbe
 Zoom on mouse
 arrow for moving
 Multi-threading
+.app
+hud
+handle close
 
 DATA :
 julia center on 1000*1000
