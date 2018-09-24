@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/24 01:32:13 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/24 16:41:55 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,6 @@ git: fclean
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mGit sync $(OKLOGO)"
 	@git status
 norme:
-	@norminette -R CheckForbiddenSourceHeader srcs includes playground
+	@norminette -R CheckForbiddenSourceHeader srcs includes
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mNorminette $(OKLOGO)"
 .PHONY: all, $(NAME), $(APP_NAME), clean, fclean, re, run, git, norme, aclean, built

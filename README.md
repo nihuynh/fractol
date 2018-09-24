@@ -82,3 +82,17 @@ O0 : 450 ms
 CREDIT :
 Thanks to skeeto for his advices on multi-threading.
 You can check is website nullprogram.com where there is ...
+
+Norme: ./srcs/hud.c
+Norme: ./srcs/mlx.c
+Norme: ./srcs/keyboard.c
+Error (line 72): function deal_keyboard has 31 lines
+Norme: ./srcs/main.c
+Error (line 68): function main has 27 lines
+Norme: ./srcs/thread.c
+Norme: ./srcs/mouse.c
+Norme: ./srcs/palette.c
+Norme: ./includes/fractol.h
+Norme: ./srcs/julbrot.c
+Error: 6 functions in the file
+Error (line 77): function iter_julbrot has 29 lines

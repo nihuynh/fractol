@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 16:20:25 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:07:17 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ inline void		set_burning(t_fractal *data)
 inline void		set_burnlia(t_fractal *data)
 {
 	data->type = BURNING_JULIA;
-	data->x1 = -J_X;
-	data->x2 = J_X;
+	data->x1 = -3;
+	data->x2 = 3;
 	data->step = (data->x2 - data->x1) / (VP_WIDTH - 1);
 	data->y1 = -data->step * (VP_HEIGHT - 1) / 2;
 	data->y2 = data->step * (VP_HEIGHT - 1) / 2;

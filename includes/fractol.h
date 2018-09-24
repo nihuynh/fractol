@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 16:40:24 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:15:37 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define DEBUG		0
 # define DEBUG_LEAK	0
-# define MAC		0
+# define MAC		MACB
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
@@ -81,9 +81,9 @@
 ** Messages for fractol :
 */
 
-# define MSG_USAGE	"\nusage: ./fractol <mandelbrot> <julia>"
-# define MSG_BYE	"\nQuitting Fractol. Bye bye !"
-# define MSG_ERR	"\nError cause fractol to exit"
+# define MSG_USAGE	"usage: ./fractol <mandelbrot> <julia> <burning> <burnlia>"
+# define MSG_BYE	"Quitting Fractol. Bye bye !"
+# define MSG_ERR	"Error cause fractol to exit"
 
 # define USG_TYPE	"Select fractal                  ( 1 | 2 | 3 | 4 )"
 # define USG_ZOOM	"Zoom                              ( - E | Q + )"

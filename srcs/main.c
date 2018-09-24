@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 16:12:31 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 17:06:13 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void				quit_program(t_env *env, int exit_code)
 	(exit_code == EXIT_SUCCESS) ? exit(0) : ft_error(__func__, __LINE__);
 }
 
-int					close_prg(t_env *env)
+static inline int	close_prg(t_env *env)
 {
 	quit_program(env, EXIT_SUCCESS);
 	return (EXIT_SUCCESS);
 }
+
 /*
 ** Mlx handler.
 */
@@ -78,6 +79,10 @@ int					main(int ac, char **av)
 			set_mandelbrot(&env->d);
 		else if (ft_strcasecmp(av[1], "julia") == 0)
 			set_julia(&env->d);
+		else if (ft_strcasecmp(av[1], "burning") == 0)
+			set_burning(&env->d);
+		else if (ft_strcasecmp(av[1], "burnlia") == 0)
+			set_burnlia(&env->d);
 		else
 		{
 			ft_putendl(MSG_USAGE);
