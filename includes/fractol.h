@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 01:07:59 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 12:51:18 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define DEBUG		0
 # define DEBUG_LEAK	0
-# define MAC		0
+# define MAC		MACB
 # define TYPE_Z		double
 # define ITER_MAX	100
 # define C_THR		20
@@ -41,6 +41,8 @@
 # define IMAC			2
 # define MANDEL			0
 # define JULIA			1
+# define BURNING_JULIA	3
+# define BURNING		2
 # define TYPE_C			unsigned int
 # define C_UI			16777215
 
@@ -82,10 +84,9 @@
 # define MSG_BYE	"\nQuitting Fractol. Bye bye !"
 # define MSG_ERR	"\nError cause fractol to exit"
 
-# define USG_TYPE	"Select fractal                      ( 1 | 2 )"
+# define USG_TYPE	"Select fractal                  ( 1 | 2 | 3 | 4 )"
 # define USG_ZOOM	"Zoom                              ( - E | Q + )"
 # define USG_ITER	"Iteration                         ( - F | R + )"
-# define USG_HELP	"Help and toggle HUD                   ( H )"
 # define USG_COLOR	"Palette & color shift               ( P | Shift )"
 # define USG_ESCP	"Toggle mouse / quit             ( SPACE | ESC )"
 
@@ -173,6 +174,8 @@ void			quit_program(t_env *env, int exit_code);
 
 void			set_mandelbrot(t_fractal *data);
 void			set_julia(t_fractal *data);
+void			set_burnlia(t_fractal *data);
+void			set_burning(t_fractal *data);
 
 void			palalloc(t_env *env, t_fractal *f);
 int				show_help(void);

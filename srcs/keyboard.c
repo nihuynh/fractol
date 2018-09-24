@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 03:35:55 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/24 12:45:38 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ int					deal_keyboard(int key_code, t_env *env)
 		set_mandelbrot(&env->d);
 	else if (key_code == 19)
 		set_julia(&env->d);
+	else if (key_code == 20)
+		set_burning(&env->d);
+	else if (key_code == 21)
+		set_burnlia(&env->d);
 	else if (DEBUG)
 		ft_print_value("\nYou press the key : ", key_code);
 	return (0);
