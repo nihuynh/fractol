@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/24 16:41:55 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/25 13:03:33 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ APP_NAME	:=	Fractal_Explorer
 #PARAM		:=	julia
 PARAM		:=	mandelbrot
 SRC			:=	main.c mlx.c julbrot.c keyboard.c mouse.c palette.c thread.c \
-				hud.c
+				hud.c init.c
 HEADERS		:= fractol.h
 # directories :
 SRCDIR  	:=	srcs
