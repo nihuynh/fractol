@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:29:23 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 19:10:31 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:05:55 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,16 @@ static inline void	hud_dvalue(t_env *env, double value, char *str, int pos)
 ** Handle the Head Up Display.
 */
 
-inline void			hud_help(t_env *env)
+static inline void	hud_help(t_env *env)
 {
 	env->hud_cmd--;
 	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 10, 16777215, CMD_1);
+	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 30, 16777215, CMD_2);
+	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 50, 16777215, CMD_3);
+	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 70, 16777215, CMD_4);
+	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 90, 16777215, CMD_5);
+	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 110, 16777215, CMD_6);
+	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 130, 16777215, CMD_7);
 }
 
 void				show_hud(t_env *env, int time_frame)

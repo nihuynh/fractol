@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 19:30:32 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:39:21 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ inline int			render(t_env *env)
 		start = clock();
 		if (env->d.iter_max <= 0)
 			env->d.iter_max = ITER_MAX;
+		if (env->d.type % 2 == 0)
+			env->motion_on = 0;
 		env->d.changed = 0;
 		mt_render(env);
 		ft_bzero(env->imgstr, (env->vp_len * sizeof(int)));

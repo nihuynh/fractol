@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 19:27:59 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:43:16 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int					deal_keyboard(int key_code, t_env *env)
 	else if (key_code == 257 && (env->d.new_pal = 1))
 		env->type_palette += (env->type_palette == 7) ? -7 : 1;
 	else if (key_code == 8 && (env->d.changed = 1))
-		env->hud_cmd = 20;
+		env->hud_cmd = (env->hud_cmd > 0) ? 0 : 20;
 	else if (ft_btw(key_code, 18, 21))
 		key_fractal(&env->d, key_code);
 	else if (DEBUG)

@@ -6,14 +6,12 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 19:14:58 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:09:02 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include "libft.h"
 #include <math.h>
-#include <stdio.h>
 
 inline static int	inside_mandel(TYPE_Z z_r, TYPE_Z square_i)
 {

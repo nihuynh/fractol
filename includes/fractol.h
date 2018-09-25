@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 19:11:56 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:41:16 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		1
+# define DEBUG		0
 # define DEBUG_LEAK	0
-# define MAC		IMAC
+# define MAC		MACB
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
@@ -36,6 +36,8 @@
 
 /*
 ** Static def :
+** TYPE_C is the type for the imgstr
+** C_UI is the default color for the text
 */
 
 # define DEV			0
@@ -43,8 +45,8 @@
 # define IMAC			2
 # define MANDEL			0
 # define JULIA			1
-# define BURNING_JULIA	3
 # define BURNING		2
+# define BURNING_JULIA	3
 # define TYPE_C			unsigned int
 # define C_UI			16777215
 
@@ -93,15 +95,17 @@
 # define MSG_BYE	"Quitting Fractol. Bye bye !"
 # define MSG_ERR	"Error cause fractol to exit"
 
-# define USG_TYPE	"Select fractal                  ( 1 | 2 | 3 | 4 )"
-# define USG_ZOOM	"Zoom                              ( - E | Q + )"
-# define USG_ITER	"Iteration                         ( - F | R + )"
-# define USG_COLOR	"Palette & color shift               ( Shift )"
-# define USG_ESCP	"Toggle mouse / quit             ( Space | Esc )"
+# define CMD_1		"1 | 2 | 3 | 4  => select fractal"
+# define CMD_2		"shift | scroll => Color | Zoom"
+# define CMD_3		"arrow | Esc    => Move  | Quit"
+# define CMD_4		"  R + | - F    => Iteration"
+# define CMD_5		"Space lock or unlock the mouse"
+# define CMD_6		"Click on fractal 1 and 3 to open"
+# define CMD_7		"the julia at this position"
 
-# define CMD_1		"1 | 2 | 3 | 4 => select fractal"
+# define CMD_10		"  Q + | - E    => Zoom"
 
-# define UHELP		"H => HUD & C => Controls"
+# define UHELP		"H toggle HUD | C show controls"
 
 /*
 ** Structures :
