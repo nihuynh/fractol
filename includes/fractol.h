@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 17:15:37 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/25 19:11:56 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 ** TYPE_Z is the type of float use in the complex plane
 */
 
-# define DEBUG		0
+# define DEBUG		1
 # define DEBUG_LEAK	0
-# define MAC		MACB
+# define MAC		IMAC
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
@@ -38,6 +38,7 @@
 ** Static def :
 */
 
+# define DEV			0
 # define MACB			1
 # define IMAC			2
 # define MANDEL			0
@@ -61,6 +62,7 @@
 #  define M_XMIN		-2.8
 #  define M_XMAX		1.3
 #  define J_X			2
+#  define BJ_X			3
 # elif (MAC == IMAC)
 #  define WIN_TITLE		"Fractol @42"
 #  define VP_WIDTH		2560
@@ -68,6 +70,7 @@
 #  define M_XMIN		-2.8
 #  define M_XMAX		1.3
 #  define J_X			2.35
+#  define BJ_X			3
 # else
 #  define WIN_TITLE		"Fractol"
 #  define VP_WIDTH		1000
@@ -75,7 +78,12 @@
 #  define M_XMIN		-2.1
 #  define M_XMAX		0.6
 #  define J_X			2
+#  define BJ_X			2
 # endif
+
+# define B_X			2
+# define B_X_OFS		0.5
+# define B_Y_OFS		0.5
 
 /*
 ** Messages for fractol :
@@ -88,10 +96,12 @@
 # define USG_TYPE	"Select fractal                  ( 1 | 2 | 3 | 4 )"
 # define USG_ZOOM	"Zoom                              ( - E | Q + )"
 # define USG_ITER	"Iteration                         ( - F | R + )"
-# define USG_COLOR	"Palette & color shift               ( P | Shift )"
-# define USG_ESCP	"Toggle mouse / quit             ( SPACE | ESC )"
+# define USG_COLOR	"Palette & color shift               ( Shift )"
+# define USG_ESCP	"Toggle mouse / quit             ( Space | Esc )"
 
-# define UHELP		"H for HUD / Help"
+# define CMD_1		"1 | 2 | 3 | 4 => select fractal"
+
+# define UHELP		"H => HUD & C => Controls"
 
 /*
 ** Structures :
@@ -101,8 +111,8 @@ typedef struct	s_fractal
 {
 	int			type;
 	int			changed;
-	int			new_pal;
 	int			reiter;
+	int			new_pal;
 	TYPE_C		*colorp;
 	TYPE_Z		x1;
 	TYPE_Z		x2;
@@ -110,7 +120,6 @@ typedef struct	s_fractal
 	TYPE_Z		y2;
 	TYPE_Z		step;
 	int			iter_max;
-	int			old_iter_max;
 	TYPE_Z		c_r;
 	TYPE_Z		c_i;
 }				t_fractal;
@@ -118,14 +127,12 @@ typedef struct	s_fractal
 typedef struct	s_pxl
 {
 	int			iter;
-	TYPE_Z		z_r;
-	TYPE_Z		z_i;
 }				t_pxl;
 
 typedef struct	s_pixel
 {
-	TYPE_Z		p;
-	TYPE_Z		d;
+	TYPE_Z		z_r;
+	TYPE_Z		z_i;
 	TYPE_Z		c_r;
 	TYPE_Z		c_i;
 	TYPE_Z		square_r;
@@ -145,10 +152,10 @@ typedef struct	s_env
 	t_slice		s[C_THR];
 	int			vp_len;
 	int			s_len;
-	int			ctype;
-	int			cshift;
+	int			type_palette;
 	int			motion_on;
 	int			hud_on;
+	int			hud_cmd;
 	int			x_mouse;
 	int			old_x_mouse;
 	int			y_mouse;

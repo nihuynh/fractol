@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 12:45:38 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/25 19:27:59 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static inline void	zoom(t_fractal *data, TYPE_Z value)
 	TYPE_Z dx;
 	TYPE_Z dy;
 
+	data->reiter = 0;
 	dx = (data->x2 - data->x1) / value;
 	dy = (data->y2 - data->y1) / value;
 	data->x1 += dx;
@@ -33,6 +34,7 @@ static inline void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
 	TYPE_Z dx;
 	TYPE_Z dy;
 
+	data->reiter = 0;
 	dx = (data->x2 - data->x1) / value;
 	dy = (data->y2 - data->y1) / value;
 	if (is_x)
@@ -65,6 +67,18 @@ static inline void	key_translate(t_fractal *data, int key_code)
 		translate(data, 20, 0, 1);
 }
 
+static inline void	key_fractal(t_fractal *data, int key_code)
+{
+	if (key_code == 18)
+		set_mandelbrot(data);
+	else if (key_code == 19)
+		set_julia(data);
+	else if (key_code == 20)
+		set_burning(data);
+	else if (key_code == 21)
+		set_burnlia(data);
+}
+
 /*
 ** Handle keyboard events.
 */
@@ -73,7 +87,7 @@ int					deal_keyboard(int key_code, t_env *env)
 {
 	if (key_code == KEY_SYS_OUT)
 		quit_program(env, EXIT_SUCCESS);
-	if (key_code == 4 && show_help() && (env->d.changed = 1))
+	if (key_code == 4 && (env->d.changed = 1))
 		env->hud_on += (env->hud_on == 1) ? -1 : 1;
 	if (key_code == 14)
 		zoom(&env->d, 20);
@@ -88,17 +102,11 @@ int					deal_keyboard(int key_code, t_env *env)
 	else if (key_code == 49 && (env->d.changed = 1))
 		env->motion_on += (env->motion_on == 1) ? -1 : 1;
 	else if (key_code == 257 && (env->d.new_pal = 1))
-		env->cshift += (env->cshift == 5) ? -5 : 1;
-	else if (key_code == 35 && (env->d.new_pal = 1))
-		env->ctype += (env->ctype == 2) ? -2 : 1;
-	else if (key_code == 18)
-		set_mandelbrot(&env->d);
-	else if (key_code == 19)
-		set_julia(&env->d);
-	else if (key_code == 20)
-		set_burning(&env->d);
-	else if (key_code == 21)
-		set_burnlia(&env->d);
+		env->type_palette += (env->type_palette == 7) ? -7 : 1;
+	else if (key_code == 8 && (env->d.changed = 1))
+		env->hud_cmd = 20;
+	else if (ft_btw(key_code, 18, 21))
+		key_fractal(&env->d, key_code);
 	else if (DEBUG)
 		ft_print_value("\nYou press the key : ", key_code);
 	return (0);

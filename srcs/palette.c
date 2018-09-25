@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 16:03:49 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/25 17:09:04 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,41 +33,45 @@ static inline TYPE_C	bernstein(t_env *env, float t)
 	r = 9 * (1 - t) * t * t * t;
 	g = 15 * (1 - t) * (1 - t) * t * t;
 	b = 8.5 * (1 - t) * (1 - t) * (1 - t) * t;
-	if (env->cshift == 1)
+	if (env->type_palette == 1)
 		return (rgbtoi(r, b, g));
-	else if (env->cshift == 2)
+	else if (env->type_palette == 2)
 		return (rgbtoi(b, g, r));
-	else if (env->cshift == 3)
+	else if (env->type_palette == 3)
 		return (rgbtoi(b, r, g));
-	else if (env->cshift == 4)
+	else if (env->type_palette == 4)
 		return (rgbtoi(g, b, r));
-	else if (env->cshift == 5)
+	else if (env->type_palette == 5)
 		return (rgbtoi(g, r, b));
 	return (rgbtoi(r, g, b));
 }
 
 static inline TYPE_C	hsv(float h, float s, float v)
 {
-	float	c;
-	float	x;
-	int		hh;
+	int		ti;
+	float	f;
+	float	l;
+	float	m;
+	float	n;
 
 	h *= 360;
-	c = v * s;
-	hh = (int)(h / 60.0);
-	x = c * (1 - ft_abs(hh % 2 - 1));
-	if (hh == 0)
-		return (rgbtoi(c, x, 0));
-	else if (hh == 1)
-		return (rgbtoi(x, c, 0));
-	else if (hh == 2)
-		return (rgbtoi(0, c, x));
-	else if (hh == 3)
-		return (rgbtoi(0, x, c));
-	else if (hh == 4)
-		return (rgbtoi(x, 0, c));
-	else if (hh == 5)
-		return (rgbtoi(c, 0, x));
+	ti = (int)((int)(h / 60.0) % 6);
+	f = h / 60 - ti;
+	l = v * (1 - s);
+	m = v * (1 - f * s);
+	n = v * (1 - (1 - f) * s);
+	if (ti == 0)
+		return (rgbtoi(v, n, l));
+	else if (ti == 1)
+		return (rgbtoi(m, v, l));
+	else if (ti == 2)
+		return (rgbtoi(l, v, n));
+	else if (ti == 3)
+		return (rgbtoi(l, m, v));
+	else if (ti == 4)
+		return (rgbtoi(n, l, v));
+	else if (ti == 5)
+		return (rgbtoi(v, l, m));
 	return (rgbtoi(0, 0, 0));
 }
 
@@ -98,11 +102,11 @@ void					palalloc(t_env *env, t_fractal *f)
 	while (++i < f->iter_max)
 	{
 		t = (float)i / (float)f->iter_max;
-		if (env->ctype == 0)
+		if (ft_btw(env->type_palette, 0, 5))
 			f->colorp[i] = bernstein(env, t);
-		else if (env->ctype == 1)
+		else if (env->type_palette == 6)
 			f->colorp[i] = hsv(t, 1, 1);
-		else if (env->ctype == 2)
+		else if (env->type_palette == 7)
 			f->colorp[i] = static_small(i);
 	}
 	if (DEBUG)

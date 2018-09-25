@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:29:23 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 12:51:29 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/25 19:10:31 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 #include "fractol.h"
 #include "mlx.h"
 #include <stdlib.h>
-
-/*
-** Print the command on the terminal when the key H is press.
-*/
-
-inline int			show_help(void)
-{
-	ft_putendl("\n\n\n\n\n\n\n\n\n");
-	ft_putendl(USG_TYPE);
-	ft_putendl(USG_ZOOM);
-	ft_putendl(USG_ITER);
-	ft_putendl(USG_COLOR);
-	ft_putendl(USG_ESCP);
-	return (1);
-}
 
 static inline void	hud_mouse(t_env *env)
 {
@@ -75,8 +60,16 @@ static inline void	hud_dvalue(t_env *env, double value, char *str, int pos)
 ** Handle the Head Up Display.
 */
 
+inline void			hud_help(t_env *env)
+{
+	env->hud_cmd--;
+	mlx_string_put(env->mlx, env->win, VP_WIDTH - 350, 10, 16777215, CMD_1);
+}
+
 void				show_hud(t_env *env, int time_frame)
 {
+	if (env->hud_cmd > 0)
+		hud_help(env);
 	if (env->hud_on)
 	{
 		hud_mouse(env);

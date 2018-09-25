@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 17:06:13 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/25 19:02:21 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,24 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 	mlx_loop_hook(env->mlx, &render, env);
 }
 
+inline static void	fractal_picker(char *arg, t_env *env, int ac)
+{
+	if (ac == 1 || ft_strcasecmp(arg, "mandelbrot") == 0)
+		set_mandelbrot(&env->d);
+	else if (ft_strcasecmp(arg, "julia") == 0)
+		set_julia(&env->d);
+	else if (ft_strcasecmp(arg, "burning") == 0)
+		set_burning(&env->d);
+	else if (ft_strcasecmp(arg, "burnlia") == 0)
+		set_burnlia(&env->d);
+	else
+	{
+		ft_putendl(MSG_USAGE);
+		free(env);
+		exit(1);
+	}
+}
+
 int					main(int ac, char **av)
 {
 	t_env	*env;
@@ -75,20 +93,8 @@ int					main(int ac, char **av)
 	{
 		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
 			ft_error(__func__, __LINE__);
-		if (ac == 1 || ft_strcasecmp(av[1], "mandelbrot") == 0)
-			set_mandelbrot(&env->d);
-		else if (ft_strcasecmp(av[1], "julia") == 0)
-			set_julia(&env->d);
-		else if (ft_strcasecmp(av[1], "burning") == 0)
-			set_burning(&env->d);
-		else if (ft_strcasecmp(av[1], "burnlia") == 0)
-			set_burnlia(&env->d);
-		else
-		{
-			ft_putendl(MSG_USAGE);
-			free(env);
-			exit(1);
-		}
+		fractal_picker(av[1], env, ac);
+		env->hud_cmd = 20;
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);
 		mlx_loop(env->mlx);
 		quit_program(env, EXIT_SUCCESS);

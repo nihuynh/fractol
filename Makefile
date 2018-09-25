@@ -6,13 +6,13 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/25 13:03:33 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/25 16:05:38 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:=	fractol
-RUNMODE		:=	dev
-#RUNMODE		:=	release
+#RUNMODE		:=	dev
+RUNMODE		:=	release
 APP_NAME	:=	Fractal_Explorer
 #PARAM		:=	julia
 PARAM		:=	mandelbrot

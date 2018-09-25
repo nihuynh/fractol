@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/24 16:12:26 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/25 17:51:58 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static inline void	zoom_on_cursor(t_fractal *data, int value, int x, int y)
 
 	if (ft_btw(x, 0, VP_WIDTH) && ft_btw(y - 20, 0, VP_HEIGHT))
 	{
+		data->reiter = 0;
 		x -= VP_WIDTH / 2;
 		y -= VP_HEIGHT / 2;
 		toby[0] = -x * data->step;
@@ -82,6 +83,7 @@ inline int			mouse_motion(int x, int y, t_env *env)
 	{
 		if (x != env->old_x_mouse || y != env->old_y_mouse)
 		{
+			env->d.reiter = 0;
 			env->old_x_mouse = x;
 			env->d.c_r = env->d.x1 + x * env->d.step;
 			env->old_y_mouse = y;

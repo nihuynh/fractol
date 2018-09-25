@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/23 03:19:13 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/25 19:30:32 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static inline void	apply_palette(t_env *env)
 		if (xslice == 0)
 			cslice++;
 		pxl_iter = env->s[cslice].data[xslice].iter;
-		if (pxl_iter == env->d.iter_max || pxl_iter < 0)
+		if (pxl_iter >= env->d.iter_max || pxl_iter < 0)
 			env->imgstr[ndx] = 0;
 		else
 			env->imgstr[ndx] = env->d.colorp[pxl_iter];
@@ -46,18 +46,18 @@ inline int			render(t_env *env)
 	clock_t	start;
 	clock_t	time_frame;
 	int		i;
-	int		limit;
 
 	i = -1;
 	if (env->d.changed || env->d.new_pal)
 	{
 		start = clock();
+		if (env->d.iter_max <= 0)
+			env->d.iter_max = ITER_MAX;
 		env->d.changed = 0;
+		mt_render(env);
+		ft_bzero(env->imgstr, (env->vp_len * sizeof(int)));
 		if (env->d.new_pal)
 			palalloc(env, &env->d);
-		limit = VP_WIDTH * VP_HEIGHT;
-		ft_bzero(env->imgstr, (limit * sizeof(int)));
-		mt_render(env);
 		apply_palette(env);
 		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 		time_frame = clock() - start;
