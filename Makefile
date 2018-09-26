@@ -6,11 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2018/09/26 05:25:59 by nihuynh          ###   ########.fr        #
-=======
-#    Updated: 2018/09/26 15:28:09 by nihuynh          ###   ########.fr        #
->>>>>>> d00685aa0d4be6b97ff7206e19eb4f9cfd0dec2c
+#    Updated: 2018/09/26 20:01:28 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +62,6 @@ OKLOGO	:=	\033[80G\033[32m[OK]\033[0m\n
 # **************************************************************************** #
 # Target rules :
 .POSIX:
-.SUFFIXES:
 all: $(NAME)
 $(NAME): $(OBJ) $(LINKF_LIBFT) $(LINKF_LMLX) $(HEAD)
 	@$(MYCC) -o $@ $(OBJ) $(INC) $(LIB) $(FRAME_W)
