@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 17:09:04 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 15:09:22 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void					palalloc(t_env *env, t_fractal *f)
 		if (ft_btw(env->type_palette, 0, 5))
 			f->colorp[i] = bernstein(env, t);
 		else if (env->type_palette == 6)
-			f->colorp[i] = hsv(t, 1, 1);
+			f->colorp[i] = hsv(t, 1, 0.7);
 		else if (env->type_palette == 7)
 			f->colorp[i] = static_small(i);
 	}
