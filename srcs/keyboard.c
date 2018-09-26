@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/26 01:43:16 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:57:59 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ static inline void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
 static inline void	key_translate(t_fractal *data, int key_code)
 {
 	if (key_code == 123)
-		translate(data, 20, 1, 0);
+		translate(data, INVERSE_M * 20, 1, 0);
 	else if (key_code == 124)
-		translate(data, -20, 1, 0);
+		translate(data, INVERSE_M * -20, 1, 0);
 	else if (key_code == 125)
-		translate(data, -20, 0, 1);
+		translate(data, INVERSE_M * -20, 0, 1);
 	else if (key_code == 126)
-		translate(data, 20, 0, 1);
+		translate(data, INVERSE_M * 20, 0, 1);
 }
 
 static inline void	key_fractal(t_fractal *data, int key_code)

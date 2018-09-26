@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/26 01:41:16 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 01:58:42 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define ITER_MAX	100
 # define C_THR		20
 # define DTOA_DSCP	7
+# define INVERSE_M	1
 
 /*
 ** Keybinding :
@@ -97,7 +98,7 @@
 
 # define CMD_1		"1 | 2 | 3 | 4  => select fractal"
 # define CMD_2		"shift | scroll => Color | Zoom"
-# define CMD_3		"arrow | Esc    => Move  | Quit"
+# define CMD_3		" <^>v | Esc    => Move  | Quit"
 # define CMD_4		"  R + | - F    => Iteration"
 # define CMD_5		"Space lock or unlock the mouse"
 # define CMD_6		"Click on fractal 1 and 3 to open"
