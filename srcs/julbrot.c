@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/26 01:09:02 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 17:53:55 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ inline void			iter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 
 inline void			reiter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 {
-	if (pxl->iter < 0)
+	if (pxl->iter < 0 || pxl->iter > env->d.iter_max)
 		return ;
 	if (env->imgstr[x + y * VP_WIDTH] == 0)
 		iter_julbrot(env, pxl, x, y);
