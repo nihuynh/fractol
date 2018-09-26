@@ -6,7 +6,11 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2018/09/26 05:25:59 by nihuynh          ###   ########.fr        #
+=======
+#    Updated: 2018/09/26 15:28:09 by nihuynh          ###   ########.fr        #
+>>>>>>> d00685aa0d4be6b97ff7206e19eb4f9cfd0dec2c
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +39,7 @@ LMLX_INC	:=
 MYCC		:=	clang
 MYCC		+=	-Werror -Wall -Wextra
 ifeq ($(RUNMODE),dev)
-    MYCC	+=	-g -O0
+    MYCC	+=	-g3 -O0
 	#MYCC	+=	-Wpedantic -ggdb -fsanitize=address
 else
 	MYCC	+=	-O3
