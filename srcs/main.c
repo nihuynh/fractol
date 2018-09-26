@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 19:02:21 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/26 04:38:05 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ int					main(int ac, char **av)
 		mlx_loop(env->mlx);
 		quit_program(env, EXIT_SUCCESS);
 	}
+	ft_putendl("Created by Nicolas Huynh @42 09/2018");
 	return (0);
 }

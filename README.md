@@ -83,6 +83,9 @@ CREDIT :
 Thanks to skeeto for his advices on multi-threading.
 You can check is website nullprogram.com where there is ...
 
+Makefile portable
+https://nullprogram.com/blog/2017/08/20/
+
 /*
 ** Print the command on the terminal when the key H is press.
 */

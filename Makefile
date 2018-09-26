@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/26 01:51:59 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/09/26 05:25:59 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,8 @@ INC			:=	-I$(INCF_LIBFT) -I$(INCF_LMLX) -I$(INCDIR)
 OKLOGO	:=	\033[80G\033[32m[OK]\033[0m\n
 # **************************************************************************** #
 # Target rules :
+.POSIX:
+.SUFFIXES:
 all: $(NAME)
 $(NAME): $(OBJ) $(LINKF_LIBFT) $(LINKF_LMLX) $(HEAD)
 	@$(MYCC) -o $@ $(OBJ) $(INC) $(LIB) $(FRAME_W)
