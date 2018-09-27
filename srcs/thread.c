@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:34:45 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 18:57:24 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/27 01:45:15 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ static inline void	*mt_iter(void *arg)
 	env = slice->env;
 	ofs = slice->id * (VP_HEIGHT / C_THR);
 	i = -1;
-	ft_bzero(slice->data, sizeof(t_pxl) * env->s_len);
 	while (++i < env->s_len)
 		iter_julbrot(env, &slice->data[i], i % VP_WIDTH, ofs + i / VP_WIDTH);
 	pthread_exit(NULL);

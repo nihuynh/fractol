@@ -46,38 +46,6 @@ https://www.carnetdumaker.net/articles/dessiner-la-fractale-de-mandelbrot-en-pyt
 Boundary :
 https://bisqwit.iki.fi/jutut/kuvat/programming_examples/mandelbrotbtrace.pdf
 
-Man pages :
-man pthread
-man sem_open
-man sem_close
-man sem_unlink
-
-Hors sujet :
-cpu load : http://mrob.com/pub/comp/logcpu/index.html
-Plein de flag sanitize
- -fsanitize=undefined -fsanitize=bounds -fsanitize=null -fno-omit-frame-pointer
-http://www.icosaedro.it/c-modules.html
-app with makefile :
-https://joseph-long.com/writing/app-bundles-with-a-makefile/
-
-reverse engineer :
-strings fractol
-nm fractol
-otools -tv fractol
-
-DONE :
-optimisation for mandelbrot remove point of the cardoide & first bulbe
-Zoom on mouse
-arrow for moving
-Multi-threading
-.app
-hud
-handle close
-
-DATA :
-julia center on 1000*1000
-O3 : 200 ms
-O0 : 450 ms
 
 CREDIT :
 Thanks to skeeto for his advices on multi-threading.
@@ -85,18 +53,3 @@ You can check is website nullprogram.com where there is ...
 
 Makefile portable
 https://nullprogram.com/blog/2017/08/20/
-
-/*
-** Print the command on the terminal when the key H is press.
-*/
-
-inline int			show_help(void)
-{
-	ft_putendl("\n\n\n\n\n\n\n\n\n");
-	ft_putendl(USG_TYPE);
-	ft_putendl(USG_ZOOM);
-	ft_putendl(USG_ITER);
-	ft_putendl(USG_COLOR);
-	ft_putendl(USG_ESCP);
-	return (1);
-}
