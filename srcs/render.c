@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/26 01:39:21 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/27 18:05:43 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ inline int			render(t_env *env)
 			env->motion_on = 0;
 		env->d.changed = 0;
 		mt_render(env);
-		ft_bzero(env->imgstr, (env->vp_len * sizeof(int)));
 		if (env->d.new_pal)
 			palalloc(env, &env->d);
 		apply_palette(env);
