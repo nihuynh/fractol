@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/26 15:09:22 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/09/29 00:19:12 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static inline TYPE_C	hsv(float h, float s, float v)
 
 static inline TYPE_C	static_small(int iter)
 {
-	static TYPE_C colors[16] = { 0x000000, 0x19071a, 0x09012f, 0x040449,
+	static TYPE_C colors[16] = { 0x6a2440, 0x19071a, 0x09012f, 0x040449,
 		0x000764, 0x0c2c8a, 0x1852b1, 0x397dd1, 0x86b5e5, 0xd3ecf8, 0xf1e9bf,
 		0xf8c95f, 0xffaa00, 0xcc8000, 0x995700, 0x6a3403};
 
