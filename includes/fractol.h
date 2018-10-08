@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/10/01 11:15:25 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/10/07 23:08:52 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 # define DEBUG		0
 # define DEBUG_LEAK	0
-# define MAC		IMAC
+# define MAC		MACB
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
 # define C_THR		20
 # define DTOA_DSCP	7
 # define INVERSE_M	1
-
+# define C_PALETTE	10
 /*
 ** Keybinding :
 */

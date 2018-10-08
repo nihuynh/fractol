@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/26 17:51:34 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/10/07 22:46:42 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int					deal_keyboard(int key_code, t_env *env)
 	else if (key_code == 49 && (env->d.changed = 1))
 		env->motion_on += (env->motion_on == 1) ? -1 : 1;
 	else if (key_code == 257 && (env->d.new_pal = 1))
-		env->type_palette += (env->type_palette == 7) ? -7 : 1;
+		env->type_palette += (env->type_palette == C_PALETTE) ? -C_PALETTE : 1;
 	else if (key_code == 8 && (env->d.changed = 1))
 		env->hud_cmd = (env->hud_cmd > 0) ? 0 : 20;
 	else if (ft_btw(key_code, 18, 21))

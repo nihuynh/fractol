@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/09/26 20:01:28 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/10/08 04:05:22 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ OKLOGO	:=	\033[80G\033[32m[OK]\033[0m\n
 all: $(NAME)
 $(NAME): $(OBJ) $(LINKF_LIBFT) $(LINKF_LMLX) $(HEAD)
 	@$(MYCC) -o $@ $(OBJ) $(INC) $(LIB) $(FRAME_W)
-	@printf "\n\033[1;34m$(NAME)\033[25G\033[32mBuilt $@ $(OKLOGO)"
+	@printf "\n\033[1;34m$(NAME)\033[25G\033[32mBuilt $@ complete $(OKLOGO)"
 $(LINKF_LIBFT):
 	@make -C $(LIBFT_PATH)/
 $(LINKF_LMLX):
@@ -103,6 +103,6 @@ git: fclean
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mGit sync $(OKLOGO)"
 	@git status
 norme:
-	@norminette -R CheckForbiddenSourceHeader srcs includes
+	@norminette -R CheckForbiddenSourceHeader srcs includes $(LIBFT_PATH)
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mNorminette $(OKLOGO)"
 .PHONY: all, $(NAME), $(APP_NAME), clean, fclean, re, run, git, norme, aclean, built
