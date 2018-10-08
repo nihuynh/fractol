@@ -1,55 +1,65 @@
 # fractol
-Links :
+
+---
+
+## Summary
+_This is a pure C fractal ._    
+_Built and tested on mac OSX 10, maybe it works on linux_    
+
+## How to install
+
+On mac, this command will built an app bundle:
+```
+git clone https://github.com/nihuynh/fractol && cd fractol && make built
+```
+
+## How to use
+
+
+### Keymap :
+
+<kbd>ESC</kbd> | Quit the program
+
+<kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd> | Select the fractal
+
+<kbd>ARROWS</kbd> | Translate
+
+<kbd>LEFT SHIFT</kbd> | Change the color palette
+
+<kbd>R</kbd>increase   ITERATION   decrease<kbd>F</kbd>
+
+<kbd>Q</kbd>in   ZOOM   out<kbd>E</kbd>
+
+---
+
+### Credits :
+* Thanks to skeeto for the advices on multi-threading.    
+Check his awesome blog at [nullprogram.com](https://nullprogram.com/index/).
+
+#### TODO :
+
+#### Planned features :
+make a script to get libft & minilibx    
+changelog    
+config file    
+dont reiter when only palette change    
+screenshot    
+image .xpm   => https://fr.wikipedia.org/wiki/X_PixMap    
+image .ppm  => https://fr.wikipedia.org/wiki/Portable_pixmap    
+image .tga  => https://fr.wikipedia.org/wiki/Truevision_Targa    
+animation    
+better static palette    
+Optimize more ft_bzero    
+#### Consider features :
+music input    
+gui    
+boundary algorithm    
+video output from dezoom or zoom    
+new fractal : Newton    
+new fractal : Tricorn    
+new fractal : Apollonius circle    
+new fractal : flame    
 http://mrob.com/pub/muency/speedimprovements.html
-https://joseph-long.com/writing/app-bundles-with-a-makefile/
 
-TODO :
-Format this file :
-_description
-_keymap
-_screenshot
-_changelog
-
-Add function :
-REDUCE COMPLEXITY
-RENAMING
-change define to val reduce overhead in loops
-Optimize ft_bzero
-
-Rule for the makefile (debug flags of optimisation)
-More color  => HSV to fix
-Multi-core  => split mon image et chaque thread fait une bande
-chaque thread a son buffer l'iter count.
-
-Take a screen shot :
-https://www.carnetdumaker.net/articles/dessiner-la-fractale-de-mandelbrot-en-python-et-en-cc/
-You read your image buffer and built the image.
-https://people.cs.clemson.edu/~dhouse/courses/405/notes/ppm-files.pdf
-image .xpm   => https://fr.wikipedia.org/wiki/X_PixMap
-image .ppm  => https://fr.wikipedia.org/wiki/Portable_pixmap
-image .tga  => https://fr.wikipedia.org/wiki/Truevision_Targa
-
-More fractal :
-Newton
-Tricorn
-Apollonius circle
-http://www.fil.univ-lille1.fr/~L2S3API/CoursTP/Projets/Apollonius/sujet_apollonius.html
-flame
-
-palette :
-https://colourco.de/
-
-Coloring :
-https://stackoverflow.com/questions/3018313/algorithm-to-convert-rgb-to-hsv-and-hsv-to-rgb-in-range-0-255-for-both
-https://www.carnetdumaker.net/articles/dessiner-la-fractale-de-mandelbrot-en-python-et-en-cc/
-
-Boundary :
-https://bisqwit.iki.fi/jutut/kuvat/programming_examples/mandelbrotbtrace.pdf
-
-
-CREDIT :
-Thanks to skeeto for his advices on multi-threading.
-You can check is website nullprogram.com where there is ...
-
-Makefile portable
-https://nullprogram.com/blog/2017/08/20/
+#### Licence:
+_This repository is under no license._
