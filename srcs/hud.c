@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:29:23 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/27 14:48:38 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/10/08 06:33:58 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,17 @@ void				show_hud(t_env *env, int time_frame)
 	if (env->hud_on)
 	{
 		hud_mouse(env);
-		hud_value(env, env->d.iter_max, "Iteration : ", 1);
-		hud_value(env, time_frame, "Time(ms) : ", 2);
-		hud_dvalue(env, env->d.c_r, "c_r : ", 3);
-		hud_dvalue(env, env->d.c_i, "c_i : ", 4);
-		hud_dvalue(env, env->d.x1, "x1 : ", 6);
-		hud_dvalue(env, env->d.x2, "x2 : ", 7);
-		hud_dvalue(env, env->d.y1, "y1 : ", 8);
-		hud_dvalue(env, env->d.y2, "y2 : ", 9);
-		hud_dvalue(env, env->d.step, "step : ", 10);
+		hud_value(env, env->d.type, "Fractal : ", 1);
+		hud_value(env, env->d.iter_max, "Iteration : ", 2);
+		hud_value(env, env->type_palette, "Palette : ", 3);
+		hud_value(env, time_frame, "Time(ms) : ", 4);
+		hud_dvalue(env, env->d.c_r, "c_r : ", 5);
+		hud_dvalue(env, env->d.c_i, "c_i : ", 6);
+		hud_dvalue(env, env->d.x1, "X1 : ", 8);
+		hud_dvalue(env, env->d.x2, "X2 : ", 9);
+		hud_dvalue(env, env->d.y1, "Y1 : ", 10);
+		hud_dvalue(env, env->d.y2, "Y2 : ", 11);
+		hud_dvalue(env, env->d.step, "Step : ", 12);
 		return ;
 	}
 	mlx_string_put(env->mlx, env->win, 15, VP_HEIGHT - 30, C_UI, UHELP);

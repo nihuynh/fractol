@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/10/07 23:06:49 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/10/08 04:35:30 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static inline TYPE_C	static_pal(int iter, int type)
 	static TYPE_C color1[16] = { 0x6a2440, 0x19071a, 0x09012f, 0x040449,
 		0x000764, 0x0c2c8a, 0x1852b1, 0x397dd1, 0x86b5e5, 0xd3ecf8, 0xf1e9bf,
 		0xf8c95f, 0xffaa00, 0xcc8000, 0x995700, 0x6a3403};
-	static TYPE_C color2[16] = {0x000050, 0x16176c, 0x4169e1, 0x1e90ff,
+	static TYPE_C color2[16] = {0x421e0f, 0x16176c, 0x4169e1, 0x1e90ff,
 		0x00bfff, 0x00f5ff, 0x00ff7f, 0xadff2f, 0xffff00, 0xffa500, 0xff6500,
 		0xff3500, 0xff0000, 0xaa0000, 0x880000, 0x580000};
 	static TYPE_C color3[5] = {0x61b3ff, 0x210a7f, 0x0588da, 0x0bcc31,
