@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/10/08 04:05:22 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/10/09 14:42:49 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ ifeq ($(RUNMODE),dev)
     MYCC	+=	-g3 -O0
 	#MYCC	+=	-Wpedantic -ggdb -fsanitize=address
 else
-	MYCC	+=	-O3
+	MYCC	+= -Ofast
 endif
 RM			:=	/bin/rm -f
 FMKDIR		:= 2> /dev/null || true
