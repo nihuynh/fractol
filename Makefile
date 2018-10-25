@@ -24,7 +24,7 @@ OBJDIR 		:=	objs
 INCDIR  	:=	includes
 # LIBFT
 LIBFT_NAME	:=	libft.a
-LIBFT_PATH	:=	../../libft_project/master/
+LIBFT_PATH	:=	../lib/libft/
 LIBFT_INC	:=	includes
 # MINILIBX
 LMLX_NAME	:=	libmlx.a
