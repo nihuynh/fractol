@@ -21,15 +21,15 @@
 
 # define DEBUG		0
 # define DEBUG_LEAK	0
-# define MAC		IMAC
+# define MAC		MACB
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
-# define C_THR		20
+# define C_THR		8
 # define DTOA_DSCP	7
 # define INVERSE_M	1
 # define C_PALETTE	10
-# define C_UI			16777215
+# define C_UI		16777215
 
 /*
 ** Keybinding :

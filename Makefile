@@ -85,7 +85,7 @@ lclean:
 aclean:
 	@rm -rf "./build/$(APP_NAME).app/"
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning $(APP_NAME).app $(OKLOGO)"
-built: all
+built: $(NAME)
 	@mkdir -p "./build/$(APP_NAME).app"/Contents/{MacOS,Resources} $(FMKDIR)
 	@cp ./built_srcs/Info.plist "./build/$(APP_NAME).app/Contents/"
 	@cp ./built_srcs/fe_icon.icns "./build/$(APP_NAME).app/Contents/Resources"
