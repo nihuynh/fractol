@@ -28,7 +28,7 @@
 # define C_THR		8
 # define DTOA_DSCP	7
 # define INVERSE_M	1
-# define C_PALETTE	10
+# define C_PALETTE	9
 # define C_UI		16777215
 
 /*
