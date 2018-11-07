@@ -28,7 +28,7 @@ LIBFT_PATH	:=	../lib/libft/
 LIBFT_INC	:=	includes
 # MINILIBX
 LMLX_NAME	:=	libmlx.a
-LMLX_PATH	:=	minilibx/
+LMLX_PATH	:=	../lib/minilibx/
 LMLX_INC	:=
 # **************************************************************************** #
 # make specs :
