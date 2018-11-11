@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/10/09 14:41:09 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/11 04:49:36 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@
 # define BURNING		2
 # define BURNING_JULIA	3
 # define TYPE_C			unsigned int
-
 
 # define EXIT_FAILURE	1
 # define EXIT_SUCCESS	0
