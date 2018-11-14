@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/11/11 04:49:36 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/14 16:04:54 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define DEBUG		0
 # define DEBUG_LEAK	0
-# define MAC		MACB
+# define MAC		IMAC4K
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
@@ -46,6 +46,7 @@
 # define DEV			0
 # define MACB			1
 # define IMAC			2
+# define IMAC4K			3
 # define MANDEL			0
 # define JULIA			1
 # define BURNING		2
@@ -71,6 +72,14 @@
 #  define WIN_TITLE		"Fractol @42"
 #  define VP_WIDTH		2560
 #  define VP_HEIGHT		1400
+#  define M_XMIN		-2.8
+#  define M_XMAX		1.3
+#  define J_X			2.35
+#  define BJ_X			3
+# elif (MAC == IMAC4K)
+#  define WIN_TITLE		"Fractol @42"
+#  define VP_WIDTH		3200
+#  define VP_HEIGHT		1800
 #  define M_XMIN		-2.8
 #  define M_XMAX		1.3
 #  define J_X			2.35
