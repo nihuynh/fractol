@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:57:03 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/27 18:05:43 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/15 03:25:44 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ inline int			render(t_env *env)
 		apply_palette(env);
 		mlx_put_image_to_window(env->mlx, env->win, env->img, 0, 0);
 		time_frame = clock() - start;
-		show_hud(env, (int)time_frame / 1000);
+		show_hud(env, (int)time_frame / 4000);
 	}
 	return (0);
 }
