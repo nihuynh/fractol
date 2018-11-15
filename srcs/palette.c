@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/10/08 04:35:30 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/15 04:33:35 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static inline TYPE_C	hsv(float h, float s, float v)
 	return (rgbtoi(0, 0, 0));
 }
 
-static inline TYPE_C	static_pal(int iter, int type)
+static inline TYPE_C	static_pal(int iter, int type, float t)
 {
 	static TYPE_C color0[16] = { 0x6a2440, 0x19071a, 0x09012f, 0x040449,
 		0x000764, 0x0c2c8a, 0x1852b1, 0x397dd1, 0x86b5e5, 0xd3ecf8, 0xf1e9bf,
@@ -98,6 +98,8 @@ static inline TYPE_C	static_pal(int iter, int type)
 		return (color0[iter % 16]);
 	else if (type == 1)
 		return (color1[iter % 16]);
+	else if (type == 2)
+		return (t * 9999999999);
 	else
 		return (color2[iter % 64]);
 }
@@ -125,7 +127,7 @@ void					palalloc(t_env *env, t_fractal *f)
 		else if (env->type_palette == 6)
 			f->colorp[i] = hsv(t, 1, 0.7);
 		else if (ft_btw(env->type_palette, 7, C_PALETTE))
-			f->colorp[i] = static_pal(i, env->type_palette - 7);
+			f->colorp[i] = static_pal(i, env->type_palette - 7, t);
 	}
 	if (DEBUG)
 		ft_putendl("New palette generated");

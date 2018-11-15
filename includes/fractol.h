@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/11/15 02:25:21 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/15 04:32:45 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define C_THR		8
 # define DTOA_DSCP	7
 # define INVERSE_M	1
-# define C_PALETTE	9
+# define C_PALETTE	10
 # define C_UI		16777215
 
 /*
