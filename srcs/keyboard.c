@@ -6,12 +6,18 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/10/07 22:46:42 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/19 00:54:36 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include "libft.h"
+
+#ifndef __APPLE__
+# include "keycode_linux.h"
+#else
+# include "keycode_mac.h"
+#endif
 
 static inline void	zoom(t_fractal *data, TYPE_Z value)
 {
@@ -55,28 +61,40 @@ static inline void	translate(t_fractal *data, TYPE_Z value, int is_x, int is_y)
 ** Handle the image business.
 */
 
-static inline void	key_translate(t_fractal *data, int key_code)
+static inline void	key_part_one(t_fractal *data, int key_code)
 {
-	if (key_code == 123)
+	if (key_code == KEY_LEFT)
 		translate(data, 20 * INVERSE_M, 1, 0);
-	else if (key_code == 124)
+	else if (key_code == KEY_RIGHT)
 		translate(data, -20 * INVERSE_M, 1, 0);
-	else if (key_code == 125)
+	else if (key_code == KEY_DOWN)
 		translate(data, -20 * INVERSE_M, 0, 1);
-	else if (key_code == 126)
+	else if (key_code == KEY_UP)
 		translate(data, 20 * INVERSE_M, 0, 1);
+	else if (key_code == KEY_1)
+		set_mandelbrot(data);
+	else if (key_code == KEY_2)
+		set_julia(data);
+	else if (key_code == KEY_3)
+		set_burning(data);
+	else if (key_code == KEY_4)
+		set_burnlia(data);
 }
 
-static inline void	key_fractal(t_fractal *data, int key_code)
+static inline void	key_part_two(t_fractal *data, int key_code)
 {
-	if (key_code == 18)
-		set_mandelbrot(data);
-	else if (key_code == 19)
-		set_julia(data);
-	else if (key_code == 20)
-		set_burning(data);
-	else if (key_code == 21)
-		set_burnlia(data);
+	if (key_code == KEY_R && (data->new_pal = 1))
+		data->iter_max += 50;
+	else if (key_code == KEY_F && (data->new_pal = 1))
+		data->iter_max -= (data->iter_max <= 50) ? 0 : 50;
+	else if (key_code == KEY_T && (data->new_pal = 1))
+		data->iter_max += 5;
+	else if (key_code == KEY_G && (data->new_pal = 1))
+		data->iter_max -= (data->iter_max <= 5) ? 0 : 5;
+	else if (key_code == KEY_E)
+		zoom(data, 20);
+	else if (key_code == KEY_Q)
+		zoom(data, -20);
 }
 
 /*
@@ -85,28 +103,18 @@ static inline void	key_fractal(t_fractal *data, int key_code)
 
 int					deal_keyboard(int key_code, t_env *env)
 {
-	if (key_code == KEY_SYS_OUT)
+	if (key_code == KEY_ESCAPE)
 		quit_program(env, EXIT_SUCCESS);
-	if (key_code == 4 && (env->d.changed = 1))
+	key_part_one(&env->d, key_code);
+	key_part_two(&env->d, key_code);
+	if (key_code == KEY_H && (env->d.changed = 1))
 		env->hud_on += (env->hud_on == 1) ? -1 : 1;
-	if (key_code == 14)
-		zoom(&env->d, 20);
-	else if (key_code == 12)
-		zoom(&env->d, -20);
-	else if (ft_btw(key_code, 123, 126))
-		key_translate(&env->d, key_code);
-	else if (key_code == 15 && (env->d.new_pal = 1))
-		env->d.iter_max += 50;
-	else if (key_code == 3 && (env->d.new_pal = 1))
-		env->d.iter_max -= (env->d.iter_max == 50) ? 0 : 50;
-	else if (key_code == 49 && (env->d.changed = 1))
+	else if (key_code == KEY_SPACEBAR && (env->d.changed = 1))
 		env->motion_on += (env->motion_on == 1) ? -1 : 1;
-	else if (key_code == 257 && (env->d.new_pal = 1))
+	else if (key_code == KEY_P && (env->d.new_pal = 1))
 		env->type_palette += (env->type_palette == C_PALETTE) ? -C_PALETTE : 1;
-	else if (key_code == 8 && (env->d.changed = 1))
+	else if (key_code == KEY_C && (env->d.changed = 1))
 		env->hud_cmd = (env->hud_cmd > 0) ? 0 : 20;
-	else if (ft_btw(key_code, 18, 21))
-		key_fractal(&env->d, key_code);
 	else if (DEBUG)
 		ft_print_value("\nYou press the key : ", key_code);
 	return (0);

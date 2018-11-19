@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/11/15 04:32:45 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/19 00:07:34 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,12 @@
 # define MSG_ERR	"Error cause fractol to exit"
 
 # define CMD_1		"1 | 2 | 3 | 4  => select fractal"
-# define CMD_2		"shift | scroll => Color | Zoom"
-# define CMD_3		" <^>v | Esc    => Move  | Quit"
-# define CMD_4		"  R + | - F    => Iteration"
+# define CMD_2		" P | scroll => Color | Zoom"
+# define CMD_3		" Arrow | Esc    => Move  | Quit"
+# define CMD_4		"  R or T + | - F or G    => Iteration"
 # define CMD_5		"Space lock or unlock the mouse"
-# define CMD_6		"Click on fractal 1 and 3 to open"
-# define CMD_7		"the julia at this position"
+# define CMD_6		"  Q + | - E    => Zoom"
+# define CMD_7		"Click will load the parameter into the next fractal"
 
 # define CMD_10		"  Q + | - E    => Zoom"
 
