@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/11/19 01:17:43 by nihuynh          ###   ########.fr        #
+#    Updated: 2018/11/21 08:48:25 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ else
 	MYCC	+= -Ofast
 endif
 RM			:=	/bin/rm -f
-FMKDIR		:= 2> /dev/null || true
 # **************************************************************************** #
 # Automatic variable :
 OBJ			:=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
@@ -72,12 +71,12 @@ $(LINKF_LMLX):
 	@make -C $(LMLX_PATH)/
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEAD)
-	@mkdir $(OBJDIR) $(FMKDIR)
+	@mkdir $(OBJDIR) 2> /dev/null || true
 	@$(MYCC) $(INC) -pthread -o $@ -c $<
 	@printf "\033[1;34m$(NAME)\033[25G\033[33mCompile $< $(OKLOGO)"
 clean:
 	@$(RM) $(OBJ)
-	@rmdir $(OBJDIR) $(FMKDIR)
+	@rmdir $(OBJDIR) 2> /dev/null || true
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning objs $(OKLOGO)"
 lclean:
 	@make -C $(LIBFT_PATH)/ clean
@@ -86,7 +85,7 @@ aclean:
 	@rm -rf "./build/$(APP_NAME).app/"
 	@printf "\033[1;34m$(NAME)\033[25G\033[31mCleaning $(APP_NAME).app $(OKLOGO)"
 built: $(NAME)
-	@mkdir -p "./build/$(APP_NAME).app"/Contents/{MacOS,Resources} $(FMKDIR)
+	@mkdir -p "./build/$(APP_NAME).app"/Contents/{MacOS,Resources} 2> /dev/null || true
 	@cp ./built_srcs/Info.plist "./build/$(APP_NAME).app/Contents/"
 	@cp ./built_srcs/fe_icon.icns "./build/$(APP_NAME).app/Contents/Resources"
 	@cp ./$(NAME) "./build/$(APP_NAME).app/Contents/MacOS/binary"

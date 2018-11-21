@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 22:57:20 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/11/19 00:31:44 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/21 14:17:59 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static inline TYPE_C	static_pal(int iter, int type, float t)
 	else if (type == 1)
 		return (color1[iter % 16]);
 	else if (type == 2)
-		return ((int)(t * 99999839));
+		return ((int)(t * 999997771));
 	else
 		return (color2[iter % 64]);
 }
