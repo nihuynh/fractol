@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:29:23 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/10/08 06:33:58 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/23 04:32:08 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,9 @@
 
 static inline void	hud_mouse(t_env *env)
 {
-	char	*val;
-
-	if (!(val = ft_strdup((env->motion_on == 1) ? "on" : "off")))
-		return ;
 	mlx_string_put(env->mlx, env->win, 15, 10, C_UI, "Mouse : ");
-	mlx_string_put(env->mlx, env->win, 95, 10, C_UI, val);
-	free(val);
+	mlx_string_put(env->mlx, env->win, 95, 10, C_UI,
+		(env->motion_on == 1) ? "on" : "off");
 }
 
 static inline void	hud_value(t_env *env, int value, char *str, int pos)

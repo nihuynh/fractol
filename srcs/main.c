@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/29 00:12:57 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/23 04:42:07 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,14 @@ static inline void	ft_new_window(t_env *env, int w, int h, char *title)
 {
 	mt_init(env);
 	palalloc(env, &env->d);
-	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, w, h, title);
-	env->img = mlx_new_image(env->mlx, w, h);
+	if (!(env->mlx = mlx_init()))
+		quit_program(env, EXIT_FAILURE);
+	if (!(env->win = mlx_new_window(env->mlx, w, h, title)))
+		quit_program(env, EXIT_FAILURE);
+	if (!(env->img = mlx_new_image(env->mlx, w, h)))
+		quit_program(env, EXIT_FAILURE);
 	env->imgstr = (int*)mlx_get_data_addr(env->img, &env->b, &env->w, &env->e);
-	if (env->win == NULL)
+	if (env->imgstr == NULL)
 		quit_program(env, EXIT_FAILURE);
 	mlx_do_key_autorepeaton(env->mlx);
 	mlx_hook(env->win, 2, 0, deal_keyboard, env);
