@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:11:09 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/26 20:01:50 by nihuynh          ###   ########.fr       */
+/*   Updated: 2018/11/29 18:59:54 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ inline void			iter_julbrot(t_env *env, t_pxl *pxl, int x, int y)
 	{
 		if (env->d.type > JULIA)
 		{
-			p.z_i = Z_ABS(p.z_i);
-			p.z_r = Z_ABS(p.z_r);
+			p.z_i = p.z_i;
+			p.z_r = -Z_ABS(p.z_r);
 		}
 		p.z_i = p.z_r * p.z_i;
 		p.z_i += p.z_i + p.c_i;
