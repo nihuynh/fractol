@@ -6,7 +6,11 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/11/22 12:45:09 by nihuynh          ###   ########.fr       */
+=======
+/*   Updated: 2018/12/21 05:10:54 by nihuynh          ###   ########.fr       */
+>>>>>>> 7c53baa09926ffda921cfea9720715a9c92c5e3e
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +25,11 @@
 
 # define DEBUG		0
 # define DEBUG_LEAK	0
+<<<<<<< HEAD
 # define MAC		MACB
+=======
+# define MAC		IMAC
+>>>>>>> 7c53baa09926ffda921cfea9720715a9c92c5e3e
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
