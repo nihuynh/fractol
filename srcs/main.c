@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/11/23 04:42:07 by nihuynh          ###   ########.fr       */
+/*   Updated: 2019/04/08 22:37:17 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ inline static void	fractal_picker(char *arg, t_env *env, int ac)
 	if (ac == 1 || ft_strcasecmp(arg, "mandelbrot") == 0)
 		set_mandelbrot(&env->d);
 	else if (ft_strcasecmp(arg, "julia") == 0)
-		set_julia(&env->d);
+		set_julia(&env->d, JULIA);
 	else if (ft_strcasecmp(arg, "burning") == 0)
 		set_burning(&env->d);
 	else if (ft_strcasecmp(arg, "burnlia") == 0)
-		set_burnlia(&env->d);
+		set_julia(&env->d, BURNING_JULIA);
 	else
 	{
 		ft_putendl(MSG_USAGE);

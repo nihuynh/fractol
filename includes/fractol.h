@@ -6,11 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/11/22 12:45:09 by nihuynh          ###   ########.fr       */
-=======
-/*   Updated: 2018/12/21 05:10:54 by nihuynh          ###   ########.fr       */
->>>>>>> 7c53baa09926ffda921cfea9720715a9c92c5e3e
+/*   Updated: 2019/04/08 22:41:54 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +21,7 @@
 
 # define DEBUG		0
 # define DEBUG_LEAK	0
-<<<<<<< HEAD
-# define MAC		MACB
-=======
 # define MAC		IMAC
->>>>>>> 7c53baa09926ffda921cfea9720715a9c92c5e3e
 # define TYPE_Z		double
 # define Z_ABS(x)	fabs(x)
 # define ITER_MAX	100
@@ -59,6 +51,8 @@
 # define JULIA			1
 # define BURNING		2
 # define BURNING_JULIA	3
+# define SYM			4
+# define SYM_JULIA		5
 # define TYPE_C			unsigned int
 
 # define EXIT_FAILURE	1
@@ -114,10 +108,10 @@
 # define MSG_BYE	"Quitting Fractol. Bye bye !"
 # define MSG_ERR	"Error cause fractol to exit"
 
-# define CMD_1		"1 | 2 | 3 | 4  => select fractal"
+# define CMD_1		"1 | 2 | 3 | 4 | 5 | 6 => select fractal"
 # define CMD_2		" P | scroll => Color | Zoom"
 # define CMD_3		" Arrow | Esc    => Move  | Quit"
-# define CMD_4		"  R or T + | - F or G    => Iteration"
+# define CMD_4		"  R or T + (50) | - F or G (1)   => Iteration"
 # define CMD_5		"Space lock or unlock the mouse"
 # define CMD_6		"  Q + | - E    => Zoom"
 # define CMD_7		"Click will load the parameter into the next fractal"
@@ -204,9 +198,9 @@ int				render(t_env *env);
 void			quit_program(t_env *env, int exit_code);
 
 void			set_mandelbrot(t_fractal *data);
-void			set_julia(t_fractal *data);
-void			set_burnlia(t_fractal *data);
+void			set_julia(t_fractal *data, int type);
 void			set_burning(t_fractal *data);
+void			set_sym(t_fractal *data);
 
 void			palalloc(t_env *env, t_fractal *f);
 int				show_help(void);

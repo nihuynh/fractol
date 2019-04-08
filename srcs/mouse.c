@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:43 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/09/25 17:51:58 by nihuynh          ###   ########.fr       */
+/*   Updated: 2019/04/08 22:38:15 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,11 @@ int					deal_mouse(int mouse_code, int x, int y, t_env *env)
 		mouse_motion(x, y, env);
 		env->motion_on = 0;
 		if (env->d.type == MANDEL)
-			set_julia(&env->d);
+			set_julia(&env->d, JULIA);
 		if (env->d.type == BURNING)
-			set_burnlia(&env->d);
+			set_julia(&env->d, BURNING_JULIA);
+		if (env->d.type == SYM)
+			set_julia(&env->d, SYM_JULIA);
 	}
 	else if (mouse_code == 5)
 		zoom_on_cursor(&env->d, 25, x, y);

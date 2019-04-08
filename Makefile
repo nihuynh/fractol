@@ -6,7 +6,7 @@
 #    By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 06:27:55 by nihuynh           #+#    #+#              #
-#    Updated: 2018/11/21 08:48:25 by nihuynh          ###   ########.fr        #
+#    Updated: 2019/04/03 22:11:39 by nihuynh          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ OBJDIR 		:=	objs
 INCDIR  	:=	includes
 # LIBFT
 LIBFT_NAME	:=	libft.a
-LIBFT_PATH	:=	../lib/libft/
+LIBFT_PATH	:=	lib/libft/
 LIBFT_INC	:=	includes
 # MINILIBX
 LMLX_NAME	:=	libmlx.a
-LMLX_PATH	:=	../lib/minilibx/
+LMLX_PATH	:=	lib/minilibx/
 LMLX_INC	:=
 # **************************************************************************** #
 # make specs :
@@ -38,7 +38,7 @@ ifeq ($(RUNMODE),dev)
     MYCC	+=	-g3 -O0
 	#MYCC	+=	-Wpedantic -ggdb -fsanitize=address
 else
-	MYCC	+= -Ofast
+	MYCC	+= -Ofast -flto
 endif
 RM			:=	/bin/rm -f
 # **************************************************************************** #

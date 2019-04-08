@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 23:10:54 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/11/19 00:54:36 by nihuynh          ###   ########.fr       */
+/*   Updated: 2019/04/08 22:34:12 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,15 @@ static inline void	key_part_one(t_fractal *data, int key_code)
 	else if (key_code == KEY_1)
 		set_mandelbrot(data);
 	else if (key_code == KEY_2)
-		set_julia(data);
+		set_julia(data, JULIA);
 	else if (key_code == KEY_3)
 		set_burning(data);
 	else if (key_code == KEY_4)
-		set_burnlia(data);
+		set_julia(data, BURNING_JULIA);
+	else if (key_code == KEY_5)
+		set_sym(data);
+	else if (key_code == KEY_6)
+		set_julia(data, SYM_JULIA);
 }
 
 static inline void	key_part_two(t_fractal *data, int key_code)
