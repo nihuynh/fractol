@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:48 by nihuynh           #+#    #+#             */
-/*   Updated: 2019/04/08 22:37:17 by nihuynh          ###   ########.fr       */
+/*   Updated: 2019/05/22 16:53:39 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int					main(int ac, char **av)
 	{
 		if (!(env = (t_env*)ft_memalloc(sizeof(t_env))))
 			ft_error(__func__, __LINE__);
+		env->argc = ac;
+		env->argv = av;
 		fractal_picker(av[1], env, ac);
 		env->hud_cmd = 20;
 		ft_new_window(env, VP_WIDTH, VP_HEIGHT, WIN_TITLE);

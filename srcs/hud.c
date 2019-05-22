@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 15:29:23 by nihuynh           #+#    #+#             */
-/*   Updated: 2018/11/23 04:32:08 by nihuynh          ###   ########.fr       */
+/*   Updated: 2019/05/22 16:56:31 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ static inline void	hud_help(t_env *env)
 
 void				show_hud(t_env *env, int time_frame)
 {
+	int local_ac;
 	if (env->hud_cmd > 0)
 		hud_help(env);
 	if (env->hud_on)
 	{
+		local_ac = env->argc;
 		hud_mouse(env);
 		hud_value(env, env->d.type, "Fractal : ", 1);
 		hud_value(env, env->d.iter_max, "Iteration : ", 2);
@@ -86,6 +88,8 @@ void				show_hud(t_env *env, int time_frame)
 		hud_dvalue(env, env->d.y1, "Y1 : ", 10);
 		hud_dvalue(env, env->d.y2, "Y2 : ", 11);
 		hud_dvalue(env, env->d.step, "Step : ", 12);
+		while (--local_ac >= 0)
+			hud_value(env, local_ac, env->argv[local_ac], 12 + local_ac);
 		return ;
 	}
 	mlx_string_put(env->mlx, env->win, 15, VP_HEIGHT - 30, C_UI, UHELP);

@@ -6,7 +6,7 @@
 /*   By: nihuynh <nihuynh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 01:56:32 by nihuynh           #+#    #+#             */
-/*   Updated: 2019/04/08 23:40:10 by nihuynh          ###   ########.fr       */
+/*   Updated: 2019/05/22 16:48:36 by nihuynh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,8 @@ typedef struct	s_slice
 
 typedef struct	s_env
 {
+	int			argc;
+	char		**argv;
 	t_fractal	d;
 	t_slice		s[C_THR];
 	int			vp_len;
