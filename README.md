@@ -10,18 +10,13 @@ On mac, this command will built an app bundle:
 git clone https://github.com/nihuynh/fractol && cd fractol
 make built && open build
 ```
-On linux :
-```
-git clone https://github.com/nihuynh/fractol && cd fractol
-make run
-```
 
 ## Summary
 _This is a fractal render program written in C._
 
 _This project is done during 42 graphic branch to learn about optimisation and computer graphics._
 
-_Built and tested on mac OSX 10, it should work on linux (Untested)_
+_Built and tested on mac OSX 10._
 
 There is 6 fractals implemented :
 - Mandelbrot
