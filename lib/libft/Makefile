@@ -64,7 +64,7 @@ ifeq ($(RUNMODE),dev)
     CFLAGS	+=	-g3 -O0
 	# CFLAGS	+=	-Wpedantic -ggdb -fsanitize=address
 else
-	CFLAGS	+= -O2 -march=native -flto
+	CFLAGS	+= -O2 -flto
 endif
 ifndef VERBOSE
 .SILENT:

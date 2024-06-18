@@ -45,9 +45,7 @@ inline int			render(t_env *env)
 {
 	clock_t	start;
 	clock_t	time_frame;
-	int		i;
 
-	i = -1;
 	if (env->d.changed || env->d.new_pal)
 	{
 		start = clock();
